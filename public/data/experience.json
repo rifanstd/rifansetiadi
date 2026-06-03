@@ -1,0 +1,15 @@
+{
+  "experiences": [
+    {
+      "role": "Senior Mobile Developer",
+      "company": "Company Name",
+      "period": "2023 - Present",
+      "type": "Full-time",
+      "description": [
+        "Led development of 3+ mobile applications from scratch",
+        "Implemented AI-powered features using TensorFlow Lite",
+        "Mentored junior developers and conducted code reviews"
+      ]
+    }
+  ]
+}

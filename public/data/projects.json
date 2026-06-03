@@ -1,0 +1,12 @@
+{
+  "projects": [
+    {
+      "title": "AI Chat Assistant",
+      "description": "A mobile app integrating OpenAI API for intelligent conversation and task automation.",
+      "image": "/images/projects/ai-chat.jpg",
+      "tags": ["Flutter", "Dart", "OpenAI API", "Firebase"],
+      "githubUrl": "https://github.com/username/ai-chat",
+      "liveUrl": "https://example.com/ai-chat"
+    }
+  ]
+}

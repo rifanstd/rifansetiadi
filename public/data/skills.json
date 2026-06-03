@@ -1,0 +1,12 @@
+{
+  "skills": [
+    { "name": "Flutter", "category": "Mobile" },
+    { "name": "Dart", "category": "Mobile" },
+    { "name": "Firebase", "category": "Backend" },
+    { "name": "Python", "category": "AI/ML" },
+    { "name": "TensorFlow", "category": "AI/ML" },
+    { "name": "OpenAI API", "category": "AI/ML" },
+    { "name": "Git", "category": "Tools" },
+    { "name": "Figma", "category": "Tools" }
+  ]
+}
