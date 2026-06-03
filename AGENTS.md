@@ -37,6 +37,10 @@ Order when verifying: `lint` → `typecheck` → `build`
 - CSS variables for theming (light/dark) are in `:root` and `.dark`
 - Prettier uses `prettier-plugin-tailwindcss` with `tailwindFunctions: ["cn", "cva"]`
 
+## Git / Workflow
+- **DO NOT perform any git mutations** — no `git commit`, `git push`, `git reset`, `git rebase`, `git merge`, or any other git write operations.
+- The user commits manually. Only read git state (`git status`, `git log`, `git diff`, etc.) if needed.
+
 ## Styling Conventions
 - Prettier: `semi: false`, `singleQuote: false`, `trailingComma: "es5"`, `endOfLine: "lf"`
 - ThemeProvider wraps the app; users toggle dark mode with the `d` key
