@@ -8,7 +8,7 @@
 
 ## 1. Overview
 
-A single-page portfolio website for a **Software Engineer** specializing in **Flutter** and **AI**. The website presents the owner's personal brand through a smooth-scrolling experience with modern animations and a clean, professional design.
+A single-page portfolio website for a **Software Engineer** specializing in **mobile development** and **AI**. The website presents the owner's personal brand through a smooth-scrolling experience with modern animations and a clean, professional design.
 
 All content is loaded from separate JSON files, making the site easy to update without touching the codebase.
 
@@ -17,7 +17,7 @@ All content is loaded from separate JSON files, making the site easy to update w
 ## 2. Goals
 
 - Establish a professional online presence
-- Showcase Flutter & AI expertise
+- Showcase mobile development & AI expertise
 - Display work experience and projects
 - Provide easy contact channels
 - Demonstrate modern web development skills (React 19, Tailwind v4, shadcn/ui)
@@ -57,9 +57,9 @@ public/data/
 ```json
 {
   "name": "Rifan Setiadi",
-  "tagline": "Flutter Developer & AI Enthusiast",
-  "headline": "Building beautiful mobile experiences with Flutter and exploring the future with AI",
-  "about": "I am a passionate Software Engineer specializing in mobile development with Flutter. With a strong foundation in Dart and a growing interest in Artificial Intelligence, I create performant, user-friendly applications while continuously exploring AI-powered solutions.",
+  "tagline": "Mobile Developer & AI Enthusiast",
+  "headline": "Building beautiful mobile experiences and exploring the future with AI",
+  "about": "I am a passionate Software Engineer focused on mobile development. With a strong foundation in building performant, user-friendly applications and a growing interest in Artificial Intelligence, I continuously explore AI-powered solutions to create impactful digital experiences.",
   "location": "Indonesia",
   "email": "email@example.com",
   "cvUrl": "/cv.pdf",
@@ -90,12 +90,12 @@ public/data/
 {
   "experiences": [
     {
-      "role": "Senior Flutter Developer",
+      "role": "Senior Mobile Developer",
       "company": "Company Name",
       "period": "2023 - Present",
       "type": "Full-time",
       "description": [
-        "Led development of 3+ Flutter applications from scratch",
+        "Led development of 3+ mobile applications from scratch",
         "Implemented AI-powered features using TensorFlow Lite",
         "Mentored junior developers and conducted code reviews"
       ]
@@ -110,7 +110,7 @@ public/data/
   "projects": [
     {
       "title": "AI Chat Assistant",
-      "description": "A Flutter mobile app integrating OpenAI API for intelligent conversation and task automation.",
+      "description": "A mobile app integrating OpenAI API for intelligent conversation and task automation.",
       "image": "/images/projects/ai-chat.jpg",
       "tags": ["Flutter", "Dart", "OpenAI API", "Firebase"],
       "githubUrl": "https://github.com/username/ai-chat",
