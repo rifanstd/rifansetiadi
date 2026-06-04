@@ -14,6 +14,7 @@ export interface PersonalData {
   cvUrl: string
   availabilityStatus: "Available for hire" | "Open for collaboration" | "Not available"
   profileImage: string
+  experience: string
   social: SocialLinks
 }
 

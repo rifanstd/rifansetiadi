@@ -29,7 +29,7 @@ export function About({ data }: AboutProps) {
             </div>
             <div className="flex items-center gap-3 justify-center sm:justify-start">
               <Calendar className="h-5 w-5 text-primary" />
-              <span className="text-foreground">5+ Years Experience</span>
+              <span className="text-foreground">{data.experience}</span>
             </div>
             <div className="flex items-center gap-3 justify-center sm:justify-start">
               <CheckCircle className="h-5 w-5 text-green-500" />
