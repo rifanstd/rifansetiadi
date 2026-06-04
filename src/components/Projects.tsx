@@ -43,16 +43,18 @@ export function Projects({ data }: ProjectsProps) {
               key={index}
               className="overflow-hidden group hover:-translate-y-1 hover:shadow-lg transition-all duration-300"
             >
-              <div className="aspect-video overflow-hidden bg-muted">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement
-                    target.src = `https://placehold.co/600x400?text=${encodeURIComponent(project.title)}`
-                  }}
-                />
+              <div className="aspect-video overflow-hidden bg-muted flex items-center justify-center">
+                {project.image ? (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                ) : (
+                  <span className="text-2xl font-bold text-muted-foreground/40 px-4 text-center">
+                    {project.title}
+                  </span>
+                )}
               </div>
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold text-foreground mb-2">

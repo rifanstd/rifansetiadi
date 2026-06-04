@@ -1,12 +1,17 @@
 {
   "projects": [
     {
-      "title": "AI Chat Assistant",
-      "description": "A mobile app integrating OpenAI API for intelligent conversation and task automation.",
-      "image": "/images/projects/ai-chat.jpg",
-      "tags": ["Flutter", "Dart", "OpenAI API", "Firebase"],
-      "githubUrl": "https://github.com/username/ai-chat",
-      "liveUrl": "https://example.com/ai-chat"
+      "title": "Opencode Dashboard",
+      "description": "A client-side dashboard for visualizing your opencode usage data — sessions, messages, tokens, costs, providers, models, agents, and skills. All data is local. No backend server. No cloud upload.",
+      "image": "https://raw.githubusercontent.com/rifanstd/opencode-dashboard/main/docs/screenshots/overview-1.png",
+      "tags": ["React", "TypeScript", "Vite", "Recharts", "Motion", "Zustand", "Tailwind CSS"],
+      "githubUrl": "https://github.com/rifanstd/opencode-dashboard"
+    },
+    {
+      "title": "QR Windows Scanner",
+      "description": "A QR code scanner package for Windows Flutter apps. Uses the front camera and zxing2 to detect QR codes via periodic camera snapshots, working around the lack of image streaming support in camera_windows.",
+      "tags": ["Flutter", "Dart", "Windows", "QR Code", "ZXing", "Camera"],
+      "githubUrl": "https://github.com/rifanstd/qr_windows_scanner"
     }
   ]
 }
