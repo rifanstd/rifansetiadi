@@ -47,9 +47,9 @@ export function Projects({ data }: ProjectsProps) {
 
         {featured && (
           <FadeIn delay={100} direction="up">
-            <div className="group mb-12 border border-border/20 rounded-lg overflow-hidden bg-card/10 hover:border-primary/30 transition-colors duration-300">
+            <div className="group mb-12 border border-border rounded-lg overflow-hidden bg-secondary/80 hover:border-primary/30 transition-colors duration-300">
               <div className="grid md:grid-cols-[55%_45%]">
-                <div className="aspect-[4/3] md:aspect-auto overflow-hidden bg-muted/20">
+                <div className="aspect-[4/3] md:aspect-auto overflow-hidden bg-muted">
                   {featured.image ? (
                     <img
                       src={featured.image}
@@ -113,8 +113,8 @@ export function Projects({ data }: ProjectsProps) {
         <div className="grid md:grid-cols-2 gap-6">
           {rest.map((project, index) => (
             <FadeIn key={index} delay={150 + index * 80} direction="up">
-              <div className="group border border-border/20 rounded-lg overflow-hidden bg-card/10 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 transition-all duration-300 h-full flex flex-col">
-                <div className="aspect-video overflow-hidden bg-muted/20">
+              <div className="group border border-border rounded-lg overflow-hidden bg-secondary/60 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 transition-all duration-300 h-full flex flex-col">
+                <div className="aspect-video overflow-hidden bg-muted">
                   {project.image ? (
                     <img
                       src={project.image}
@@ -195,7 +195,7 @@ export function Projects({ data }: ProjectsProps) {
                 delay={150 + (rest.length + i) * 80}
                 direction="up"
               >
-                <div className="border border-dashed border-primary/30 rounded-lg p-8 flex items-center justify-center h-full min-h-[200px] bg-card/5">
+                <div className="border border-dashed border-primary/30 rounded-lg p-8 flex items-center justify-center h-full min-h-[200px] bg-secondary/40">
                   <div className="text-center">
                     <p className="text-foreground/40 font-sans">
                       More coming soon

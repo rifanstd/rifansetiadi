@@ -19,7 +19,7 @@ export function Experience({ data }: ExperienceProps) {
   const hasMore = data.experiences.length > INITIAL_SHOW
 
   return (
-    <section id="experience" className="py-24 md:py-32 px-4 bg-muted/20">
+    <section id="experience" className="py-24 md:py-32 px-4 bg-muted/50">
       <div className="max-w-7xl mx-auto">
         <FadeIn delay={0} direction="up">
           <div className="flex items-center gap-4 mb-12">
@@ -43,7 +43,7 @@ export function Experience({ data }: ExperienceProps) {
                     {exp.period}
                   </span>
 
-                  <div className="mt-2 border-l-2 border-primary bg-card/60 rounded-r-lg p-5">
+                  <div className="mt-2 border-l-2 border-primary bg-card rounded-r-lg p-5">
                     <div className="flex items-start gap-3 mb-3">
                       <Briefcase className="h-5 w-5 text-primary mt-0.5 shrink-0" />
                       <div>
