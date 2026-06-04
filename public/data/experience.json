@@ -1,14 +1,18 @@
 {
   "experiences": [
     {
-      "role": "Senior Mobile Developer",
-      "company": "Company Name",
-      "period": "2023 - Present",
+      "role": "Mobile Developer",
+      "company": "PT Bank Negara Indonesia (Persero) Tbk",
+      "period": "2024 - Present",
       "type": "Full-time",
       "description": [
-        "Led development of 3+ mobile applications from scratch",
-        "Implemented AI-powered features using TensorFlow Lite",
-        "Mentored junior developers and conducted code reviews"
+        "Develop and maintain mobile applications for users in Indonesia and international markets.",
+        "Participate in the full software development lifecycle, including planning, design, development, testing, deployment, and maintenance.",
+        "Collaborate with product, design, backend, and QA teams to deliver mobile solutions.",
+        "Implement features and enhancements based on business and user requirements.",
+        "Optimize application performance, usability, and reliability.",
+        "Troubleshoot issues and provide ongoing support for existing applications.",
+        "Contribute to improving code quality, application stability, and user experience."
       ]
     }
   ]
