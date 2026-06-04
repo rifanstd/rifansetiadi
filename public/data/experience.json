@@ -2,8 +2,8 @@
   "experiences": [
     {
       "role": "Mobile Developer",
-      "company": "PT Bank Negara Indonesia (Persero) Tbk",
-      "period": "2024 - Present",
+      "company": "PT. BANK NEGARA INDONESIA (Persero) Tbk.",
+      "period": "Nov 2024 - Present",
       "type": "Full-time",
       "description": [
         "Develop and maintain mobile applications for users in Indonesia and international markets.",
@@ -13,6 +13,92 @@
         "Optimize application performance, usability, and reliability.",
         "Troubleshoot issues and provide ongoing support for existing applications.",
         "Contribute to improving code quality, application stability, and user experience."
+      ]
+    },
+    {
+      "role": "Application Developer",
+      "company": "Mitra Integrasi Informatika, PT",
+      "period": "Nov 2024 - Present",
+      "type": "Contract",
+      "description": [
+        "Develop and maintain enterprise applications as part of a vendor partnership.",
+        "Collaborate with cross-functional teams to deliver software solutions aligned with client requirements.",
+        "Participate in code reviews, testing, and deployment processes to ensure application quality."
+      ]
+    },
+    {
+      "role": "Mobile Application Developer",
+      "company": "Coolva Technology",
+      "period": "Jan 2023 - Nov 2024",
+      "type": "Full-time",
+      "description": [
+        "Sewanue (Vav Technologies Indonesia): Managed all aspects of a nearby sports field booking and rental application from planning to deployment, including authentication, order processing, user reviews, and integrating Firebase as the backend.",
+        "Omaga (PT Trans Indojek Mahasiswa): Optimized trip management algorithms, financial transactions, and real-time database streaming for an online motorcycle taxi application specifically for students, while implementing real-time communication features and collaborating with cross-functional teams.",
+        "TrackThisJob (Coolva's Product): Developed an application to track and record job applications that have been submitted, helping users manage their job search process efficiently."
+      ]
+    },
+    {
+      "role": "Mobile Application Developer",
+      "company": "Universitas Lampung",
+      "period": "Jan 2024 - May 2024",
+      "type": "Contract",
+      "description": [
+        "Crafted a tailored E-commerce application for the University of Lampung, comprising two mobile platforms: UnilaHub Public Apps and UnilaHub Research Apps.",
+        "Engaged in all development phases from design to maintenance and publication on the Play Store.",
+        "Integrated the system with a concurrently developed RESTful API.",
+        "Seamlessly integrated the application with OneSignal and Firebase for providing users with timely notifications.",
+        "Incorporated the application with Midtrans Payment Gateway system for seamless payment transactions.",
+        "Implemented RajaOngkir API integration for obtaining shipping costs from every available courier in Indonesia and for tracking shipment deliveries."
+      ]
+    },
+    {
+      "role": "Mobile Application Developer",
+      "company": "Universitas Lampung",
+      "period": "Jan 2024 - Feb 2024",
+      "type": "Contract",
+      "description": [
+        "Designed and developed the academic information portal application for the University of Lampung, accessible to all.",
+        "Engaged in every phase of application development, from planning to final implementation, ensuring a high-quality product and superior user experience until it was published on the Play Store.",
+        "Took responsibility for all developed features.",
+        "Integrated the application with the University of Lampung's REST API to ensure and maintain data authenticity."
+      ]
+    },
+    {
+      "role": "Assistant Lecturer of Advance Web Programming",
+      "company": "Universitas Lampung",
+      "period": "Jul 2023 - Dec 2023",
+      "type": "Part-time",
+      "description": [
+        "Taught advanced web programming using the CodeIgniter 4 framework at the Computer Science Laboratory."
+      ]
+    },
+    {
+      "role": "Assistant Lecturer of Web Programming",
+      "company": "Universitas Lampung",
+      "period": "Feb 2023 - Jun 2023",
+      "type": "Part-time",
+      "description": [
+        "Taught web programming practicum using HTML, CSS, Bootstrap, PHP, and MySQL.",
+        "Materials covered: HTML Basic, CSS Basic, Bootstrap, PHP Basic (Variables, Looping, Conditioning, Database Connection and CRUD)."
+      ]
+    },
+    {
+      "role": "Assistant Lecturer of Object Oriented Programming",
+      "company": "Universitas Lampung",
+      "period": "Jul 2022 - Feb 2023",
+      "type": "Part-time",
+      "description": [
+        "Taught Object Oriented Programming practicum using the Java programming language at the Computer Science Laboratory.",
+        "Materials covered: Class and Object, Variables, Encapsulation, Class Relationship, Inheritance, Polymorphism, Abstract and Interface, Static and Inner Class, Exception Handling, JDBC, and JavaFX."
+      ]
+    },
+    {
+      "role": "Assistant Lecturer of Structured Programming",
+      "company": "Universitas Lampung",
+      "period": "Feb 2022 - Jun 2022",
+      "type": "Part-time",
+      "description": [
+        "Taught Structured Programming practicum using the C++ programming language at the Computer Science Laboratory."
       ]
     }
   ]
