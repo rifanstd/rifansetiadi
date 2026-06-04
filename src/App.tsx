@@ -8,7 +8,6 @@ import { Stats } from "@/components/Stats"
 import { Skills } from "@/components/Skills"
 import { Contact } from "@/components/Contact"
 import { Footer } from "@/components/Footer"
-import { FadeIn } from "@/components/FadeIn"
 import type { PortfolioData } from "@/types/portfolio"
 
 function App() {
@@ -85,27 +84,13 @@ function App() {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <main>
-        <FadeIn>
-          <Hero data={data.personal} />
-        </FadeIn>
-        <FadeIn delay={100}>
-          <About data={data.personal} />
-        </FadeIn>
-        <FadeIn delay={100}>
-          <Experience data={data.experience} />
-        </FadeIn>
-        <FadeIn delay={100}>
-          <Stats data={data.stats} />
-        </FadeIn>
-        <FadeIn delay={100}>
-          <Projects data={data.projects} />
-        </FadeIn>
-        <FadeIn delay={100}>
-          <Skills data={data.skills} />
-        </FadeIn>
-        <FadeIn delay={100}>
-          <Contact data={data.personal} />
-        </FadeIn>
+        <Hero data={data.personal} />
+        <About data={data.personal} />
+        <Experience data={data.experience} />
+        <Stats data={data.stats} />
+        <Projects data={data.projects} />
+        <Skills data={data.skills} />
+        <Contact data={data.personal} />
       </main>
       <Footer name={data.personal.name} />
     </div>

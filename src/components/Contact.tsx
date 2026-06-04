@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Mail, Copy, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
+import { FadeIn } from "@/components/FadeIn"
 import type { PersonalData } from "@/types/portfolio"
 
 function GitHubIcon({ className }: { className?: string }) {
@@ -76,26 +76,37 @@ export function Contact({ data }: ContactProps) {
   }
 
   return (
-    <section id="contact" className="py-20 px-4 bg-muted/30">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Let&apos;s Work Together
+    <section
+      id="contact"
+      className="py-24 md:py-32 px-4 bg-card text-foreground"
+    >
+      <div className="max-w-2xl mx-auto text-center">
+        <FadeIn delay={0} direction="up">
+          <h2 className="text-5xl sm:text-6xl md:text-7xl font-black text-foreground leading-[1.1] font-[family-name:var(--font-heading)]">
+            Let&apos;s work
+            <br />
+            together
           </h2>
-          <div className="w-16 h-1 bg-primary mx-auto rounded-full" />
-        </div>
+        </FadeIn>
 
-        <div className="max-w-xl mx-auto text-center">
-          <p className="text-muted-foreground mb-8">
-            I&apos;m open for freelance projects, collaborations, and full-time opportunities.
-            Let&apos;s build something amazing together.
+        <FadeIn delay={100} direction="up">
+          <div className="w-16 h-1 bg-primary mx-auto mt-6 mb-8" />
+        </FadeIn>
+
+        <FadeIn delay={200} direction="up">
+          <p className="text-foreground/60 italic mb-12 max-w-md mx-auto font-sans">
+            I&apos;m open for freelance projects, collaborations, and full-time
+            opportunities. Let&apos;s build something amazing together.
           </p>
+        </FadeIn>
 
-          {/* Email */}
-          <div className="flex items-center justify-center gap-3 mb-8">
-            <div className="flex items-center gap-2 bg-card border border-border rounded-lg px-4 py-3">
-              <Mail className="h-5 w-5 text-primary" />
-              <span className="text-foreground font-medium">{data.email}</span>
+        <FadeIn delay={300} direction="up">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="flex items-center gap-3 bg-card/10 border border-border/30 rounded-lg px-5 py-3">
+              <Mail className="h-5 w-5 text-primary shrink-0" />
+              <span className="text-foreground font-medium font-sans">
+                {data.email}
+              </span>
             </div>
             <Button
               variant="outline"
@@ -104,23 +115,31 @@ export function Contact({ data }: ContactProps) {
               className="shrink-0"
             >
               {copied ? (
-                <Check className="h-4 w-4 text-green-500" />
+                <Check className="h-4 w-4 text-green-400" />
               ) : (
                 <Copy className="h-4 w-4" />
               )}
               <span className="sr-only">Copy email</span>
             </Button>
           </div>
+        </FadeIn>
 
-          {copied && (
-            <p className="text-sm text-green-500 mb-4">Email copied to clipboard!</p>
-          )}
+        {copied && (
+          <FadeIn delay={0} direction="none" duration={300}>
+            <p className="text-sm text-primary mb-6 font-sans">
+              Email copied to clipboard!
+            </p>
+          </FadeIn>
+        )}
 
-          <Separator className="my-8" />
-
-          {/* Social Links */}
-          <div className="flex justify-center gap-4 mb-8">
-            <Button variant="outline" size="lg" asChild>
+        <FadeIn delay={400} direction="up">
+          <div className="flex justify-center gap-4 mb-10">
+            <Button
+              variant="outline"
+              size="lg"
+              asChild
+              className="font-sans"
+            >
               <a
                 href={data.social.github}
                 target="_blank"
@@ -132,7 +151,12 @@ export function Contact({ data }: ContactProps) {
               </a>
             </Button>
             {data.social.linkedin && (
-              <Button variant="outline" size="lg" asChild>
+              <Button
+                variant="outline"
+                size="lg"
+                asChild
+                className="font-sans"
+              >
                 <a
                   href={data.social.linkedin}
                   target="_blank"
@@ -145,7 +169,12 @@ export function Contact({ data }: ContactProps) {
               </Button>
             )}
             {data.social.twitter && (
-              <Button variant="outline" size="lg" asChild>
+              <Button
+                variant="outline"
+                size="lg"
+                asChild
+                className="font-sans"
+              >
                 <a
                   href={data.social.twitter}
                   target="_blank"
@@ -158,15 +187,20 @@ export function Contact({ data }: ContactProps) {
               </Button>
             )}
           </div>
+        </FadeIn>
 
-          {/* Hire Me Button */}
-          <Button size="lg" asChild>
+        <FadeIn delay={500} direction="up">
+          <Button
+            size="lg"
+            asChild
+            className="text-lg px-8 font-[family-name:var(--font-heading)]"
+          >
             <a href={`mailto:${data.email}`}>
               <Mail className="mr-2 h-5 w-5" />
               Hire Me
             </a>
           </Button>
-        </div>
+        </FadeIn>
       </div>
     </section>
   )

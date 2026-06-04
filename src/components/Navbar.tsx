@@ -71,9 +71,9 @@ export function Navbar() {
           {/* Logo */}
           <button
             onClick={() => scrollToSection("#home")}
-            className="text-lg font-bold text-foreground hover:text-primary transition-colors"
+            className="text-xl font-bold text-primary hover:text-primary/80 transition-colors font-[family-name:var(--font-heading)]"
           >
-            Portfolio
+            Rifan Setiadi
           </button>
 
           {/* Desktop Nav */}
@@ -82,11 +82,11 @@ export function Navbar() {
               <button
                 key={link.href}
                 onClick={() => scrollToSection(link.href)}
-                className={`px-3 py-2 text-sm font-medium transition-colors rounded-md ${
-                  activeSection === link.href.slice(1)
-                    ? "text-primary bg-primary/10"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                }`}
+                  className={`px-3 py-2 text-sm font-medium transition-colors rounded-md font-sans ${
+                    activeSection === link.href.slice(1)
+                      ? "text-primary bg-primary/10"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                  }`}
               >
                 {link.label}
               </button>

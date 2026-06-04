@@ -1,5 +1,6 @@
-import { Download } from "lucide-react"
+import { ChevronDown, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { FadeIn } from "@/components/FadeIn"
 import type { PersonalData } from "@/types/portfolio"
 
 function GitHubIcon({ className }: { className?: string }) {
@@ -71,83 +72,132 @@ export function Hero({ data }: HeroProps) {
   return (
     <section
       id="home"
-      className="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center px-4 py-20"
+      className="relative min-h-[calc(100vh-4rem)] flex items-center px-4 py-20 overflow-hidden"
     >
-      {/* Profile Image */}
-      <div className="relative mb-8">
-        <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-border shadow-xl bg-muted">
-          <img
-            src={data.profileImage}
-            alt={`${data.name} profile`}
-            className="w-full h-full object-cover"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement
-              target.src = "https://placehold.co/400x400?text=Profile"
-            }}
-          />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4" />
+
+      <div className="max-w-7xl mx-auto w-full">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="order-2 lg:order-1">
+            <FadeIn delay={0} direction="up">
+              <h1 className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight leading-[0.9] text-foreground font-[family-name:var(--font-heading)]">
+                {data.name.split(" ").map((word, i) => (
+                  <span key={i}>
+                    {word}
+                    {i < data.name.split(" ").length - 1 && <br />}
+                  </span>
+                ))}
+              </h1>
+            </FadeIn>
+
+            <FadeIn delay={100} direction="up">
+              <div className="w-20 h-1 bg-primary my-6" />
+            </FadeIn>
+
+            <FadeIn delay={200} direction="up">
+              <p className="text-2xl md:text-3xl font-semibold text-primary mb-4 font-sans">
+                {data.tagline}
+              </p>
+            </FadeIn>
+
+            <FadeIn delay={300} direction="up">
+              <p className="text-lg text-muted-foreground max-w-lg font-sans leading-relaxed">
+                {data.headline}
+              </p>
+            </FadeIn>
+
+            <FadeIn delay={400} direction="up">
+              <div className="flex flex-col sm:flex-row gap-4 mt-8">
+                <Button
+                  size="lg"
+                  onClick={scrollToProjects}
+                  className="text-base font-sans"
+                >
+                  View My Work
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  asChild
+                  className="text-base font-sans"
+                >
+                  <a href={data.cvUrl} download>
+                    <Download className="mr-2 h-4 w-4" />
+                    Download CV
+                  </a>
+                </Button>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={500} direction="up">
+              <div className="flex gap-2 mt-8">
+                <Button variant="ghost" size="icon" asChild>
+                  <a
+                    href={data.social.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                    className="hover:text-primary transition-colors"
+                  >
+                    <GitHubIcon className="h-5 w-5" />
+                  </a>
+                </Button>
+                {data.social.linkedin && (
+                  <Button variant="ghost" size="icon" asChild>
+                    <a
+                      href={data.social.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn"
+                      className="hover:text-primary transition-colors"
+                    >
+                      <LinkedInIcon className="h-5 w-5" />
+                    </a>
+                  </Button>
+                )}
+                {data.social.twitter && (
+                  <Button variant="ghost" size="icon" asChild>
+                    <a
+                      href={data.social.twitter}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Twitter"
+                      className="hover:text-primary transition-colors"
+                    >
+                      <TwitterIcon className="h-5 w-5" />
+                    </a>
+                  </Button>
+                )}
+              </div>
+            </FadeIn>
+          </div>
+
+          <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
+            <FadeIn delay={200} direction="left" duration={800}>
+              <div className="relative">
+                <div className="w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-[3px] border-primary shadow-2xl">
+                  <img
+                    src={data.profileImage}
+                    alt={`${data.name} profile`}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement
+                      target.src =
+                        "https://placehold.co/400x400?text=Profile"
+                    }}
+                  />
+                </div>
+                <div className="absolute -inset-4 rounded-full border border-primary/20 -z-10" />
+              </div>
+            </FadeIn>
+          </div>
         </div>
       </div>
 
-      {/* Name & Tagline */}
-      <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground text-center mb-4">
-        {data.name}
-      </h1>
-      <p className="text-xl sm:text-2xl text-primary font-medium text-center mb-4">
-        {data.tagline}
-      </p>
-      <p className="text-muted-foreground text-center max-w-xl text-base sm:text-lg mb-8">
-        {data.headline}
-      </p>
-
-      {/* CTA Buttons */}
-      <div className="flex flex-col sm:flex-row gap-4 mb-8">
-        <Button size="lg" onClick={scrollToProjects}>
-          View My Work
-        </Button>
-        <Button size="lg" variant="outline" asChild>
-          <a href={data.cvUrl} download>
-            <Download className="mr-2 h-4 w-4" />
-            Download CV
-          </a>
-        </Button>
-      </div>
-
-      {/* Social Links */}
-      <div className="flex gap-4">
-        <Button variant="ghost" size="icon" asChild>
-          <a
-            href={data.social.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="GitHub"
-          >
-            <GitHubIcon className="h-5 w-5" />
-          </a>
-        </Button>
-        {data.social.linkedin && (
-          <Button variant="ghost" size="icon" asChild>
-            <a
-              href={data.social.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-            >
-              <LinkedInIcon className="h-5 w-5" />
-            </a>
-          </Button>
-        )}
-        {data.social.twitter && (
-          <Button variant="ghost" size="icon" asChild>
-            <a
-              href={data.social.twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Twitter"
-            >
-              <TwitterIcon className="h-5 w-5" />
-            </a>
-          </Button>
-        )}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+        <FadeIn delay={800} direction="down">
+          <ChevronDown className="h-6 w-6 text-muted-foreground animate-bounce" />
+        </FadeIn>
       </div>
     </section>
   )
