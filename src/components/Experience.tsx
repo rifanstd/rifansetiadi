@@ -56,7 +56,7 @@ export function Experience({ data }: ExperienceProps) {
                           </span>
                           <Badge
                             variant="outline"
-                            className="text-xs font-sans"
+                            className="text-xs font-mono"
                           >
                             {exp.type}
                           </Badge>

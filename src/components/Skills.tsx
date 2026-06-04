@@ -34,7 +34,7 @@ export function Skills({ data }: SkillsProps) {
           {categoryEntries.map(([category, skills], catIndex) => (
             <FadeIn key={category} delay={catIndex * 100} direction="up">
               <div>
-                <span className="text-xs text-primary uppercase tracking-widest font-sans font-semibold">
+                <span className="text-xs text-primary uppercase tracking-widest font-mono font-semibold">
                   {category}
                 </span>
                 <div className="w-8 h-px bg-primary/40 mt-2 mb-4" />

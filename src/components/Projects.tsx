@@ -78,7 +78,7 @@ export function Projects({ data }: ProjectsProps) {
                         <Badge
                           key={i}
                           variant="outline"
-                          className="text-xs border-primary/40 text-primary font-sans"
+                          className="text-xs border-primary/40 text-primary font-mono"
                         >
                           {tag}
                         </Badge>
@@ -141,7 +141,7 @@ export function Projects({ data }: ProjectsProps) {
                       <Badge
                         key={i}
                         variant="secondary"
-                        className="text-xs font-sans"
+                        className="text-xs font-mono"
                       >
                         {tag}
                       </Badge>
