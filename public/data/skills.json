@@ -9,7 +9,11 @@
       "skills": ["Firebase", "Node.js", "Express", "Laravel", "CodeIgniter", "SQL"]
     },
     {
-      "name": "Tools",
+      "name": "AI Tools",
+      "skills": ["OpenCode", "Pi", "MCPs", "9Router", "ChatGPT", "Gemini"]
+    },
+    {
+      "name": "Common Tools",
       "skills": ["Git", "Figma", "Jira", "Postman", "Docker", "VS Code", "Android Studio"]
     }
   ]
