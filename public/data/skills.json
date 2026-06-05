@@ -1,12 +1,16 @@
 {
-  "skills": [
-    { "name": "Flutter", "category": "Mobile" },
-    { "name": "Dart", "category": "Mobile" },
-    { "name": "Firebase", "category": "Backend" },
-    { "name": "Python", "category": "AI/ML" },
-    { "name": "TensorFlow", "category": "AI/ML" },
-    { "name": "OpenAI API", "category": "AI/ML" },
-    { "name": "Git", "category": "Tools" },
-    { "name": "Figma", "category": "Tools" }
+  "categories": [
+    {
+      "name": "Mobile",
+      "skills": ["Flutter", "Dart", "Kotlin", "React Native", "Jetpack Compose"]
+    },
+    {
+      "name": "Backend",
+      "skills": ["Firebase", "Node.js", "Express", "Laravel", "CodeIgniter", "SQL"]
+    },
+    {
+      "name": "Tools",
+      "skills": ["Git", "Figma", "Jira", "Postman", "Docker", "VS Code", "Android Studio"]
+    }
   ]
 }

@@ -53,13 +53,13 @@ export interface ProjectsData {
   projects: Project[]
 }
 
-export interface Skill {
+export interface SkillCategory {
   name: string
-  category: string
+  skills: string[]
 }
 
 export interface SkillsData {
-  skills: Skill[]
+  categories: SkillCategory[]
 }
 
 export interface PortfolioData {
