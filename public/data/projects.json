@@ -8,6 +8,16 @@
       "githubUrl": "https://github.com/rifanstd/opencode-dashboard"
     },
     {
+      "title": "DevKit Agent",
+      "description": "Multi-agent coding pipeline for OpenCode. Install agents and skills with one command. Routes complex tasks through specialist agents — Analyst, Planner, Programmer, Reviewer — with approval checkpoints at each stage.",
+      "image": "https://raw.githubusercontent.com/rifanstd/devkit-agent/main/docs/overview/flow.png",
+      "tags": ["TypeScript", "Node.js", "AI", "Multi-Agent", "OpenCode", "CLI"],
+      "githubUrl": "https://github.com/rifanstd/devkit-agent",
+      "links": [
+        { "label": "NPM", "url": "https://www.npmjs.com/package/devkit-agent" }
+      ]
+    },
+    {
       "title": "QR Windows Scanner",
       "description": "A QR code scanner package for Windows Flutter apps. Uses the front camera and zxing2 to detect QR codes via periodic camera snapshots, working around the lack of image streaming support in camera_windows.",
       "tags": ["Flutter", "Dart", "Windows", "QR Code", "ZXing", "Camera"],

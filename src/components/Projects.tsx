@@ -2,7 +2,7 @@ import { ExternalLink } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { FadeIn } from "@/components/FadeIn"
-import type { ProjectsData } from "@/types/portfolio"
+import type { ProjectLink, ProjectsData } from "@/types/portfolio"
 
 function GitHubIcon({ className }: { className?: string }) {
   return (
@@ -103,6 +103,24 @@ export function Projects({ data }: ProjectsProps) {
                         </a>
                       </Button>
                     )}
+                    {featured.links?.map((link: ProjectLink, i: number) => (
+                      <Button
+                        key={i}
+                        variant="outline"
+                        size="sm"
+                        asChild
+                        className="ml-2 font-sans"
+                      >
+                        <a
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <ExternalLink className="mr-2 h-4 w-4" />
+                          {link.label}
+                        </a>
+                      </Button>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -165,23 +183,24 @@ export function Projects({ data }: ProjectsProps) {
                         </a>
                       </Button>
                     )}
-                    {project.liveUrl && (
+                    {project.links?.map((link: ProjectLink, i: number) => (
                       <Button
+                        key={i}
                         variant="ghost"
                         size="sm"
                         asChild
                         className="text-foreground/70 hover:text-primary font-sans"
                       >
                         <a
-                          href={project.liveUrl}
+                          href={link.url}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
                           <ExternalLink className="mr-2 h-3 w-3" />
-                          Live Demo
+                          {link.label}
                         </a>
                       </Button>
-                    )}
+                    ))}
                   </div>
                 </div>
               </div>

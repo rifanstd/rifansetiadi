@@ -40,13 +40,18 @@ export interface ExperienceData {
   experiences: Experience[]
 }
 
+export interface ProjectLink {
+  label: string
+  url: string
+}
+
 export interface Project {
   title: string
   description: string
   image?: string
   tags: string[]
   githubUrl?: string
-  liveUrl?: string
+  links?: ProjectLink[]
 }
 
 export interface ProjectsData {
