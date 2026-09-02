@@ -1,0 +1,103 @@
+{
+  "experiences": [
+    {
+      "role": "Mobile Developer",
+      "company": "PT. BANK NEGARA INDONESIA (Persero) Tbk.",
+      "period": "Nov 2024 - Sekarang",
+      "type": "Full-time",
+      "description": [
+        "Mengembangkan dan merawat aplikasi mobile perbankan menggunakan Flutter",
+        "Bekerja sama dengan berbagai tim untuk menghadirkan fitur baru dan meningkatkan pengalaman pengguna",
+        "Menjaga performa, keamanan, dan kualitas aplikasi melalui code review dan pengujian rutin"
+      ]
+    },
+    {
+      "role": "Application Developer",
+      "company": "Mitra Integrasi Informatika, PT",
+      "period": "Nov 2024 - Sekarang",
+      "type": "Contract",
+      "description": [
+        "Mengembangkan aplikasi enterprise menggunakan Flutter untuk kebutuhan klien korporat",
+        "Membangun fitur baru dan mengintegrasikan aplikasi dengan sistem lain sesuai kebutuhan bisnis",
+        "Bekerja sama dengan tim QA untuk memastikan aplikasi berjalan dengan baik sebelum dirilis"
+      ]
+    },
+    {
+      "role": "Mobile Application Developer",
+      "company": "Coolva Technology",
+      "period": "Jan 2023 - Nov 2024",
+      "type": "Full-time",
+      "description": [
+        "Membangun dan meluncurkan beberapa aplikasi mobile dari awal menggunakan Flutter",
+        "Mengelola state aplikasi, menghubungkan aplikasi dengan API, dan menambahkan fitur yang tetap bisa digunakan saat offline",
+        "Bekerja sama dengan desainer untuk mengubah desain menjadi tampilan aplikasi yang sesuai dengan rancangan"
+      ]
+    },
+    {
+      "role": "Mobile Application Developer",
+      "company": "Universitas Lampung",
+      "period": "Jan 2024 - Mei 2024",
+      "type": "Contract",
+      "description": [
+        "Mengembangkan aplikasi mobile untuk mendukung kebutuhan akademik dan operasional kampus",
+        "Menghubungkan aplikasi dengan sistem backend agar dapat mengambil data secara real-time",
+        "Menerapkan sistem login dan akses fitur sesuai dengan peran masing-masing pengguna"
+      ]
+    },
+    {
+      "role": "Mobile Application Developer",
+      "company": "Universitas Lampung",
+      "period": "Jan 2024 - Feb 2024",
+      "type": "Contract",
+      "description": [
+        "Membangun prototipe aplikasi mobile untuk platform e-learning",
+        "Bekerja sama dengan pihak akademik untuk memahami kebutuhan dan fitur yang diperlukan",
+        "Membuat tampilan yang dapat menyesuaikan berbagai ukuran layar dengan navigasi yang mudah digunakan"
+      ]
+    },
+    {
+      "role": "Freelance Mobile Developer",
+      "company": "Self-employed",
+      "period": "Jun 2022 - Des 2022",
+      "type": "Freelance",
+      "description": [
+        "Mengembangkan aplikasi mobile sesuai kebutuhan berbagai klien",
+        "Memberikan dukungan teknis dan melakukan perbaikan serta pemeliharaan aplikasi",
+        "Mengatur komunikasi dengan klien dan mengelola pengerjaan proyek secara mandiri"
+      ]
+    },
+    {
+      "role": "Junior Mobile Developer",
+      "company": "Startup Studio",
+      "period": "Jan 2022 - Mei 2022",
+      "type": "Part-time",
+      "description": [
+        "Membantu mengembangkan fitur aplikasi mobile dengan arahan dari senior developer",
+        "Membuat unit test dan ikut melakukan code review",
+        "Mempelajari praktik terbaik dalam pengembangan aplikasi mobile dan penerapan arsitektur aplikasi"
+      ]
+    },
+    {
+      "role": "IT Support Intern",
+      "company": "Dinas Kominfo Provinsi Lampung",
+      "period": "Jul 2021 - Des 2021",
+      "type": "Contract",
+      "description": [
+        "Memberikan bantuan teknis dan menangani masalah pada infrastruktur IT pemerintah",
+        "Membantu melakukan pemeliharaan sistem dan membuat dokumentasi teknis",
+        "Mendukung pelaksanaan proyek digitalisasi di lingkungan pemerintahan"
+      ]
+    },
+    {
+      "role": "Mobile Development Student",
+      "company": "Bangkit Academy (by Google, GoTo, Traveloka)",
+      "period": "Feb 2021 - Jul 2021",
+      "type": "Contract",
+      "description": [
+        "Mengikuti program intensif pengembangan aplikasi mobile yang didukung oleh Google",
+        "Membangun proyek capstone menggunakan Kotlin dan Android Jetpack",
+        "Mempelajari praktik terbaik dalam software engineering dan cara kerja tim menggunakan metodologi Agile"
+      ]
+    }
+  ]
+}

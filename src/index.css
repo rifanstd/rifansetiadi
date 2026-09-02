@@ -49,38 +49,38 @@
 }
 
 :root {
-    --background: #121212;
-    --foreground: #E8E4DD;
-    --card: #1A1A1A;
-    --card-foreground: #E8E4DD;
-    --popover: #1A1A1A;
-    --popover-foreground: #E8E4DD;
-    --primary: #C8872A;
-    --primary-foreground: #121212;
-    --secondary: #1E1E18;
-    --secondary-foreground: #E8E4DD;
-    --muted: #22221C;
-    --muted-foreground: #99948E;
-    --accent: #1E1E18;
-    --accent-foreground: #E8E4DD;
+    --background: #FAF8F5;
+    --foreground: #2C2824;
+    --card: #FFFFFF;
+    --card-foreground: #2C2824;
+    --popover: #FFFFFF;
+    --popover-foreground: #2C2824;
+    --primary: #B8860B;
+    --primary-foreground: #FFFFFF;
+    --secondary: #F0EDE8;
+    --secondary-foreground: #2C2824;
+    --muted: #EDE9E3;
+    --muted-foreground: #78716C;
+    --accent: #F0EDE8;
+    --accent-foreground: #2C2824;
     --destructive: oklch(0.577 0.245 27.325);
-    --border: #2A2A24;
-    --input: #2A2A24;
-    --ring: #C8872A;
-    --chart-1: #C8872A;
+    --border: #E0DCD6;
+    --input: #E0DCD6;
+    --ring: #B8860B;
+    --chart-1: #B8860B;
     --chart-2: #8B6914;
-    --chart-3: #99948E;
-    --chart-4: #6B6560;
-    --chart-5: #4A4540;
+    --chart-3: #78716C;
+    --chart-4: #A8A29E;
+    --chart-5: #D6D3D1;
     --radius: 0.5rem;
-    --sidebar: #121212;
-    --sidebar-foreground: #E8E4DD;
-    --sidebar-primary: #C8872A;
-    --sidebar-primary-foreground: #121212;
-    --sidebar-accent: #1E1E18;
-    --sidebar-accent-foreground: #E8E4DD;
-    --sidebar-border: #2A2A24;
-    --sidebar-ring: #C8872A;
+    --sidebar: #FAF8F5;
+    --sidebar-foreground: #2C2824;
+    --sidebar-primary: #B8860B;
+    --sidebar-primary-foreground: #FFFFFF;
+    --sidebar-accent: #F0EDE8;
+    --sidebar-accent-foreground: #2C2824;
+    --sidebar-border: #E0DCD6;
+    --sidebar-ring: #B8860B;
 }
 
 .dark {
@@ -131,7 +131,7 @@
     inset: 0;
     z-index: 9999;
     pointer-events: none;
-    opacity: 0.06;
+    opacity: 0.03;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   }
   .dark body::before {

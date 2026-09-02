@@ -1,0 +1,35 @@
+{
+  "projects": [
+    {
+      "title": "Opencode Dashboard",
+      "description": "Dashboard untuk melihat dan memantau penggunaan OpenCode, seperti sesi, pesan, token, biaya, provider, model, agent, dan skill. Semua data diproses dan disimpan di perangkat Anda, jadi tidak membutuhkan backend atau mengirim data ke cloud.",
+      "image": "https://raw.githubusercontent.com/rifanstd/opencode-dashboard/main/docs/screenshots/overview-1.png",
+      "tags": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Recharts",
+        "Motion",
+        "Zustand",
+        "Tailwind CSS"
+      ],
+      "githubUrl": "https://github.com/rifanstd/opencode-dashboard"
+    },
+    {
+      "title": "DevKit Agent",
+      "description": "Pipeline coding berbasis multi-agent untuk OpenCode. Memudahkan instalasi agent dan skill dengan satu perintah, lalu membagi tugas coding yang kompleks ke beberapa agent dengan peran berbeda, seperti Analyst, Planner, Programmer, dan Reviewer. Setiap tahap dapat ditinjau dan disetujui sebelum dilanjutkan.",
+      "image": "https://raw.githubusercontent.com/rifanstd/devkit-agent/main/docs/overview/flow.png",
+      "tags": ["TypeScript", "Node.js", "AI", "Multi-Agent", "OpenCode", "CLI"],
+      "githubUrl": "https://github.com/rifanstd/devkit-agent",
+      "links": [
+        { "label": "NPM", "url": "https://www.npmjs.com/package/devkit-agent" }
+      ]
+    },
+    {
+      "title": "QR Windows Scanner",
+      "description": "Paket pemindai QR code untuk aplikasi Flutter di Windows. Menggunakan kamera dan ZXing untuk membaca QR code dari snapshot kamera secara berkala, sebagai solusi untuk keterbatasan dukungan image streaming pada camera_windows.",
+      "tags": ["Flutter", "Dart", "Windows", "QR Code", "ZXing", "Camera"],
+      "githubUrl": "https://github.com/rifanstd/qr_windows_scanner"
+    }
+  ]
+}

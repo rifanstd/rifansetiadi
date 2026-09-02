@@ -1,4 +1,5 @@
 import { FadeIn } from "@/components/FadeIn"
+import { useI18n } from "@/i18n/context"
 import type { SkillsData } from "@/types/portfolio"
 
 interface SkillsProps {
@@ -6,13 +7,14 @@ interface SkillsProps {
 }
 
 export function Skills({ data }: SkillsProps) {
+  const { t } = useI18n()
   return (
     <section id="skills" className="py-24 md:py-32 px-4">
       <div className="max-w-7xl mx-auto">
         <FadeIn delay={0} direction="up">
           <div className="flex items-center gap-4 mb-12">
             <h2 className="text-4xl sm:text-5xl font-bold text-foreground font-[family-name:var(--font-heading)]">
-              Tech Stack
+              {t.skills.title}
             </h2>
             <div className="w-16 h-px bg-primary" />
           </div>

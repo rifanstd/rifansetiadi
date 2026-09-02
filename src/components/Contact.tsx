@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Mail, Copy, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { FadeIn } from "@/components/FadeIn"
+import { useI18n } from "@/i18n/context"
 import type { PersonalData } from "@/types/portfolio"
 
 function GitHubIcon({ className }: { className?: string }) {
@@ -63,6 +64,7 @@ interface ContactProps {
 }
 
 export function Contact({ data }: ContactProps) {
+  const { t } = useI18n()
   const [copied, setCopied] = useState(false)
 
   const copyEmail = async () => {
@@ -83,9 +85,7 @@ export function Contact({ data }: ContactProps) {
       <div className="max-w-2xl mx-auto text-center">
         <FadeIn delay={0} direction="up">
           <h2 className="text-5xl sm:text-6xl md:text-7xl font-black text-foreground leading-[1.1] font-[family-name:var(--font-heading)]">
-            Let&apos;s work
-            <br />
-            together
+            {t.contact.title}
           </h2>
         </FadeIn>
 
@@ -95,8 +95,7 @@ export function Contact({ data }: ContactProps) {
 
         <FadeIn delay={200} direction="up">
           <p className="text-foreground/60 italic mb-12 max-w-md mx-auto font-sans">
-            I&apos;m open for freelance projects, collaborations, and full-time
-            opportunities. Let&apos;s build something amazing together.
+            {t.contact.subtitle}
           </p>
         </FadeIn>
 
@@ -119,7 +118,7 @@ export function Contact({ data }: ContactProps) {
               ) : (
                 <Copy className="h-4 w-4" />
               )}
-              <span className="sr-only">Copy email</span>
+              <span className="sr-only">{t.contact.copyEmail}</span>
             </Button>
           </div>
         </FadeIn>
@@ -127,7 +126,7 @@ export function Contact({ data }: ContactProps) {
         {copied && (
           <FadeIn delay={0} direction="none" duration={300}>
             <p className="text-sm text-primary mb-6 font-sans">
-              Email copied to clipboard!
+              {t.contact.copied}
             </p>
           </FadeIn>
         )}
@@ -197,7 +196,7 @@ export function Contact({ data }: ContactProps) {
           >
             <a href={`mailto:${data.email}`}>
               <Mail className="mr-2 h-5 w-5" />
-              Hire Me
+              {t.contact.hireMe}
             </a>
           </Button>
         </FadeIn>

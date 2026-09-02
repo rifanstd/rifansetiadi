@@ -1,23 +1,25 @@
 import { useState, useEffect } from "react"
-import { Menu, Moon, Sun } from "lucide-react"
+import { Menu, Moon, Sun, Globe } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { useTheme } from "@/components/theme-provider"
-
-const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Contact", href: "#contact" },
-]
+import { useI18n } from "@/i18n/context"
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState("home")
   const [isOpen, setIsOpen] = useState(false)
   const { theme, setTheme } = useTheme()
+  const { locale, toggleLocale, t } = useI18n()
+
+  const navLinks = [
+    { label: t.nav.home, href: "#home" },
+    { label: t.nav.about, href: "#about" },
+    { label: t.nav.experience, href: "#experience" },
+    { label: t.nav.projects, href: "#projects" },
+    { label: t.nav.skills, href: "#skills" },
+    { label: t.nav.contact, href: "#contact" },
+  ]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -94,8 +96,20 @@ export function Navbar() {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              onClick={toggleLocale}
               className="ml-2"
+              title={locale === "en" ? "Switch to Bahasa Indonesia" : "Switch to English"}
+            >
+              <Globe className="h-4 w-4" />
+              <span className="sr-only">Toggle language</span>
+            </Button>
+            <span className="text-xs font-medium text-muted-foreground font-sans min-w-[20px] text-center">
+              {locale.toUpperCase()}
+            </span>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             >
               {theme === "dark" ? (
                 <Sun className="h-4 w-4" />
@@ -108,6 +122,15 @@ export function Navbar() {
 
           {/* Mobile Nav */}
           <div className="flex items-center gap-2 md:hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleLocale}
+              title={locale === "en" ? "Switch to Bahasa Indonesia" : "Switch to English"}
+            >
+              <Globe className="h-4 w-4" />
+              <span className="sr-only">Toggle language</span>
+            </Button>
             <Button
               variant="ghost"
               size="icon"

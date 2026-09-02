@@ -2,6 +2,7 @@ import { ExternalLink } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { FadeIn } from "@/components/FadeIn"
+import { useI18n } from "@/i18n/context"
 import type { ProjectLink, ProjectsData } from "@/types/portfolio"
 
 function GitHubIcon({ className }: { className?: string }) {
@@ -27,6 +28,7 @@ interface ProjectsProps {
 }
 
 export function Projects({ data }: ProjectsProps) {
+  const { t } = useI18n()
   const featured = data.projects[0]
   const rest = data.projects.slice(1)
 
@@ -39,7 +41,7 @@ export function Projects({ data }: ProjectsProps) {
         <FadeIn delay={0} direction="up">
           <div className="flex items-center gap-4 mb-12">
             <h2 className="text-4xl sm:text-5xl font-bold text-foreground font-[family-name:var(--font-heading)]">
-              Projects
+              {t.projects.title}
             </h2>
             <div className="w-16 h-px bg-primary" />
           </div>
@@ -99,7 +101,7 @@ export function Projects({ data }: ProjectsProps) {
                           rel="noopener noreferrer"
                         >
                           <GitHubIcon className="mr-2 h-4 w-4" />
-                          View Project
+                          {t.projects.viewProject}
                         </a>
                       </Button>
                     )}
@@ -179,7 +181,7 @@ export function Projects({ data }: ProjectsProps) {
                           rel="noopener noreferrer"
                         >
                           <GitHubIcon className="mr-2 h-3 w-3" />
-                          Code
+                          {t.projects.code}
                         </a>
                       </Button>
                     )}
@@ -217,10 +219,10 @@ export function Projects({ data }: ProjectsProps) {
                 <div className="border border-dashed border-primary/30 rounded-lg p-8 flex items-center justify-center h-full min-h-[200px] bg-secondary/40">
                   <div className="text-center">
                     <p className="text-foreground/40 font-sans">
-                      More coming soon
+                      {t.projects.comingSoon}
                     </p>
                     <p className="text-sm text-foreground/30 font-sans">
-                      Currently working on exciting new projects.
+                      {t.projects.comingSoonDesc}
                     </p>
                   </div>
                 </div>

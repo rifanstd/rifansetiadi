@@ -8,23 +8,28 @@ import { Stats } from "@/components/Stats"
 import { Skills } from "@/components/Skills"
 import { Contact } from "@/components/Contact"
 import { Footer } from "@/components/Footer"
+import { I18nProvider, useI18n } from "@/i18n/context"
 import type { PortfolioData } from "@/types/portfolio"
 
-function App() {
+function AppContent() {
+  const { locale, t } = useI18n()
   const [data, setData] = useState<PortfolioData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true)
+      setError(null)
       try {
+        const prefix = locale === "id" ? "/data/id" : "/data"
         const [personalRes, statsRes, experienceRes, projectsRes, skillsRes] =
           await Promise.all([
-            fetch("/data/personal.json"),
-            fetch("/data/stats.json"),
-            fetch("/data/experience.json"),
-            fetch("/data/projects.json"),
-            fetch("/data/skills.json"),
+            fetch(`${prefix}/personal.json`),
+            fetch(`${prefix}/stats.json`),
+            fetch(`${prefix}/experience.json`),
+            fetch(`${prefix}/projects.json`),
+            fetch(`${prefix}/skills.json`),
           ])
 
         if (
@@ -54,14 +59,14 @@ function App() {
     }
 
     fetchData()
-  }, [])
+  }, [locale])
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
           <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-muted-foreground">Loading...</p>
+          <p className="text-muted-foreground">{t.loading}</p>
         </div>
       </div>
     )
@@ -71,9 +76,9 @@ function App() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center">
-          <p className="text-destructive mb-4">Failed to load portfolio data</p>
+          <p className="text-destructive mb-4">{t.error}</p>
           <p className="text-muted-foreground text-sm">
-            {error || "Please try again later"}
+            {error || t.tryAgain}
           </p>
         </div>
       </div>
@@ -94,6 +99,14 @@ function App() {
       </main>
       <Footer name={data.personal.name} />
     </div>
+  )
+}
+
+function App() {
+  return (
+    <I18nProvider>
+      <AppContent />
+    </I18nProvider>
   )
 }
 

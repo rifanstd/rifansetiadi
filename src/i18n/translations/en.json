@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "skills": "Skills",
+    "contact": "Contact"
+  },
+  "hero": {
+    "viewWork": "View My Work",
+    "downloadCV": "Download CV"
+  },
+  "about": {
+    "title": "About"
+  },
+  "experience": {
+    "title": "Experience",
+    "showLess": "Show Less",
+    "showAll": "Show All {{count}} Experiences"
+  },
+  "projects": {
+    "title": "Projects",
+    "viewProject": "View Project",
+    "featured": "Featured Project",
+    "code": "Code",
+    "comingSoon": "More coming soon",
+    "comingSoonDesc": "Currently working on exciting new projects."
+  },
+  "stats": {
+    "title": "By The Numbers"
+  },
+  "skills": {
+    "title": "Tech Stack"
+  },
+  "contact": {
+    "title": "Let's work together",
+    "subtitle": "I'm open for freelance projects, collaborations, and full-time opportunities. Let's build something amazing together.",
+    "copyEmail": "Copy email",
+    "copied": "Email copied to clipboard!",
+    "hireMe": "Hire Me"
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  },
+  "loading": "Loading...",
+  "error": "Failed to load portfolio data",
+  "tryAgain": "Please try again later",
+  "lang": {
+    "toggle": "EN"
+  }
+}

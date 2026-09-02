@@ -1,0 +1,17 @@
+{
+  "name": "Rifan Setiadi",
+  "tagline": "Mobile Developer & Penggemar AI",
+  "headline": "Membangun aplikasi mobile yang nyaman digunakan dan mengeksplorasi berbagai kemungkinan dengan AI",
+  "about": "Saya seorang Software Engineer yang fokus pada pengembangan aplikasi mobile. Saya terbiasa membangun aplikasi yang cepat, stabil, dan mudah digunakan. Di luar mobile development, saya juga tertarik mengeksplorasi AI dan membangun berbagai tools untuk melihat bagaimana teknologi ini bisa membantu menyelesaikan masalah sehari-hari.",
+  "location": "Jakarta, Indonesia",
+  "email": "rifansetiadi.id@gmail.com",
+  "cvUrl": "/pdf/Rifan_Setiadi_CV.pdf",
+  "availabilityStatus": "Terbuka untuk kolaborasi",
+  "experience": "4+ Tahun Pengalaman",
+  "profileImage": "/images/profile.jpg",
+  "social": {
+    "github": "https://github.com/rifanstd",
+    "linkedin": "https://linkedin.com/in/rifanstd",
+    "twitter": "https://twitter.com/masrifannn"
+  }
+}

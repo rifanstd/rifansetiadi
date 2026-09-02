@@ -1,6 +1,7 @@
 import { MapPin, Calendar, CheckCircle } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { FadeIn } from "@/components/FadeIn"
+import { useI18n } from "@/i18n/context"
 import type { PersonalData } from "@/types/portfolio"
 
 interface AboutProps {
@@ -8,13 +9,14 @@ interface AboutProps {
 }
 
 export function About({ data }: AboutProps) {
+  const { t } = useI18n()
   return (
     <section id="about" className="py-24 md:py-32 px-4">
       <div className="max-w-7xl mx-auto">
         <FadeIn delay={0} direction="up">
           <div className="flex items-center gap-4 mb-12">
             <h2 className="text-4xl sm:text-5xl font-bold text-foreground font-[family-name:var(--font-heading)]">
-              About
+              {t.about.title}
             </h2>
             <div className="w-16 h-px bg-primary" />
           </div>

@@ -1,6 +1,7 @@
 import { ChevronDown, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { FadeIn } from "@/components/FadeIn"
+import { useI18n } from "@/i18n/context"
 import type { PersonalData } from "@/types/portfolio"
 
 function GitHubIcon({ className }: { className?: string }) {
@@ -62,6 +63,7 @@ interface HeroProps {
 }
 
 export function Hero({ data }: HeroProps) {
+  const { t } = useI18n()
   const scrollToProjects = () => {
     const element = document.querySelector("#projects")
     if (element) {
@@ -113,7 +115,7 @@ export function Hero({ data }: HeroProps) {
                   onClick={scrollToProjects}
                   className="text-base font-sans"
                 >
-                  View My Work
+                  {t.hero.viewWork}
                 </Button>
                 <Button
                   size="lg"
@@ -123,7 +125,7 @@ export function Hero({ data }: HeroProps) {
                 >
                   <a href={data.cvUrl} download>
                     <Download className="mr-2 h-4 w-4" />
-                    Download CV
+                    {t.hero.downloadCV}
                   </a>
                 </Button>
               </div>

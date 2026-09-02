@@ -3,6 +3,7 @@ import { Briefcase, ChevronDown, ChevronUp } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { FadeIn } from "@/components/FadeIn"
+import { useI18n } from "@/i18n/context"
 import type { ExperienceData } from "@/types/portfolio"
 
 interface ExperienceProps {
@@ -12,6 +13,7 @@ interface ExperienceProps {
 const INITIAL_SHOW = 4
 
 export function Experience({ data }: ExperienceProps) {
+  const { t } = useI18n()
   const [showAll, setShowAll] = useState(false)
   const visible = showAll
     ? data.experiences
@@ -24,7 +26,7 @@ export function Experience({ data }: ExperienceProps) {
         <FadeIn delay={0} direction="up">
           <div className="flex items-center gap-4 mb-12">
             <h2 className="text-4xl sm:text-5xl font-bold text-foreground font-[family-name:var(--font-heading)]">
-              Experience
+              {t.experience.title}
             </h2>
             <div className="w-16 h-px bg-primary" />
           </div>
@@ -91,12 +93,12 @@ export function Experience({ data }: ExperienceProps) {
                 {showAll ? (
                   <>
                     <ChevronUp className="mr-2 h-4 w-4" />
-                    Show Less
+                    {t.experience.showLess}
                   </>
                 ) : (
                   <>
                     <ChevronDown className="mr-2 h-4 w-4" />
-                    Show All {data.experiences.length} Experiences
+                    {t.experience.showAll.replace("{{count}}", String(data.experiences.length))}
                   </>
                 )}
               </Button>

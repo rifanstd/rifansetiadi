@@ -1,6 +1,7 @@
 import { useCounter } from "@/hooks/useCounter"
 import { useInView } from "@/hooks/useInView"
 import { FadeIn } from "@/components/FadeIn"
+import { useI18n } from "@/i18n/context"
 import type { StatsData } from "@/types/portfolio"
 
 interface StatsProps {
@@ -34,6 +35,7 @@ function StatItem({
 }
 
 export function Stats({ data }: StatsProps) {
+  const { t } = useI18n()
   return (
     <section
       id="stats"
@@ -43,7 +45,7 @@ export function Stats({ data }: StatsProps) {
         <FadeIn delay={0} direction="up">
           <div className="flex items-center gap-4 mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold text-foreground font-[family-name:var(--font-heading)]">
-              By The Numbers
+              {t.stats.title}
             </h2>
             <div className="w-16 h-px bg-primary" />
           </div>

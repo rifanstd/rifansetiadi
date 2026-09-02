@@ -1,0 +1,56 @@
+{
+  "categories": [
+    {
+      "name": "Mobile Development",
+      "skills": [
+        "Flutter",
+        "Dart",
+        "Kotlin",
+        "Android",
+        "State Management",
+        "REST API",
+        "Dio",
+        "BLoC",
+        "Clean Architecture"
+      ]
+    },
+    {
+      "name": "Backend & Integration",
+      "skills": [
+        "Firebase",
+        "Node.js",
+        "REST API",
+        "JWT",
+        "SQL",
+        "Postman",
+        "SSL/TLS",
+        "HTTP/2"
+      ]
+    },
+    {
+      "name": "AI & Developer Tools",
+      "skills": [
+        "AI Coding Agent",
+        "AI Agent",
+        "OpenCode",
+        "MCP",
+        "ChatGPT",
+        "Gemini",
+        "Prompt Engineering",
+        "Multi-Agent Systems"
+      ]
+    },
+    {
+      "name": "Development Tools",
+      "skills": [
+        "Git",
+        "GitHub",
+        "Docker",
+        "VS Code",
+        "Android Studio",
+        "Figma",
+        "Jira"
+      ]
+    }
+  ]
+}

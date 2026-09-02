@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "about": "Tentang Saya",
+    "experience": "Pengalaman",
+    "projects": "Proyek",
+    "skills": "Keahlian",
+    "contact": "Kontak"
+  },
+  "hero": {
+    "viewWork": "Lihat Proyek",
+    "downloadCV": "Unduh CV"
+  },
+  "about": {
+    "title": "Tentang Saya"
+  },
+  "experience": {
+    "title": "Pengalaman",
+    "showLess": "Sembunyikan",
+    "showAll": "Lihat Semua {{count}} Pengalaman"
+  },
+  "projects": {
+    "title": "Proyek",
+    "viewProject": "Lihat Proyek",
+    "featured": "Proyek Unggulan",
+    "code": "Kode",
+    "comingSoon": "Segera Hadir",
+    "comingSoonDesc": "Sedang mengerjakan proyek baru."
+  },
+  "stats": {
+    "title": "Sedikit Angka"
+  },
+  "skills": {
+    "title": "Keahlian"
+  },
+  "contact": {
+    "title": "Mari Terhubung",
+    "subtitle": "Saya terbuka untuk proyek freelance, kolaborasi, maupun peluang kerja. Kalau ada sesuatu yang ingin dibangun bersama, jangan ragu untuk menghubungi saya.",
+    "copyEmail": "Salin Email",
+    "copied": "Email berhasil disalin!",
+    "hireMe": "Hubungi Saya"
+  },
+  "footer": {
+    "rights": "Hak cipta dilindungi."
+  },
+  "loading": "Memuat...",
+  "error": "Gagal memuat data portofolio",
+  "tryAgain": "Silakan coba lagi nanti",
+  "lang": {
+    "toggle": "ID"
+  }
+}
