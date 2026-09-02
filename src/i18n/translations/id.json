@@ -26,6 +26,7 @@
     "code": "Kode",
     "readMore": "Selengkapnya",
     "showLess": "Sembunyikan",
+    "showAll": "Lihat Semua {{count}} Proyek",
     "comingSoon": "Segera Hadir",
     "comingSoonDesc": "Sedang mengerjakan proyek baru."
   },

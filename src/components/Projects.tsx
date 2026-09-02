@@ -28,9 +28,14 @@ interface ProjectsProps {
   data: ProjectsData
 }
 
+const INITIAL_SHOW_MOBILE = 4
+const INITIAL_SHOW_DESKTOP = 6
+
 export function Projects({ data }: ProjectsProps) {
   const { t } = useI18n()
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
+  const [showAll, setShowAll] = useState(false)
+  const hasMore = data.projects.length > INITIAL_SHOW_MOBILE
 
   const toggleExpand = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index)
@@ -51,29 +56,35 @@ export function Projects({ data }: ProjectsProps) {
           </div>
         </FadeIn>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div
+          id="projects-grid"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {data.projects.map((project, index) => {
             const isExpanded = expandedIndex === index
 
             return (
-              <FadeIn key={index} delay={index * 80} direction="up">
-                <div className="group border border-border rounded-lg overflow-hidden bg-secondary/60 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 transition-all duration-300 h-full flex flex-col">
-                  <div className="aspect-video overflow-hidden bg-muted">
-                    {project.image ? (
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <span className="text-xl font-bold text-foreground/20 font-[family-name:var(--font-heading)]">
-                          {project.title}
-                        </span>
-                      </div>
-                    )}
+              <FadeIn
+                key={index}
+                delay={index * 80}
+                direction="up"
+                className={
+                  !showAll && index >= INITIAL_SHOW_DESKTOP
+                    ? "hidden"
+                    : !showAll && index >= INITIAL_SHOW_MOBILE
+                      ? "hidden md:block"
+                      : ""
+                }
+              >
+                <div className="group relative overflow-hidden border border-border rounded-lg bg-secondary/60 p-6 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 transition-all duration-300 h-full flex flex-col">
+                  <div className="absolute inset-x-0 top-0 h-1 bg-primary/70 transition-all duration-300 group-hover:h-1.5" />
+                  <div className="mb-6 flex items-center gap-4" aria-hidden="true">
+                    <span className="text-xs tracking-[0.2em] text-primary/70 font-mono">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div className="h-px flex-1 bg-border transition-colors duration-300 group-hover:bg-primary/40" />
                   </div>
-                  <div className="p-6 flex flex-col flex-1">
+                  <div className="flex flex-col flex-1">
                     <h3 className="text-xl font-bold text-foreground mb-2 font-[family-name:var(--font-heading)]">
                       {project.title}
                     </h3>
@@ -112,7 +123,7 @@ export function Projects({ data }: ProjectsProps) {
                               variant="outline"
                               size="sm"
                               asChild
-                              className="font-sans"
+                              className="border-primary/40 bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground dark:border-primary/60 dark:bg-primary/10 dark:text-primary dark:hover:border-primary/80 dark:hover:bg-primary/20 dark:hover:text-primary font-sans"
                             >
                               <a
                                 href={project.githubUrl}
@@ -131,7 +142,7 @@ export function Projects({ data }: ProjectsProps) {
                                 variant="outline"
                                 size="sm"
                                 asChild
-                                className="font-sans"
+                                className="border-primary/40 bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground dark:border-primary/60 dark:bg-primary/10 dark:text-primary dark:hover:border-primary/80 dark:hover:bg-primary/20 dark:hover:text-primary font-sans"
                               >
                                 <a
                                   href={link.url}
@@ -163,15 +174,15 @@ export function Projects({ data }: ProjectsProps) {
                       </div>
                     )}
 
-                    <div className="mt-auto flex items-center gap-2">
+                    <div className="mt-auto flex flex-wrap items-center gap-2 border-t border-border pt-4">
                       {!isExpanded && (
                         <>
                           {project.githubUrl && (
                             <Button
-                              variant="ghost"
+                              variant="outline"
                               size="sm"
                               asChild
-                              className="text-foreground/70 hover:text-primary font-sans"
+                              className="border-primary/40 bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground dark:border-primary/60 dark:bg-primary/10 dark:text-primary dark:hover:border-primary/80 dark:hover:bg-primary/20 dark:hover:text-primary font-sans"
                             >
                               <a
                                 href={project.githubUrl}
@@ -187,10 +198,10 @@ export function Projects({ data }: ProjectsProps) {
                             (link: ProjectLink, i: number) => (
                               <Button
                                 key={i}
-                                variant="ghost"
+                                variant="outline"
                                 size="sm"
                                 asChild
-                                className="text-foreground/70 hover:text-primary font-sans"
+                                className="border-primary/40 bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground dark:border-primary/60 dark:bg-primary/10 dark:text-primary dark:hover:border-primary/80 dark:hover:bg-primary/20 dark:hover:text-primary font-sans"
                               >
                                 <a
                                   href={link.url}
@@ -206,10 +217,10 @@ export function Projects({ data }: ProjectsProps) {
                         </>
                       )}
                       <Button
-                        variant="ghost"
+                        variant="outline"
                         size="sm"
                         onClick={() => toggleExpand(index)}
-                        className="text-foreground/60 hover:text-primary ml-auto font-sans"
+                        className="ml-auto border-primary/40 bg-primary/5 font-semibold text-primary hover:bg-primary hover:text-primary-foreground dark:border-primary/60 dark:bg-primary/10 dark:text-primary dark:hover:border-primary/80 dark:hover:bg-primary/20 dark:hover:text-primary font-sans"
                       >
                         {isExpanded ? (
                           <>
@@ -250,6 +261,32 @@ export function Projects({ data }: ProjectsProps) {
               </FadeIn>
             ))}
         </div>
+        {hasMore && (
+          <FadeIn delay={data.projects.length * 80} direction="up">
+            <div className="mt-10 flex justify-center">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowAll(!showAll)}
+                aria-expanded={showAll}
+                aria-controls="projects-grid"
+                className="border-primary/40 bg-primary/5 font-semibold text-primary hover:bg-primary hover:text-primary-foreground dark:border-primary/60 dark:bg-primary/10 dark:text-primary dark:hover:border-primary/80 dark:hover:bg-primary/20 dark:hover:text-primary font-sans"
+              >
+                {showAll
+                  ? t.projects.showLess
+                  : t.projects.showAll.replace(
+                      "{{count}}",
+                      String(data.projects.length)
+                    )}
+                {showAll ? (
+                  <ChevronUp className="ml-1 h-3 w-3" />
+                ) : (
+                  <ChevronDown className="ml-1 h-3 w-3" />
+                )}
+              </Button>
+            </div>
+          </FadeIn>
+        )}
       </div>
     </section>
   )

@@ -26,6 +26,7 @@
     "code": "Code",
     "readMore": "Read more",
     "showLess": "Show less",
+    "showAll": "Show All {{count}} Projects",
     "comingSoon": "More coming soon",
     "comingSoonDesc": "Currently working on exciting new projects."
   },

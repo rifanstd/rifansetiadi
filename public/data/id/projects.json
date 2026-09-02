@@ -1,9 +1,43 @@
 {
   "projects": [
     {
+      "title": "wondr merchant by BNI",
+      "description": "Aplikasi satu pintu yang membantu merchant menerima pembayaran QRIS, dengan settlement di hari yang sama, notifikasi transaksi real-time, dan riwayat transaksi lengkap.",
+      "tags": ["QRIS", "Payments", "Banking", "Merchant"],
+      "links": [
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=id.bni.wfb&hl=en_US"
+        }
+      ]
+    },
+    {
+      "title": "BNI SMS Banking",
+      "description": "Aplikasi menu BNI SMS Banking untuk melakukan transaksi perbankan melalui ponsel, termasuk cek saldo, riwayat transaksi, pembayaran tagihan, transfer, isi ulang, dan perubahan PIN bagi pengguna terdaftar.",
+      "tags": ["SMS Banking", "Payments", "Banking", "Finance"],
+      "links": [
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=id.co.bni.sms&hl=en_US"
+        }
+      ]
+    },
+    {
+      "title": "Eform Tablet BNI",
+      "description": "Aplikasi perbankan pada tablet yang menggantikan pengisian formulir manual di unit atau cabang untuk transaksi nasabah seperti tarik tunai dan transfer. Aplikasi ini terintegrasi dengan wondr by BNI agar petugas dapat melakukan claim atau scan reservasi antrean, serta terhubung ke berbagai layanan dan API perbankan dengan kontrol keamanan. Dibangun menggunakan Flutter, state management BLoC, dan Clean Architecture.",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "BLoC",
+        "Clean Architecture",
+        "API Integration",
+        "Banking",
+        "Security"
+      ]
+    },
+    {
       "title": "Opencode Dashboard",
       "description": "Dashboard untuk melihat dan memantau penggunaan OpenCode, seperti sesi, pesan, token, biaya, provider, model, agent, dan skill. Semua data diproses dan disimpan di perangkat Anda, jadi tidak membutuhkan backend atau mengirim data ke cloud.",
-      "image": "https://raw.githubusercontent.com/rifanstd/opencode-dashboard/main/docs/screenshots/overview-1.png",
       "tags": [
         "React",
         "TypeScript",
@@ -18,7 +52,6 @@
     {
       "title": "DevKit Agent",
       "description": "Pipeline coding berbasis multi-agent untuk OpenCode. Memudahkan instalasi agent dan skill dengan satu perintah, lalu membagi tugas coding yang kompleks ke beberapa agent dengan peran berbeda, seperti Analyst, Planner, Programmer, dan Reviewer. Setiap tahap dapat ditinjau dan disetujui sebelum dilanjutkan.",
-      "image": "https://raw.githubusercontent.com/rifanstd/devkit-agent/main/docs/overview/flow.png",
       "tags": ["TypeScript", "Node.js", "AI", "Multi-Agent", "OpenCode", "CLI"],
       "githubUrl": "https://github.com/rifanstd/devkit-agent",
       "links": [
@@ -30,6 +63,94 @@
       "description": "Paket pemindai QR code untuk aplikasi Flutter di Windows. Menggunakan kamera dan ZXing untuk membaca QR code dari snapshot kamera secara berkala, sebagai solusi untuk keterbatasan dukungan image streaming pada camera_windows.",
       "tags": ["Flutter", "Dart", "Windows", "QR Code", "ZXing", "Camera"],
       "githubUrl": "https://github.com/rifanstd/qr_windows_scanner"
+    },
+    {
+      "title": "Omaga - Ojek Mahasiswa",
+      "description": "Aplikasi ojek online khusus mahasiswa untuk penjemputan dan pengantaran di area kampus, dengan tarif mahasiswa, riwayat perjalanan, pengelolaan perjalanan real-time, transaksi keuangan, dan komunikasi real-time.",
+      "tags": ["Flutter", "Dart", "Real-time Database", "Location", "Payments"],
+      "links": [
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=com.coolva.omaga"
+        }
+      ]
+    },
+    {
+      "title": "Omaga Driver",
+      "description": "Aplikasi sisi pengemudi untuk layanan ojek mahasiswa Omaga, dengan antarmuka sederhana, alur pesanan yang cepat, verifikasi, serta dukungan perjalanan motor dan mobil.",
+      "tags": ["Flutter", "Dart", "Real-time Database", "Location"],
+      "links": [
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=com.coolva.omagadriver"
+        }
+      ]
+    },
+    {
+      "title": "SIPUMA - UIN SMH Banten",
+      "description": "Aplikasi resmi Pemilihan Umum Mahasiswa UIN Sultan Maulana Hasanuddin Banten untuk pendaftaran, informasi kandidat, verifikasi identitas, pemungutan suara, notifikasi, dan hasil pemilihan yang transparan.",
+      "tags": [
+        "Mobile",
+        "Student Election",
+        "Identity Verification",
+        "Notifications",
+        "Security"
+      ],
+      "links": [
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=id.ac.uinbanten.pum"
+        }
+      ]
+    },
+    {
+      "title": "TrackThisJob: Manage Progress",
+      "description": "Aplikasi untuk mencatat, memantau, dan mengelola lamaran kerja, termasuk status, filter cepat, pembaruan status, insight progres, dan saran tindakan.",
+      "tags": ["Flutter", "Dart", "Productivity", "Job Tracking"],
+      "links": [
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=com.coolva.trackthisjob"
+        }
+      ]
+    },
+    {
+      "title": "UnilaHub",
+      "description": "Aplikasi e-commerce Universitas Lampung yang memungkinkan masyarakat umum dan industri luar melihat, membeli, dan memesan produk penelitian milik Universitas Lampung.",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "REST API",
+        "Firebase",
+        "OneSignal",
+        "Midtrans",
+        "RajaOngkir"
+      ],
+      "links": [
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=com.unila.unila_hub&hl=en_US"
+        }
+      ]
+    },
+    {
+      "title": "UnilaHub Research",
+      "description": "Platform bagi peneliti Universitas Lampung untuk mendiseminasikan produk hasil penelitian, baik berupa barang digital atau fisik maupun jasa.",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "REST API",
+        "Firebase",
+        "OneSignal",
+        "Midtrans",
+        "RajaOngkir"
+      ],
+      "links": [
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=com.unilahub.research.android"
+        }
+      ]
     }
   ]
 }

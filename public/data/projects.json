@@ -1,16 +1,57 @@
 {
   "projects": [
     {
+      "title": "wondr merchant by BNI",
+      "description": "A one-stop app that helps merchants accept QRIS payments, with same-day settlement, real-time transaction notifications, and complete transaction history.",
+      "tags": ["QRIS", "Payments", "Banking", "Merchant"],
+      "links": [
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=id.bni.wfb&hl=en_US"
+        }
+      ]
+    },
+    {
+      "title": "BNI SMS Banking",
+      "description": "BNI SMS Banking's menu app for banking transactions by phone, including balance checks, transaction history, bill payments, transfers, reloads, and PIN changes for registered users.",
+      "tags": ["SMS Banking", "Payments", "Banking", "Finance"],
+      "links": [
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=id.co.bni.sms&hl=en_US"
+        }
+      ]
+    },
+    {
+      "title": "Eform Tablet BNI",
+      "description": "A tablet banking application that replaces manual branch forms for customer transactions such as cash withdrawals and transfers. It integrates with wondr by BNI so staff can claim or scan queue reservations, and connects to banking services and APIs with security controls. Built with Flutter, BLoC state management, and Clean Architecture.",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "BLoC",
+        "Clean Architecture",
+        "API Integration",
+        "Banking",
+        "Security"
+      ]
+    },
+    {
       "title": "Opencode Dashboard",
       "description": "A client-side dashboard for visualizing your opencode usage data — sessions, messages, tokens, costs, providers, models, agents, and skills. All data is local. No backend server. No cloud upload.",
-      "image": "https://raw.githubusercontent.com/rifanstd/opencode-dashboard/main/docs/screenshots/overview-1.png",
-      "tags": ["React", "TypeScript", "Vite", "Recharts", "Motion", "Zustand", "Tailwind CSS"],
+      "tags": [
+        "React",
+        "TypeScript",
+        "Vite",
+        "Recharts",
+        "Motion",
+        "Zustand",
+        "Tailwind CSS"
+      ],
       "githubUrl": "https://github.com/rifanstd/opencode-dashboard"
     },
     {
       "title": "DevKit Agent",
       "description": "Multi-agent coding pipeline for OpenCode. Install agents and skills with one command. Routes complex tasks through specialist agents — Analyst, Planner, Programmer, Reviewer — with approval checkpoints at each stage.",
-      "image": "https://raw.githubusercontent.com/rifanstd/devkit-agent/main/docs/overview/flow.png",
       "tags": ["TypeScript", "Node.js", "AI", "Multi-Agent", "OpenCode", "CLI"],
       "githubUrl": "https://github.com/rifanstd/devkit-agent",
       "links": [
@@ -22,6 +63,94 @@
       "description": "A QR code scanner package for Windows Flutter apps. Uses the front camera and zxing2 to detect QR codes via periodic camera snapshots, working around the lack of image streaming support in camera_windows.",
       "tags": ["Flutter", "Dart", "Windows", "QR Code", "ZXing", "Camera"],
       "githubUrl": "https://github.com/rifanstd/qr_windows_scanner"
+    },
+    {
+      "title": "Omaga - Ojek Mahasiswa",
+      "description": "A student-focused motorcycle taxi app for campus pick-up and drop-off, with student rates, trip history, real-time trip management, financial transactions, and real-time communication.",
+      "tags": ["Flutter", "Dart", "Real-time Database", "Location", "Payments"],
+      "links": [
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=com.coolva.omaga"
+        }
+      ]
+    },
+    {
+      "title": "Omaga Driver",
+      "description": "The driver-side app for Omaga's student motorcycle taxi service, with a simple interface, fast order flow, verification, and support for motorcycle and car trips.",
+      "tags": ["Flutter", "Dart", "Real-time Database", "Location"],
+      "links": [
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=com.coolva.omagadriver"
+        }
+      ]
+    },
+    {
+      "title": "SIPUMA - UIN SMH Banten",
+      "description": "The official student general election app for UIN Sultan Maulana Hasanuddin Banten, with registration, candidate information, identity verification, voting, notifications, and transparent results.",
+      "tags": [
+        "Mobile",
+        "Student Election",
+        "Identity Verification",
+        "Notifications",
+        "Security"
+      ],
+      "links": [
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=id.ac.uinbanten.pum"
+        }
+      ]
+    },
+    {
+      "title": "TrackThisJob: Manage Progress",
+      "description": "An app for logging, monitoring, and managing job applications, including statuses, quick filters, status updates, progress insights, and action suggestions.",
+      "tags": ["Flutter", "Dart", "Productivity", "Job Tracking"],
+      "links": [
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=com.coolva.trackthisjob"
+        }
+      ]
+    },
+    {
+      "title": "UnilaHub",
+      "description": "An e-commerce application for the University of Lampung that lets the public and external industry discover, purchase, and order the university's research products.",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "REST API",
+        "Firebase",
+        "OneSignal",
+        "Midtrans",
+        "RajaOngkir"
+      ],
+      "links": [
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=com.unila.unila_hub&hl=en_US"
+        }
+      ]
+    },
+    {
+      "title": "UnilaHub Research",
+      "description": "A platform for University of Lampung researchers to downstream research products, including digital or physical goods and services.",
+      "tags": [
+        "Flutter",
+        "Dart",
+        "REST API",
+        "Firebase",
+        "OneSignal",
+        "Midtrans",
+        "RajaOngkir"
+      ],
+      "links": [
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=com.unilahub.research.android"
+        }
+      ]
     }
   ]
 }

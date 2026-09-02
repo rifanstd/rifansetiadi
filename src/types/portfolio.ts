@@ -48,7 +48,6 @@ export interface ProjectLink {
 export interface Project {
   title: string
   description: string
-  image?: string
   tags: string[]
   githubUrl?: string
   links?: ProjectLink[]
