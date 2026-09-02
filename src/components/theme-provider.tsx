@@ -13,6 +13,7 @@ type ThemeProviderProps = {
 
 type ThemeProviderState = {
   theme: Theme
+  resolvedTheme: ResolvedTheme
   setTheme: (theme: Theme) => void
 }
 
@@ -93,10 +94,18 @@ export function ThemeProvider({
     return defaultTheme
   })
 
+  const [systemTheme, setSystemTheme] = React.useState<ResolvedTheme>(() =>
+    getSystemTheme()
+  )
+
   const setTheme = React.useCallback(
     (nextTheme: Theme) => {
       localStorage.setItem(storageKey, nextTheme)
       setThemeState(nextTheme)
+
+      if (nextTheme === "system") {
+        setSystemTheme(getSystemTheme())
+      }
     },
     [storageKey]
   )
@@ -129,6 +138,7 @@ export function ThemeProvider({
 
     const mediaQuery = window.matchMedia(COLOR_SCHEME_QUERY)
     const handleChange = () => {
+      setSystemTheme(getSystemTheme())
       applyTheme("system")
     }
 
@@ -191,10 +201,16 @@ export function ThemeProvider({
 
       if (isTheme(event.newValue)) {
         setThemeState(event.newValue)
+        if (event.newValue === "system") {
+          setSystemTheme(getSystemTheme())
+        }
         return
       }
 
       setThemeState(defaultTheme)
+      if (defaultTheme === "system") {
+        setSystemTheme(getSystemTheme())
+      }
     }
 
     window.addEventListener("storage", handleStorageChange)
@@ -204,12 +220,14 @@ export function ThemeProvider({
     }
   }, [defaultTheme, storageKey])
 
+  const resolvedTheme = theme === "system" ? systemTheme : theme
   const value = React.useMemo(
     () => ({
       theme,
+      resolvedTheme,
       setTheme,
     }),
-    [theme, setTheme]
+    [resolvedTheme, setTheme, theme]
   )
 
   return (
