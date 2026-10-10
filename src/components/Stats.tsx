@@ -1,71 +1,49 @@
 import { useCounter } from "@/hooks/useCounter"
 import { useInView } from "@/hooks/useInView"
-import { FadeIn } from "@/components/FadeIn"
-import { useI18n } from "@/i18n/context"
-import type { StatsData } from "@/types/portfolio"
+import type { Stat, StatsData } from "@/types/portfolio"
 
 interface StatsProps {
   data: StatsData
 }
 
-function StatItem({
-  value,
-  suffix,
-  label,
-}: {
-  value: string
-  suffix?: string
-  label: string
-}) {
+function StatItem({ value, suffix, label }: Stat) {
   const [ref, isInView] = useInView<HTMLDivElement>({ threshold: 0.5 })
-  const numericValue = parseInt(value, 10)
-  const count = useCounter(numericValue, 1500, isInView)
+  const count = useCounter(parseInt(value, 10), 1200, isInView)
 
   return (
-    <div ref={ref} className="text-center">
-      <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-primary tracking-tight font-[family-name:var(--font-heading)]">
+    <div ref={ref} className="flex flex-col gap-0.5">
+      <span className="text-[28px] leading-tight font-bold text-brand tabular-nums sm:text-[34px]">
         {count}
-        {suffix || ""}
-      </div>
-      <div className="text-xs sm:text-sm text-foreground/60 uppercase tracking-widest mt-2 font-sans font-medium">
+        {suffix}
+      </span>
+      <span className="text-xs text-muted-foreground sm:text-[13px]">
         {label}
-      </div>
+      </span>
     </div>
   )
 }
 
 export function Stats({ data }: StatsProps) {
-  const { t } = useI18n()
   return (
-    <section
-      id="stats"
-      className="py-24 md:py-32 px-4 bg-card text-foreground"
-    >
-      <div className="max-w-7xl mx-auto">
-        <FadeIn delay={0} direction="up">
-          <div className="flex items-center gap-4 mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold text-foreground font-[family-name:var(--font-heading)]">
-              {t.stats.title}
-            </h2>
-            <div className="w-16 h-px bg-primary" />
-          </div>
-        </FadeIn>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          {data.stats.map((stat, index) => (
-            <FadeIn key={index} delay={index * 100} direction="up">
-              <StatItem
-                value={stat.value}
-                suffix={stat.suffix}
-                label={stat.label}
-              />
-            </FadeIn>
+    <section className="border-y border-border bg-muted">
+      <div className="page-container flex flex-col gap-6 py-6 lg:flex-row lg:items-center lg:justify-between lg:gap-8 lg:py-8">
+        <div className="grid grid-cols-2 gap-5 sm:flex sm:flex-wrap sm:gap-12">
+          {data.stats.map((stat) => (
+            <StatItem key={stat.label} {...stat} />
           ))}
         </div>
-
-        <FadeIn delay={500} direction="none">
-          <div className="w-full h-px bg-primary/30 mt-16" />
-        </FadeIn>
+        {data.clients && data.clients.length > 0 && (
+          <ul className="flex flex-wrap gap-2 sm:gap-3">
+            {data.clients.map((client) => (
+              <li
+                key={client}
+                className="flex h-10 items-center border border-line px-4 font-mono text-xs text-muted-foreground"
+              >
+                {client}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
   )

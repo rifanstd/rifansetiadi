@@ -4,5 +4,6 @@
     { "value": "20", "suffix": "+", "label": "Proyek Dikerjakan" },
     { "value": "5", "suffix": "+", "label": "Aplikasi Dipublikasikan" },
     { "value": "2", "suffix": "", "label": "Proyek AI" }
-  ]
+  ],
+  "clients": ["BNI", "Coolva", "Unila", "UIN Banten"]
 }

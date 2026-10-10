@@ -1,180 +1,231 @@
-import { useState, useEffect } from "react"
-import { Menu, Moon, Sun, Globe } from "lucide-react"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { useEffect, useRef, useState, type MouseEvent } from "react"
+import { Menu, Moon, Sun } from "lucide-react"
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 import { Button } from "@/components/ui/button"
 import { useTheme } from "@/components/theme-provider"
 import { useI18n } from "@/i18n/context"
+import { scrollToSection } from "@/lib/scroll"
+import { cn } from "@/lib/utils"
 
-export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [activeSection, setActiveSection] = useState("home")
-  const [isOpen, setIsOpen] = useState(false)
-  const { resolvedTheme, setTheme } = useTheme()
+const SECTION_IDS = ["work", "experience", "about", "contact"] as const
+
+type SectionId = (typeof SECTION_IDS)[number]
+
+export function Wordmark() {
+  return (
+    <span className="font-mono text-[15px]">
+      <span className="text-brand">~/</span>
+      <span className="font-medium">rifan</span>
+    </span>
+  )
+}
+
+export function LocaleToggle({ className }: { className?: string }) {
   const { locale, toggleLocale, t } = useI18n()
 
-  const toggleTheme = () => {
-    setTheme(resolvedTheme === "dark" ? "light" : "dark")
-  }
+  return (
+    <Button
+      variant="outline"
+      onClick={toggleLocale}
+      title={t.nav.switchLanguage}
+      className={cn(
+        "h-11 border-line bg-transparent px-3 font-mono text-xs dark:border-line dark:bg-transparent",
+        className
+      )}
+    >
+      <span className={cn(locale !== "en" && "text-muted-foreground")}>EN</span>
+      <span className="text-muted-foreground" aria-hidden="true">
+        /
+      </span>
+      <span className={cn(locale !== "id" && "text-muted-foreground")}>ID</span>
+      <span className="sr-only">{t.nav.switchLanguage}</span>
+    </Button>
+  )
+}
 
-  const navLinks = [
-    { label: t.nav.home, href: "#home" },
-    { label: t.nav.about, href: "#about" },
-    { label: t.nav.experience, href: "#experience" },
-    { label: t.nav.projects, href: "#projects" },
-    { label: t.nav.skills, href: "#skills" },
-    { label: t.nav.contact, href: "#contact" },
+export function ThemeToggle({ className }: { className?: string }) {
+  const { resolvedTheme, setTheme } = useTheme()
+  const { t } = useI18n()
+  const isDark = resolvedTheme === "dark"
+  const label = isDark ? t.nav.switchToLight : t.nav.switchToDark
+
+  return (
+    <Button
+      variant="outline"
+      size="icon"
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      aria-label={label}
+      title={label}
+      className={cn(
+        "size-11 border-line bg-transparent dark:border-line dark:bg-transparent",
+        className
+      )}
+    >
+      {isDark ? <Sun /> : <Moon />}
+    </Button>
+  )
+}
+
+export function Navbar() {
+  const { t } = useI18n()
+  const [activeSection, setActiveSection] = useState<SectionId | null>(null)
+  const [isOpen, setIsOpen] = useState(false)
+  const pendingSection = useRef<string | null>(null)
+
+  const navLinks: { id: SectionId; label: string }[] = [
+    { id: "work", label: t.nav.work },
+    { id: "experience", label: t.nav.experience },
+    { id: "about", label: t.nav.about },
+    { id: "contact", label: t.nav.contact },
   ]
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setActiveSection(entry.target.id)
+            setActiveSection(entry.target.id as SectionId)
           }
         })
       },
-      { threshold: 0.3 }
+      { rootMargin: "-40% 0px -55% 0px" }
     )
 
-    navLinks.forEach((link) => {
-      const element = document.querySelector(link.href)
-      if (element) {
-        observer.observe(element)
-      }
+    SECTION_IDS.forEach((id) => {
+      const element = document.getElementById(id)
+      if (element) observer.observe(element)
     })
 
     return () => observer.disconnect()
   }, [])
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href)
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-    }
+  // The open sheet locks page scroll, so scroll once it has fully closed.
+  const handleMenuClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    id: string
+  ) => {
+    event.preventDefault()
+    pendingSection.current = id
     setIsOpen(false)
   }
 
+  const handleMenuCloseAutoFocus = (event: Event) => {
+    const id = pendingSection.current
+    if (!id) return
+    event.preventDefault()
+    pendingSection.current = null
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
+  }
+
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border shadow-sm"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <button
-            onClick={() => scrollToSection("#home")}
-            className="text-xl font-bold text-primary hover:text-primary/80 transition-colors font-[family-name:var(--font-heading)]"
+    <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
+      <div className="page-container flex h-16 items-center justify-between gap-6 lg:h-[72px]">
+        <a
+          href="#top"
+          onClick={(event) => scrollToSection(event, "top")}
+          className="flex min-h-11 items-center"
+        >
+          <Wordmark />
+        </a>
+
+        <nav className="hidden items-center gap-7 text-sm md:flex">
+          {navLinks.map((link) => (
+            <a
+              key={link.id}
+              href={`#${link.id}`}
+              onClick={(event) => scrollToSection(event, link.id)}
+              aria-current={activeSection === link.id ? "true" : undefined}
+              className={cn(
+                "transition-colors hover:text-foreground",
+                activeSection === link.id
+                  ? "font-semibold text-foreground"
+                  : "text-muted-foreground"
+              )}
+            >
+              {link.label}
+            </a>
+          ))}
+        </nav>
+
+        <div className="hidden items-center gap-2 md:flex">
+          <LocaleToggle />
+          <ThemeToggle />
+          <Button
+            asChild
+            className="h-11 px-[18px] text-sm font-semibold hover:bg-primary/85"
           >
-            Rifan Setiadi
-          </button>
+            <a
+              href="#contact"
+              onClick={(event) => scrollToSection(event, "contact")}
+            >
+              {t.nav.letsTalk}
+            </a>
+          </Button>
+        </div>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => scrollToSection(link.href)}
-                  className={`px-3 py-2 text-sm font-medium transition-colors rounded-md font-sans ${
-                    activeSection === link.href.slice(1)
-                      ? "text-primary bg-primary/10"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                  }`}
+        <div className="flex items-center gap-2 md:hidden">
+          <LocaleToggle />
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Button
+                variant="outline"
+                size="icon"
+                aria-label={t.nav.openMenu}
+                className="size-11 border-foreground bg-transparent dark:border-foreground dark:bg-transparent"
               >
-                {link.label}
-              </button>
-            ))}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleLocale}
-              className="ml-2"
-              title={locale === "en" ? "Switch to Bahasa Indonesia" : "Switch to English"}
+                <Menu className="size-[18px]" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent
+              side="right"
+              className="gap-0 p-0"
+              onCloseAutoFocus={handleMenuCloseAutoFocus}
             >
-              <Globe className="h-4 w-4" />
-              <span className="sr-only">Toggle language</span>
-            </Button>
-            <span className="text-xs font-medium text-muted-foreground font-sans min-w-[20px] text-center">
-              {locale.toUpperCase()}
-            </span>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-            >
-              {resolvedTheme === "dark" ? (
-                <Sun className="h-4 w-4" />
-              ) : (
-                <Moon className="h-4 w-4" />
-              )}
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-          </div>
-
-          {/* Mobile Nav */}
-          <div className="flex items-center gap-2 md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleLocale}
-              title={locale === "en" ? "Switch to Bahasa Indonesia" : "Switch to English"}
-            >
-              <Globe className="h-4 w-4" />
-              <span className="sr-only">Toggle language</span>
-            </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-            >
-              {resolvedTheme === "dark" ? (
-                <Sun className="h-4 w-4" />
-              ) : (
-                <Moon className="h-4 w-4" />
-              )}
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-            <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Menu className="h-5 w-5" />
-                  <span className="sr-only">Open menu</span>
+              <SheetTitle className="flex h-16 items-center border-b border-border px-4 font-mono text-sm font-normal text-muted-foreground">
+                {t.nav.menu}
+              </SheetTitle>
+              <nav className="flex flex-col px-4 py-2">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.id}
+                    href={`#${link.id}`}
+                    onClick={(event) => handleMenuClick(event, link.id)}
+                    className={cn(
+                      "flex min-h-12 items-center border-b border-border text-base",
+                      activeSection === link.id
+                        ? "font-semibold text-foreground"
+                        : "text-muted-foreground"
+                    )}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+              <div className="flex items-center justify-between px-4 py-4">
+                <span className="text-sm text-muted-foreground">
+                  {t.nav.theme}
+                </span>
+                <ThemeToggle />
+              </div>
+              <div className="px-4">
+                <Button asChild className="h-12 w-full text-sm font-semibold">
+                  <a
+                    href="#contact"
+                    onClick={(event) => handleMenuClick(event, "contact")}
+                  >
+                    {t.nav.letsTalk}
+                  </a>
                 </Button>
-              </SheetTrigger>
-              <SheetContent side="right" className="w-[280px]">
-                <div className="flex flex-col gap-4 mt-8">
-                  {navLinks.map((link) => (
-                    <button
-                      key={link.href}
-                      onClick={() => scrollToSection(link.href)}
-                      className={`text-left px-4 py-3 text-base font-medium rounded-md transition-colors ${
-                        activeSection === link.href.slice(1)
-                          ? "text-primary bg-primary/10"
-                          : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                      }`}
-                    >
-                      {link.label}
-                    </button>
-                  ))}
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
-    </nav>
+    </header>
   )
 }

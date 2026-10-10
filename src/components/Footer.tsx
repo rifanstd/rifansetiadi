@@ -9,12 +9,11 @@ export function Footer({ name }: FooterProps) {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="py-8 px-4 border-t border-border bg-background">
-      <div className="max-w-7xl mx-auto text-center">
-        <p className="text-sm text-muted-foreground font-sans">
-          &copy; {currentYear} {name}. {t.footer.rights}
-        </p>
-      </div>
+    <footer className="page-container flex flex-wrap justify-between gap-4 py-7 text-[13px] text-muted-foreground">
+      <span>
+        &copy; {currentYear} {name}
+      </span>
+      <span className="font-mono">{t.footer.builtWith}</span>
     </footer>
   )
 }

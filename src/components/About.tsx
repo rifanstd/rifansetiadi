@@ -1,61 +1,37 @@
-import { MapPin, Calendar, CheckCircle } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
 import { FadeIn } from "@/components/FadeIn"
+import { Skills } from "@/components/Skills"
 import { useI18n } from "@/i18n/context"
-import type { PersonalData } from "@/types/portfolio"
+import type { PersonalData, SkillsData } from "@/types/portfolio"
 
 interface AboutProps {
   data: PersonalData
+  skills: SkillsData
 }
 
-export function About({ data }: AboutProps) {
+export function About({ data, skills }: AboutProps) {
   const { t } = useI18n()
+
   return (
-    <section id="about" className="py-24 md:py-32 px-4">
-      <div className="max-w-7xl mx-auto">
-        <FadeIn delay={0} direction="up">
-          <div className="flex items-center gap-4 mb-12">
-            <h2 className="text-4xl sm:text-5xl font-bold text-foreground font-[family-name:var(--font-heading)]">
-              {t.about.title}
-            </h2>
-            <div className="w-16 h-px bg-primary" />
-          </div>
-        </FadeIn>
-
-        <div className="grid md:grid-cols-[65%_35%] gap-12 md:gap-16 items-start">
-          <FadeIn delay={100} direction="up">
-            <div>
-              <p className="text-base sm:text-lg text-foreground/85 leading-relaxed font-sans">
-                <span className="float-left text-6xl sm:text-7xl font-bold text-primary leading-[0.75] mr-3 mt-1 font-[family-name:var(--font-heading)]">
-                  {data.about.charAt(0)}
-                </span>
-                {data.about.slice(1)}
-              </p>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={200} direction="up">
-            <div className="border border-border rounded-lg p-6 space-y-5 bg-card/50">
-              <div className="flex items-center gap-3">
-                <MapPin className="h-5 w-5 text-primary shrink-0" />
-                <span className="text-foreground font-sans">{data.location}</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Calendar className="h-5 w-5 text-primary shrink-0" />
-                <span className="text-foreground font-sans">{data.experience}</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <CheckCircle className="h-5 w-5 text-green-500 shrink-0" />
-                <Badge
-                  variant="secondary"
-                  className="text-green-700 bg-green-100 dark:bg-green-900/40 dark:text-green-300 font-sans"
-                >
-                  {data.availabilityStatus}
-                </Badge>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
+    <section
+      id="about"
+      className="page-container grid gap-8 py-12 lg:grid-cols-12 lg:py-24"
+    >
+      <FadeIn
+        direction="up"
+        className="flex flex-col gap-4 lg:col-span-6 lg:gap-5"
+      >
+        <h2 className="text-[30px] leading-tight font-bold sm:text-5xl">
+          {t.about.title}
+        </h2>
+        <p className="text-base leading-relaxed sm:text-lg sm:leading-[1.65]">
+          {data.aboutLead}
+        </p>
+        <p className="text-[15px] leading-relaxed text-muted-foreground sm:text-base sm:leading-[1.65]">
+          {data.about}
+        </p>
+      </FadeIn>
+      <div className="lg:col-span-6">
+        <Skills data={skills} />
       </div>
     </section>
   )

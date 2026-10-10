@@ -1,55 +1,84 @@
 {
   "nav": {
-    "home": "Home",
-    "about": "About",
+    "work": "Work",
     "experience": "Experience",
-    "projects": "Projects",
-    "skills": "Skills",
-    "contact": "Contact"
+    "about": "About",
+    "contact": "Contact",
+    "letsTalk": "Let's talk",
+    "openMenu": "Open menu",
+    "menu": "Menu",
+    "theme": "Theme",
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode",
+    "switchLanguage": "Switch to Bahasa Indonesia"
   },
   "hero": {
-    "viewWork": "View My Work",
-    "downloadCV": "Download CV"
+    "seeWork": "See selected work",
+    "downloadCV": "Download CV",
+    "portraitAlt": "Portrait of {{name}}"
+  },
+  "work": {
+    "title": "Selected work",
+    "count": "{{featured}} featured · {{total}} total",
+    "readCaseStudy": "Read case study",
+    "allProjects": "All projects",
+    "filterLabel": "Filter projects",
+    "filters": {
+      "all": "All",
+      "banking": "Banking",
+      "mobile": "Mobile",
+      "ai": "AI & Tools",
+      "oss": "Open source"
+    },
+    "columns": {
+      "number": "#",
+      "project": "Project",
+      "type": "Type",
+      "stack": "Stack",
+      "link": "Link"
+    },
+    "internal": "Internal",
+    "showDetails": "Show details for {{title}}",
+    "showAll": "Show all {{count}} projects",
+    "showLess": "Show fewer projects",
+    "empty": "No projects in this category yet."
+  },
+  "experience": {
+    "title": "Experience",
+    "subtitle": "Banking-grade mobile apps, startup products, university systems.",
+    "fullCV": "Full CV (PDF)",
+    "showDetails": "Show details for {{role}} at {{company}}"
   },
   "about": {
     "title": "About"
   },
-  "experience": {
-    "title": "Experience",
-    "showLess": "Show Less",
-    "showAll": "Show All {{count}} Experiences"
-  },
-  "projects": {
-    "title": "Projects",
-    "viewProject": "View Project",
-    "featured": "Featured Project",
-    "code": "Code",
-    "readMore": "Read more",
-    "showLess": "Show less",
-    "showAll": "Show All {{count}} Projects",
-    "comingSoon": "More coming soon",
-    "comingSoonDesc": "Currently working on exciting new projects."
-  },
-  "stats": {
-    "title": "By The Numbers"
-  },
-  "skills": {
-    "title": "Tech Stack"
-  },
   "contact": {
-    "title": "Let's work together",
-    "subtitle": "I'm open for freelance projects, collaborations, and full-time opportunities. Let's build something amazing together.",
+    "heading": "Have a mobile app to build?",
+    "headingAccent": "Let's talk.",
     "copyEmail": "Copy email",
-    "copied": "Email copied to clipboard!",
-    "hireMe": "Hire Me"
+    "copied": "Copied!",
+    "replies": "Usually replies within 1–2 days",
+    "cv": "CV"
   },
   "footer": {
-    "rights": "All rights reserved."
+    "builtWith": "built with react + vite · en / id"
+  },
+  "caseStudy": {
+    "allWork": "All work",
+    "context": "Context",
+    "overview": "Overview",
+    "myRole": "My role",
+    "whatIDid": "What I did",
+    "keyFeatures": "Key features",
+    "flow": "Flow",
+    "howItWorks": "How it works",
+    "outcome": "Outcome",
+    "links": "Links",
+    "next": "next",
+    "notFound": "This project doesn't exist (yet).",
+    "backHome": "Back to all work"
   },
   "loading": "Loading...",
   "error": "Failed to load portfolio data",
-  "tryAgain": "Please try again later",
-  "lang": {
-    "toggle": "EN"
-  }
+  "tryAgain": "Please try again later"
 }

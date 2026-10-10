@@ -1,291 +1,438 @@
-import { useState } from "react"
-import { ChevronDown, ChevronUp, ExternalLink } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
+import { Fragment, useState } from "react"
 import { FadeIn } from "@/components/FadeIn"
+import { ProjectVisual, type VisualSize } from "@/components/ProjectVisual"
 import { useI18n } from "@/i18n/context"
-import type { ProjectLink, ProjectsData } from "@/types/portfolio"
-
-function GitHubIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-      <path d="M9 18c-4.51 2-5-2-7-2" />
-    </svg>
-  )
-}
+import { caseStudyHref, projectLinks } from "@/lib/projects"
+import { cn, fill } from "@/lib/utils"
+import type { Project, ProjectCategory, ProjectsData } from "@/types/portfolio"
 
 interface ProjectsProps {
   data: ProjectsData
 }
 
-const INITIAL_SHOW_MOBILE = 4
-const INITIAL_SHOW_DESKTOP = 6
+type Filter = "all" | ProjectCategory
+
+const FILTERS: Filter[] = ["all", "banking", "mobile", "ai", "oss"]
+const MOBILE_LIMIT = 5
+
+export function ProjectMedia({
+  project,
+  size,
+  screen,
+  label,
+  className,
+}: {
+  project: Project
+  size: VisualSize
+  screen?: string
+  label?: string
+  className?: string
+}) {
+  if (project.image) {
+    return (
+      <img
+        src={project.image}
+        alt={label ?? project.title}
+        className={cn("h-full w-full object-cover", className)}
+      />
+    )
+  }
+
+  if (project.visual) {
+    return (
+      <ProjectVisual
+        visual={project.visual}
+        size={size}
+        screen={screen}
+        points={project.caseStudy?.features.map((feature) => ({
+          label: feature.title,
+          screen: feature.screen,
+        }))}
+        label={label ?? project.summary ?? project.title}
+        className={className}
+      />
+    )
+  }
+
+  return null
+}
+
+function FeaturedCard({
+  project,
+  number,
+  lead = false,
+}: {
+  project: Project
+  number: string
+  lead?: boolean
+}) {
+  const { t } = useI18n()
+  const external = !project.caseStudy ? projectLinks(project)[0] : undefined
+  const href = external ? external.url : caseStudyHref(project)
+  const facts = project.facts ?? []
+  const highlightFacts =
+    facts.length > 1 ? [facts[0], facts[facts.length - 1]] : facts
+
+  return (
+    <a
+      href={href}
+      {...(external && { target: "_blank", rel: "noopener noreferrer" })}
+      className={cn(
+        "group flex flex-col gap-3 border border-border bg-card p-4 text-foreground transition-colors hover:border-line sm:p-6",
+        lead && "lg:grid lg:grid-cols-12 lg:gap-8 lg:p-8"
+      )}
+    >
+      <div
+        className={cn(
+          "h-[190px] bg-muted sm:h-[260px]",
+          lead && "sm:h-[320px] lg:col-span-7 lg:h-[420px]"
+        )}
+      >
+        <ProjectMedia project={project} size={lead ? "lead" : "card"} />
+      </div>
+
+      <div
+        className={cn(
+          "flex flex-col gap-2.5 sm:gap-3.5",
+          lead && "lg:col-span-5 lg:justify-center lg:gap-4"
+        )}
+      >
+        <span className="font-mono text-[11px] text-brand uppercase sm:text-xs">
+          {number}
+          {project.meta && ` · ${project.meta}`}
+        </span>
+        <h3
+          className={cn(
+            "text-xl leading-tight font-semibold sm:text-2xl",
+            lead && "lg:text-[34px] lg:leading-[1.15]"
+          )}
+        >
+          {project.title}
+        </h3>
+        <p className="hidden text-[15px] leading-relaxed text-muted-foreground sm:block lg:text-base">
+          {project.summary ?? project.description}
+        </p>
+        {lead && highlightFacts.length > 0 && (
+          <dl className="hidden flex-col gap-1.5 border-t border-line pt-4 text-sm sm:flex">
+            {highlightFacts.map((fact) => (
+              <div key={fact.label} className="flex gap-1.5">
+                <dt>{fact.label} —</dt>
+                <dd>{fact.value}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+        <span className="text-sm font-semibold text-brand group-hover:underline sm:text-[15px]">
+          {external ? (
+            <>
+              {external.label} <span aria-hidden="true">↗</span>
+            </>
+          ) : (
+            <>
+              {t.work.readCaseStudy} <span aria-hidden="true">→</span>
+            </>
+          )}
+        </span>
+      </div>
+    </a>
+  )
+}
+
+function ProjectDetails({ project }: { project: Project }) {
+  const { t } = useI18n()
+  const links = projectLinks(project)
+
+  return (
+    <div className="flex animate-in flex-col gap-3 py-4 duration-200 fade-in slide-in-from-top-1">
+      <p className="max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
+        {project.description}
+      </p>
+      <ul className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-muted-foreground">
+        {project.tags.map((tag) => (
+          <li key={tag}>#{tag}</li>
+        ))}
+      </ul>
+      {(project.caseStudy || links.length > 0) && (
+        <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold">
+          {project.caseStudy && (
+            <a href={caseStudyHref(project)} className="text-brand">
+              {t.work.readCaseStudy} <span aria-hidden="true">→</span>
+            </a>
+          )}
+          {links.map((link) => (
+            <a
+              key={link.url}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-brand"
+            >
+              {link.label} <span aria-hidden="true">↗</span>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+function ExpandIcon({ expanded }: { expanded: boolean }) {
+  return (
+    <span
+      aria-hidden="true"
+      className="inline-block w-4 text-center font-mono text-muted-foreground"
+    >
+      {expanded ? "−" : "+"}
+    </span>
+  )
+}
 
 export function Projects({ data }: ProjectsProps) {
   const { t } = useI18n()
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
+  const [filter, setFilter] = useState<Filter>("all")
+  const [expandedSlug, setExpandedSlug] = useState<string | null>(null)
   const [showAll, setShowAll] = useState(false)
-  const hasMore = data.projects.length > INITIAL_SHOW_MOBILE
 
-  const toggleExpand = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index)
+  const numbered = data.projects.map((project, index) => ({
+    project,
+    number: String(index + 1).padStart(2, "0"),
+  }))
+  const featured = numbered.filter(({ project }) => project.featured)
+  const [lead, ...others] = featured
+  const filtered =
+    filter === "all"
+      ? numbered
+      : numbered.filter(({ project }) => project.categories.includes(filter))
+  const mobileVisible = showAll ? filtered : filtered.slice(0, MOBILE_LIMIT)
+
+  const typeLabel = (project: Project) =>
+    project.categories[0] ? t.work.filters[project.categories[0]] : "—"
+
+  const toggle = (slug: string) =>
+    setExpandedSlug((current) => (current === slug ? null : slug))
+
+  const primaryLink = (project: Project, className?: string) => {
+    const link = projectLinks(project)[0]
+    if (!link) {
+      return (
+        <span className={cn("text-muted-foreground", className)}>
+          {t.work.internal}
+        </span>
+      )
+    }
+    return (
+      <a
+        href={link.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn("text-brand hover:underline", className)}
+      >
+        {link.label} <span aria-hidden="true">↗</span>
+      </a>
+    )
   }
 
   return (
     <section
-      id="projects"
-      className="py-24 md:py-32 px-4 bg-card text-foreground"
+      id="work"
+      className="page-container flex flex-col gap-5 pt-12 pb-8 sm:gap-8 lg:pt-24 lg:pb-16"
     >
-      <div className="max-w-7xl mx-auto">
-        <FadeIn delay={0} direction="up">
-          <div className="flex items-center gap-4 mb-12">
-            <h2 className="text-4xl sm:text-5xl font-bold text-foreground font-[family-name:var(--font-heading)]">
-              {t.projects.title}
-            </h2>
-            <div className="w-16 h-px bg-primary" />
-          </div>
-        </FadeIn>
-
-        <div
-          id="projects-grid"
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {data.projects.map((project, index) => {
-            const isExpanded = expandedIndex === index
-
-            return (
-              <FadeIn
-                key={index}
-                delay={index * 80}
-                direction="up"
-                className={
-                  !showAll && index >= INITIAL_SHOW_DESKTOP
-                    ? "hidden"
-                    : !showAll && index >= INITIAL_SHOW_MOBILE
-                      ? "hidden md:block"
-                      : ""
-                }
-              >
-                <div className="group relative overflow-hidden border border-border rounded-lg bg-secondary/60 p-6 hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/5 hover:border-primary/30 transition-all duration-300 h-full flex flex-col">
-                  <div className="absolute inset-x-0 top-0 h-1 bg-primary/70 transition-all duration-300 group-hover:h-1.5" />
-                  <div className="mb-6 flex items-center gap-4" aria-hidden="true">
-                    <span className="text-xs tracking-[0.2em] text-primary/70 font-mono">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div className="h-px flex-1 bg-border transition-colors duration-300 group-hover:bg-primary/40" />
-                  </div>
-                  <div className="flex flex-col flex-1">
-                    <h3 className="text-xl font-bold text-foreground mb-2 font-[family-name:var(--font-heading)]">
-                      {project.title}
-                    </h3>
-
-                    {/* Collapsed: short preview */}
-                    <p
-                      className={`text-sm text-foreground/60 mb-4 font-sans leading-relaxed ${
-                        isExpanded ? "hidden" : "line-clamp-2"
-                      }`}
-                    >
-                      {project.description}
-                    </p>
-
-                    {/* Expanded: full detail */}
-                    {isExpanded && (
-                      <div className="mb-4 space-y-4 animate-in fade-in slide-in-from-top-2 duration-200">
-                        <p className="text-sm text-foreground/80 font-sans leading-relaxed">
-                          {project.description}
-                        </p>
-                        {project.tags.length > 0 && (
-                          <div className="flex flex-wrap gap-2">
-                            {project.tags.map((tag, i) => (
-                              <Badge
-                                key={i}
-                                variant="outline"
-                                className="text-xs border-primary/40 text-primary font-mono"
-                              >
-                                {tag}
-                              </Badge>
-                            ))}
-                          </div>
-                        )}
-                        <div className="flex flex-wrap gap-2 pt-1">
-                          {project.githubUrl && (
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              asChild
-                              className="border-primary/40 bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground dark:border-primary/60 dark:bg-primary/10 dark:text-primary dark:hover:border-primary/80 dark:hover:bg-primary/20 dark:hover:text-primary font-sans"
-                            >
-                              <a
-                                href={project.githubUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                <GitHubIcon className="mr-2 h-4 w-4" />
-                                {t.projects.viewProject}
-                              </a>
-                            </Button>
-                          )}
-                          {project.links?.map(
-                            (link: ProjectLink, i: number) => (
-                              <Button
-                                key={i}
-                                variant="outline"
-                                size="sm"
-                                asChild
-                                className="border-primary/40 bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground dark:border-primary/60 dark:bg-primary/10 dark:text-primary dark:hover:border-primary/80 dark:hover:bg-primary/20 dark:hover:text-primary font-sans"
-                              >
-                                <a
-                                  href={link.url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  <ExternalLink className="mr-2 h-4 w-4" />
-                                  {link.label}
-                                </a>
-                              </Button>
-                            )
-                          )}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Collapsed: tags + code link */}
-                    {!isExpanded && (
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.tags.map((tag, i) => (
-                          <Badge
-                            key={i}
-                            variant="secondary"
-                            className="text-xs font-mono"
-                          >
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                    )}
-
-                    <div className="mt-auto flex flex-wrap items-center gap-2 border-t border-border pt-4">
-                      {!isExpanded && (
-                        <>
-                          {project.githubUrl && (
-                            <Button
-                              variant="outline"
-                              size="sm"
-                              asChild
-                              className="border-primary/40 bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground dark:border-primary/60 dark:bg-primary/10 dark:text-primary dark:hover:border-primary/80 dark:hover:bg-primary/20 dark:hover:text-primary font-sans"
-                            >
-                              <a
-                                href={project.githubUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                <GitHubIcon className="mr-2 h-3 w-3" />
-                                {t.projects.code}
-                              </a>
-                            </Button>
-                          )}
-                          {project.links?.map(
-                            (link: ProjectLink, i: number) => (
-                              <Button
-                                key={i}
-                                variant="outline"
-                                size="sm"
-                                asChild
-                                className="border-primary/40 bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground dark:border-primary/60 dark:bg-primary/10 dark:text-primary dark:hover:border-primary/80 dark:hover:bg-primary/20 dark:hover:text-primary font-sans"
-                              >
-                                <a
-                                  href={link.url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  <ExternalLink className="mr-2 h-3 w-3" />
-                                  {link.label}
-                                </a>
-                              </Button>
-                            )
-                          )}
-                        </>
-                      )}
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => toggleExpand(index)}
-                        className="ml-auto border-primary/40 bg-primary/5 font-semibold text-primary hover:bg-primary hover:text-primary-foreground dark:border-primary/60 dark:bg-primary/10 dark:text-primary dark:hover:border-primary/80 dark:hover:bg-primary/20 dark:hover:text-primary font-sans"
-                      >
-                        {isExpanded ? (
-                          <>
-                            {t.projects.showLess}
-                            <ChevronUp className="ml-1 h-3 w-3" />
-                          </>
-                        ) : (
-                          <>
-                            {t.projects.readMore}
-                            <ChevronDown className="ml-1 h-3 w-3" />
-                          </>
-                        )}
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </FadeIn>
-            )
-          })}
-
-          {data.projects.length < 3 &&
-            Array.from({ length: 3 - data.projects.length }).map((_, i) => (
-              <FadeIn
-                key={`empty-${i}`}
-                delay={(data.projects.length + i) * 80}
-                direction="up"
-              >
-                <div className="border border-dashed border-primary/30 rounded-lg p-8 flex items-center justify-center h-full min-h-[200px] bg-secondary/40">
-                  <div className="text-center">
-                    <p className="text-foreground/40 font-sans">
-                      {t.projects.comingSoon}
-                    </p>
-                    <p className="text-sm text-foreground/30 font-sans">
-                      {t.projects.comingSoonDesc}
-                    </p>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
+      <FadeIn
+        direction="up"
+        className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2"
+      >
+        <div className="flex flex-col gap-2">
+          <span className="font-mono text-xs text-brand sm:text-sm">
+            $ ls ./work --featured
+          </span>
+          <h2 className="text-[30px] leading-tight font-bold sm:text-5xl sm:tracking-[-0.01em]">
+            {t.work.title}
+          </h2>
         </div>
-        {hasMore && (
-          <FadeIn delay={data.projects.length * 80} direction="up">
-            <div className="mt-10 flex justify-center">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setShowAll(!showAll)}
+        <span className="text-[15px] text-muted-foreground">
+          {fill(t.work.count, {
+            featured: featured.length,
+            total: data.projects.length,
+          })}
+        </span>
+      </FadeIn>
+
+      {lead && (
+        <FadeIn direction="up">
+          <FeaturedCard project={lead.project} number={lead.number} lead />
+        </FadeIn>
+      )}
+
+      {others.length > 0 && (
+        <div className="grid gap-5 sm:gap-8 md:grid-cols-2">
+          {others.map(({ project, number }, index) => (
+            <FadeIn key={project.slug} delay={index * 100} direction="up">
+              <FeaturedCard project={project} number={number} />
+            </FadeIn>
+          ))}
+        </div>
+      )}
+
+      <div className="mt-4 flex flex-col gap-4 sm:mt-8">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <h3 className="text-[22px] font-semibold">{t.work.allProjects}</h3>
+          <div
+            role="group"
+            aria-label={t.work.filterLabel}
+            className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0 sm:pb-0"
+          >
+            {FILTERS.map((option) => (
+              <button
+                key={option}
+                type="button"
+                aria-pressed={filter === option}
+                onClick={() => {
+                  setFilter(option)
+                  setExpandedSlug(null)
+                }}
+                className={cn(
+                  "h-11 shrink-0 border px-4 text-[13px] transition-colors sm:text-sm",
+                  filter === option
+                    ? "border-primary bg-primary font-semibold text-primary-foreground"
+                    : "border-line text-foreground hover:bg-muted"
+                )}
+              >
+                {t.work.filters[option]}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {filtered.length === 0 && (
+          <p className="border-t border-foreground py-6 text-muted-foreground">
+            {t.work.empty}
+          </p>
+        )}
+
+        {filtered.length > 0 && (
+          <>
+            <div className="hidden overflow-x-auto border-t border-foreground md:block">
+              <table className="w-full min-w-[760px] border-collapse text-left">
+                <thead>
+                  <tr className="border-b border-line font-mono text-[11px] text-muted-foreground uppercase">
+                    <th scope="col" className="w-[60px] py-3 font-normal">
+                      {t.work.columns.number}
+                    </th>
+                    <th scope="col" className="py-3 pr-4 font-normal">
+                      {t.work.columns.project}
+                    </th>
+                    <th scope="col" className="py-3 pr-4 font-normal">
+                      {t.work.columns.type}
+                    </th>
+                    <th scope="col" className="py-3 pr-4 font-normal">
+                      {t.work.columns.stack}
+                    </th>
+                    <th scope="col" className="w-[150px] py-3 font-normal">
+                      {t.work.columns.link}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filtered.map(({ project, number }) => {
+                    const expanded = expandedSlug === project.slug
+                    const detailsId = `project-${project.slug}`
+                    return (
+                      <Fragment key={project.slug}>
+                        <tr
+                          className={cn(
+                            "text-[15px]",
+                            !expanded && "border-b border-border"
+                          )}
+                        >
+                          <td className="py-2 font-mono text-xs text-muted-foreground">
+                            {number}
+                          </td>
+                          <td className="py-2 pr-4">
+                            <button
+                              type="button"
+                              aria-expanded={expanded}
+                              aria-controls={detailsId}
+                              aria-label={fill(t.work.showDetails, {
+                                title: project.title,
+                              })}
+                              onClick={() => toggle(project.slug)}
+                              className="flex min-h-11 items-center gap-2 text-left font-semibold hover:text-brand"
+                            >
+                              <ExpandIcon expanded={expanded} />
+                              {project.title}
+                            </button>
+                          </td>
+                          <td className="py-2 pr-4 text-muted-foreground">
+                            {typeLabel(project)}
+                          </td>
+                          <td className="py-2 pr-4 text-sm text-muted-foreground">
+                            {project.stack}
+                          </td>
+                          <td className="py-2 text-sm">
+                            {primaryLink(project)}
+                          </td>
+                        </tr>
+                        {expanded && (
+                          <tr id={detailsId} className="border-b border-border">
+                            <td />
+                            <td colSpan={4} className="pr-4 pl-6">
+                              <ProjectDetails project={project} />
+                            </td>
+                          </tr>
+                        )}
+                      </Fragment>
+                    )
+                  })}
+                </tbody>
+              </table>
+            </div>
+
+            <ul className="border-t border-foreground md:hidden">
+              {mobileVisible.map(({ project }) => {
+                const expanded = expandedSlug === project.slug
+                const detailsId = `project-mobile-${project.slug}`
+                return (
+                  <li key={project.slug} className="border-b border-border">
+                    <button
+                      type="button"
+                      aria-expanded={expanded}
+                      aria-controls={detailsId}
+                      onClick={() => toggle(project.slug)}
+                      className="flex min-h-[60px] w-full items-center justify-between gap-3 py-3 text-left"
+                    >
+                      <span className="flex flex-col gap-0.5">
+                        <span className="text-[15px] font-semibold">
+                          {project.title}
+                        </span>
+                        <span className="text-xs text-muted-foreground">
+                          {typeLabel(project)} · {project.stack}
+                        </span>
+                      </span>
+                      <ExpandIcon expanded={expanded} />
+                    </button>
+                    {expanded && (
+                      <div id={detailsId} className="pb-1">
+                        <ProjectDetails project={project} />
+                      </div>
+                    )}
+                  </li>
+                )
+              })}
+            </ul>
+
+            {filtered.length > MOBILE_LIMIT && (
+              <button
+                type="button"
+                onClick={() => setShowAll((current) => !current)}
                 aria-expanded={showAll}
-                aria-controls="projects-grid"
-                className="border-primary/40 bg-primary/5 font-semibold text-primary hover:bg-primary hover:text-primary-foreground dark:border-primary/60 dark:bg-primary/10 dark:text-primary dark:hover:border-primary/80 dark:hover:bg-primary/20 dark:hover:text-primary font-sans"
+                className="h-12 border border-line text-sm font-semibold transition-colors hover:bg-muted md:hidden"
               >
                 {showAll
-                  ? t.projects.showLess
-                  : t.projects.showAll.replace(
-                      "{{count}}",
-                      String(data.projects.length)
-                    )}
-                {showAll ? (
-                  <ChevronUp className="ml-1 h-3 w-3" />
-                ) : (
-                  <ChevronDown className="ml-1 h-3 w-3" />
-                )}
-              </Button>
-            </div>
-          </FadeIn>
+                  ? t.work.showLess
+                  : fill(t.work.showAll, { count: filtered.length })}
+              </button>
+            )}
+          </>
         )}
       </div>
     </section>

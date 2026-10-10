@@ -1,5 +1,4 @@
 import { FadeIn } from "@/components/FadeIn"
-import { useI18n } from "@/i18n/context"
 import type { SkillsData } from "@/types/portfolio"
 
 interface SkillsProps {
@@ -7,47 +6,27 @@ interface SkillsProps {
 }
 
 export function Skills({ data }: SkillsProps) {
-  const { t } = useI18n()
   return (
-    <section id="skills" className="py-24 md:py-32 px-4">
-      <div className="max-w-7xl mx-auto">
-        <FadeIn delay={0} direction="up">
-          <div className="flex items-center gap-4 mb-12">
-            <h2 className="text-4xl sm:text-5xl font-bold text-foreground font-[family-name:var(--font-heading)]">
-              {t.skills.title}
-            </h2>
-            <div className="w-16 h-px bg-primary" />
+    <div className="grid gap-x-6 gap-y-5 sm:grid-cols-2 sm:gap-y-8">
+      {data.categories.map((category, index) => (
+        <FadeIn key={category.name} delay={index * 80} direction="up">
+          <div className="flex flex-col gap-1 border-t-2 border-dot pt-2.5 sm:gap-2.5 sm:pt-3.5">
+            <h3 className="font-mono text-[11px] font-normal text-muted-foreground uppercase sm:text-xs">
+              {category.name}
+            </h3>
+            <p className="text-[15px] leading-relaxed sm:text-base sm:leading-[1.7]">
+              {category.skills.map((skill, i) => (
+                <span key={skill}>
+                  <span className="whitespace-nowrap">
+                    {skill}
+                    {i < category.skills.length - 1 && " ·"}
+                  </span>{" "}
+                </span>
+              ))}
+            </p>
           </div>
         </FadeIn>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {data.categories.map((category, catIndex) => (
-            <FadeIn key={category.name} delay={catIndex * 100} direction="up">
-              <div>
-                <span className="text-xs text-primary uppercase tracking-widest font-mono font-semibold">
-                  {category.name}
-                </span>
-                <div className="w-8 h-px bg-primary/40 mt-2 mb-4" />
-                <div className="flex flex-wrap items-center gap-x-1 gap-y-0.5">
-                  {category.skills.map((skill, i) => (
-                    <span
-                      key={skill}
-                      className="flex items-center text-base text-foreground hover:text-primary transition-colors cursor-default font-sans"
-                    >
-                      {skill}
-                      {i < category.skills.length - 1 && (
-                        <span className="text-primary/40 ml-1 mr-0.5 select-none">
-                          ·
-                        </span>
-                      )}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
-      </div>
-    </section>
+      ))}
+    </div>
   )
 }

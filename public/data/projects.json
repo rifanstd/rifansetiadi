@@ -1,19 +1,233 @@
 {
   "projects": [
     {
+      "slug": "wondr-merchant",
       "title": "wondr merchant by BNI",
-      "description": "A one-stop app that helps merchants accept QRIS payments, with same-day settlement, real-time transaction notifications, and complete transaction history.",
+      "summary": "A one-stop QRIS payment app for merchants.",
+      "description": "wondr merchant by BNI is a one-stop solution application that makes it easier for merchants to accept QRIS payments. It is equipped with a same-day settlement schedule feature, real-time transaction notifications, and complete transaction history.",
+      "meta": "Banking · BNI · 2024–Now",
+      "categories": ["banking", "mobile"],
+      "stack": "Mobile · Android · iOS",
+      "featured": true,
+      "visual": "wondr-merchant",
+      "facts": [
+        {
+          "label": "Role",
+          "value": "Mobile Developer"
+        },
+        {
+          "label": "Timeline",
+          "value": "Nov 2024 — Now"
+        },
+        {
+          "label": "Platform",
+          "value": "Android · iOS"
+        },
+        {
+          "label": "Client",
+          "value": "BNI"
+        }
+      ],
       "tags": ["QRIS", "Payments", "Banking", "Merchant"],
       "links": [
         {
           "label": "Google Play",
           "url": "https://play.google.com/store/apps/details?id=id.bni.wfb&hl=en_US"
         }
-      ]
+      ],
+      "caseStudy": {
+        "label": "Banking",
+        "context": [
+          "wondr merchant is BNI's app that helps business owners manage QRIS payments faster, more easily, and more practically.",
+          "This page only describes what BNI has published about the app. Internal implementation details are confidential."
+        ],
+        "role": [
+          "Implemented features and enhancements based on business and user requirements.",
+          "Optimized application performance, usability, and reliability.",
+          "Collaborated with product, design, backend, and QA teams through the full release cycle.",
+          "Contributed to code quality, application stability, and user experience."
+        ],
+        "features": [
+          {
+            "title": "Faster QRIS registration",
+            "description": "Merchants register for QRIS through a practical process so they can start accepting payments soon.",
+            "screen": "register"
+          },
+          {
+            "title": "More frequent settlement",
+            "description": "Transaction funds are settled to the merchant's account up to five times a day.",
+            "screen": "settlement"
+          },
+          {
+            "title": "Real-time notifications",
+            "description": "Merchants know right away when a payment comes in, without checking again and again.",
+            "screen": "notifications"
+          },
+          {
+            "title": "Easier transaction reports",
+            "description": "Transactions and settlements can be monitored from within the app.",
+            "screen": "reports"
+          }
+        ],
+        "flow": [
+          "Merchant registers QRIS",
+          "Customer pays via QRIS",
+          "Real-time notification",
+          "Settlement to the merchant's account"
+        ]
+      }
     },
     {
+      "slug": "devkit-agent",
+      "title": "DevKit Agent",
+      "summary": "Multi-agent coding pipeline for OpenCode — Analyst, Planner, Programmer, Reviewer.",
+      "description": "Multi-agent coding pipeline for OpenCode. Install agents and skills with one command. Routes complex tasks through specialist agents — Analyst, Planner, Programmer, Reviewer — with approval checkpoints at each stage.",
+      "meta": "AI tooling · Open source",
+      "categories": ["ai", "oss"],
+      "stack": "TypeScript · Node.js · CLI",
+      "featured": true,
+      "visual": "devkit-agent",
+      "facts": [
+        {
+          "label": "Role",
+          "value": "Creator & maintainer"
+        },
+        {
+          "label": "Type",
+          "value": "Open-source CLI"
+        },
+        {
+          "label": "Platform",
+          "value": "OpenCode"
+        },
+        {
+          "label": "Stack",
+          "value": "TypeScript · Node.js"
+        }
+      ],
+      "tags": ["TypeScript", "Node.js", "AI", "Multi-Agent", "OpenCode", "CLI"],
+      "githubUrl": "https://github.com/rifanstd/devkit-agent",
+      "links": [
+        {
+          "label": "NPM",
+          "url": "https://www.npmjs.com/package/devkit-agent"
+        }
+      ],
+      "caseStudy": {
+        "label": "AI tooling",
+        "context": [
+          "A single coding agent tends to jump straight into code. Complex tasks go better when requirements are clarified and a plan is agreed before anything is written.",
+          "DevKit Agent installs a team of specialist agents and skills into OpenCode with one command, and routes complex work through them with an approval checkpoint at each stage."
+        ],
+        "role": [
+          "Designed the pipeline: an Orchestrator that assesses complexity and hands work to the Analyst, Planner, Programmer, and Reviewer.",
+          "Built the installer CLI with interactive, global, unattended, and uninstall modes.",
+          "Paired each agent with skills such as brainstorming, writing plans, code review, and systematic debugging.",
+          "Published the package to npm and maintain it as open source."
+        ],
+        "features": [
+          {
+            "title": "One-command install",
+            "description": "npx devkit-agent installs agents and skills per project, or globally with -g.",
+            "screen": "install"
+          },
+          {
+            "title": "Specialist agents",
+            "description": "Analyst, Planner, Programmer, and Reviewer each own one stage of the work.",
+            "screen": "agents"
+          },
+          {
+            "title": "Approval checkpoints",
+            "description": "Requirements and plans wait for your approval before implementation starts.",
+            "screen": "checkpoints"
+          }
+        ],
+        "flow": ["Orchestrator", "Analyst", "Planner", "Programmer", "Reviewer"]
+      }
+    },
+    {
+      "slug": "omaga",
+      "title": "Omaga - Ojek Mahasiswa",
+      "summary": "Fast and safe ride-hailing for students, to and from campus.",
+      "description": "A fast and safe motorcycle taxi service for students, ready to pick up and drop off to and from campus, with student rates, order history, and 24/7 support.",
+      "meta": "Mobility · Coolva · 2023–2024",
+      "categories": ["mobile"],
+      "stack": "Flutter · Real-time DB",
+      "featured": true,
+      "visual": "omaga",
+      "facts": [
+        {
+          "label": "Role",
+          "value": "Mobile Application Developer"
+        },
+        {
+          "label": "Timeline",
+          "value": "2023 — 2024"
+        },
+        {
+          "label": "Platform",
+          "value": "Android"
+        },
+        {
+          "label": "Stack",
+          "value": "Flutter · Real-time DB"
+        }
+      ],
+      "tags": ["Flutter", "Dart", "Real-time Database", "Location", "Payments"],
+      "links": [
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=com.coolva.omaga"
+        }
+      ],
+      "caseStudy": {
+        "label": "Mobility",
+        "context": [
+          "Omaga is an online motorcycle taxi service built for students: fast and safe pick-up and drop-off to and from campus, at rates made for students.",
+          "It comes as two apps. The rider app is for ordering trips, and Omaga Driver lets students who want to take orders do so with a simple interface and a fast order system."
+        ],
+        "role": [
+          "Optimized trip management algorithms.",
+          "Worked on financial transactions inside the app.",
+          "Implemented real-time database streaming and real-time communication features.",
+          "Collaborated with cross-functional teams across both the rider and driver apps."
+        ],
+        "features": [
+          {
+            "title": "Easy ride booking",
+            "description": "Book a ride for pick-up and drop-off to and from campus.",
+            "screen": "order"
+          },
+          {
+            "title": "Student rates",
+            "description": "Affordable fares made for students.",
+            "screen": "rates"
+          },
+          {
+            "title": "Order history",
+            "description": "Check your past trips any time.",
+            "screen": "history"
+          },
+          {
+            "title": "Fast order system for drivers",
+            "description": "Omaga Driver keeps the interface simple so student drivers can take orders quickly.",
+            "screen": "driver"
+          }
+        ],
+        "flow": [
+          "Student books a ride",
+          "Student driver takes the order",
+          "Pick-up & drop-off",
+          "Saved to order history"
+        ]
+      }
+    },
+    {
+      "slug": "bni-sms-banking",
       "title": "BNI SMS Banking",
-      "description": "BNI SMS Banking's menu app for banking transactions by phone, including balance checks, transaction history, bill payments, transfers, reloads, and PIN changes for registered users.",
+      "description": "BNI SMS Banking Menu lets registered users carry out banking transactions from their phone by choosing a menu: balance and transaction history inquiries, bill and credit card payments, phone credit reloads, and transfers to BNI or other banks.",
+      "categories": ["banking"],
+      "stack": "Android",
       "tags": ["SMS Banking", "Payments", "Banking", "Finance"],
       "links": [
         {
@@ -23,21 +237,19 @@
       ]
     },
     {
+      "slug": "eform-tablet-bni",
       "title": "Eform Tablet BNI",
-      "description": "A tablet banking application that replaces manual branch forms for customer transactions such as cash withdrawals and transfers. It integrates with wondr by BNI so staff can claim or scan queue reservations, and connects to banking services and APIs with security controls. Built with Flutter, BLoC state management, and Clean Architecture.",
-      "tags": [
-        "Flutter",
-        "Dart",
-        "BLoC",
-        "Clean Architecture",
-        "API Integration",
-        "Banking",
-        "Security"
-      ]
+      "description": "A tablet application for BNI branches that replaces manual forms for customer transactions such as cash withdrawals and transfers, and works together with wondr by BNI queue reservations.",
+      "categories": ["banking"],
+      "stack": "Tablet",
+      "tags": ["Banking", "Tablet", "Branch services"]
     },
     {
+      "slug": "opencode-dashboard",
       "title": "Opencode Dashboard",
       "description": "A client-side dashboard for visualizing your opencode usage data — sessions, messages, tokens, costs, providers, models, agents, and skills. All data is local. No backend server. No cloud upload.",
+      "categories": ["ai", "oss"],
+      "stack": "React · TS · Recharts",
       "tags": [
         "React",
         "TypeScript",
@@ -50,34 +262,20 @@
       "githubUrl": "https://github.com/rifanstd/opencode-dashboard"
     },
     {
-      "title": "DevKit Agent",
-      "description": "Multi-agent coding pipeline for OpenCode. Install agents and skills with one command. Routes complex tasks through specialist agents — Analyst, Planner, Programmer, Reviewer — with approval checkpoints at each stage.",
-      "tags": ["TypeScript", "Node.js", "AI", "Multi-Agent", "OpenCode", "CLI"],
-      "githubUrl": "https://github.com/rifanstd/devkit-agent",
-      "links": [
-        { "label": "NPM", "url": "https://www.npmjs.com/package/devkit-agent" }
-      ]
-    },
-    {
+      "slug": "qr-windows-scanner",
       "title": "QR Windows Scanner",
       "description": "A QR code scanner package for Windows Flutter apps. Uses the front camera and zxing2 to detect QR codes via periodic camera snapshots, working around the lack of image streaming support in camera_windows.",
+      "categories": ["oss"],
+      "stack": "Flutter · ZXing",
       "tags": ["Flutter", "Dart", "Windows", "QR Code", "ZXing", "Camera"],
       "githubUrl": "https://github.com/rifanstd/qr_windows_scanner"
     },
     {
-      "title": "Omaga - Ojek Mahasiswa",
-      "description": "A student-focused motorcycle taxi app for campus pick-up and drop-off, with student rates, trip history, real-time trip management, financial transactions, and real-time communication.",
-      "tags": ["Flutter", "Dart", "Real-time Database", "Location", "Payments"],
-      "links": [
-        {
-          "label": "Google Play",
-          "url": "https://play.google.com/store/apps/details?id=com.coolva.omaga"
-        }
-      ]
-    },
-    {
+      "slug": "omaga-driver",
       "title": "Omaga Driver",
       "description": "The driver-side app for Omaga's student motorcycle taxi service, with a simple interface, fast order flow, verification, and support for motorcycle and car trips.",
+      "categories": ["mobile"],
+      "stack": "Flutter · Real-time DB",
       "tags": ["Flutter", "Dart", "Real-time Database", "Location"],
       "links": [
         {
@@ -87,8 +285,11 @@
       ]
     },
     {
+      "slug": "sipuma",
       "title": "SIPUMA - UIN SMH Banten",
       "description": "The official student general election app for UIN Sultan Maulana Hasanuddin Banten, with registration, candidate information, identity verification, voting, notifications, and transparent results.",
+      "categories": ["mobile"],
+      "stack": "Flutter",
       "tags": [
         "Mobile",
         "Student Election",
@@ -104,8 +305,11 @@
       ]
     },
     {
+      "slug": "trackthisjob",
       "title": "TrackThisJob: Manage Progress",
       "description": "An app for logging, monitoring, and managing job applications, including statuses, quick filters, status updates, progress insights, and action suggestions.",
+      "categories": ["mobile"],
+      "stack": "Flutter",
       "tags": ["Flutter", "Dart", "Productivity", "Job Tracking"],
       "links": [
         {
@@ -115,8 +319,11 @@
       ]
     },
     {
+      "slug": "unilahub",
       "title": "UnilaHub",
       "description": "An e-commerce application for the University of Lampung that lets the public and external industry discover, purchase, and order the university's research products.",
+      "categories": ["mobile"],
+      "stack": "Flutter · Midtrans",
       "tags": [
         "Flutter",
         "Dart",
@@ -134,8 +341,11 @@
       ]
     },
     {
+      "slug": "unilahub-research",
       "title": "UnilaHub Research",
       "description": "A platform for University of Lampung researchers to downstream research products, including digital or physical goods and services.",
+      "categories": ["mobile"],
+      "stack": "Flutter · Midtrans",
       "tags": [
         "Flutter",
         "Dart",

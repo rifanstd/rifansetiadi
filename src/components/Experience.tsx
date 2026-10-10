@@ -1,110 +1,112 @@
 import { useState } from "react"
-import { Briefcase, ChevronDown, ChevronUp } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
 import { FadeIn } from "@/components/FadeIn"
 import { useI18n } from "@/i18n/context"
+import { cn, fill } from "@/lib/utils"
 import type { ExperienceData } from "@/types/portfolio"
 
 interface ExperienceProps {
   data: ExperienceData
+  cvUrl: string
 }
 
-const INITIAL_SHOW = 4
-
-export function Experience({ data }: ExperienceProps) {
+export function Experience({ data, cvUrl }: ExperienceProps) {
   const { t } = useI18n()
-  const [showAll, setShowAll] = useState(false)
-  const visible = showAll
-    ? data.experiences
-    : data.experiences.slice(0, INITIAL_SHOW)
-  const hasMore = data.experiences.length > INITIAL_SHOW
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
 
   return (
-    <section id="experience" className="py-24 md:py-32 px-4 bg-muted/50">
-      <div className="max-w-7xl mx-auto">
-        <FadeIn delay={0} direction="up">
-          <div className="flex items-center gap-4 mb-12">
-            <h2 className="text-4xl sm:text-5xl font-bold text-foreground font-[family-name:var(--font-heading)]">
-              {t.experience.title}
-            </h2>
-            <div className="w-16 h-px bg-primary" />
-          </div>
+    <section id="experience" className="border-y border-border bg-muted">
+      <div className="page-container grid gap-6 py-12 lg:grid-cols-12 lg:gap-8 lg:py-24">
+        <FadeIn
+          direction="up"
+          className="flex flex-col gap-2 lg:col-span-4 lg:gap-4"
+        >
+          <span className="font-mono text-xs text-brand sm:text-sm">
+            $ git log --career
+          </span>
+          <h2 className="text-[30px] leading-tight font-bold sm:text-5xl">
+            {t.experience.title}
+          </h2>
+          <p className="hidden text-base leading-relaxed text-muted-foreground sm:block">
+            {t.experience.subtitle}
+          </p>
+          <a
+            href={cvUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden text-[15px] font-semibold text-brand hover:underline lg:inline"
+          >
+            {t.experience.fullCV} <span aria-hidden="true">→</span>
+          </a>
         </FadeIn>
 
-        <div className="relative max-w-4xl">
-          <div className="absolute left-[11px] top-2 bottom-2 w-px bg-border" />
-
-          <div className="space-y-10">
-            {visible.map((exp, index) => (
-              <FadeIn key={index} delay={index * 80} direction="up">
-                <div className="relative pl-10">
-                  <div className="absolute left-0 top-1.5 w-[22px] h-[22px] rounded-full border-[3px] border-background bg-primary ring-1 ring-primary/30 z-10" />
-
-                  <span className="text-xs text-muted-foreground uppercase tracking-wider font-sans font-medium">
-                    {exp.period}
-                  </span>
-
-                  <div className="mt-2 border-l-2 border-primary bg-card rounded-r-lg p-5">
-                    <div className="flex items-start gap-3 mb-3">
-                      <Briefcase className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                      <div>
-                        <h3 className="text-xl font-bold text-foreground font-[family-name:var(--font-heading)]">
-                          {exp.role}
-                        </h3>
-                        <div className="flex items-center gap-2 mt-1 flex-wrap">
-                          <span className="text-sm text-muted-foreground font-sans">
+        <ol className="flex flex-col lg:col-span-8">
+          {data.experiences.map((exp, index) => {
+            const expanded = expandedIndex === index
+            const detailsId = `experience-${index}`
+            return (
+              <li
+                key={`${exp.company}-${exp.period}`}
+                className="border-t border-line py-4 lg:py-6"
+              >
+                <FadeIn delay={index * 80} direction="up">
+                  <div className="grid gap-1 md:grid-cols-[160px_1fr] md:gap-6">
+                    <span className="font-mono text-[11px] text-brand uppercase md:pt-1 md:text-[13px]">
+                      {exp.period}
+                    </span>
+                    <div className="flex items-start gap-3">
+                      <div className="flex flex-1 flex-col gap-1">
+                        <div className="flex flex-col md:flex-row md:flex-wrap md:items-baseline md:gap-3">
+                          <h3 className="text-base font-semibold md:text-[19px]">
+                            {exp.role}
+                          </h3>
+                          <span className="text-[13px] text-muted-foreground md:text-[15px]">
                             {exp.company}
                           </span>
-                          <Badge
-                            variant="outline"
-                            className="text-xs font-mono"
-                          >
-                            {exp.type}
-                          </Badge>
                         </div>
+                        <p className="hidden text-[15px] leading-relaxed text-muted-foreground md:block">
+                          {exp.summary}
+                        </p>
                       </div>
+                      <button
+                        type="button"
+                        aria-expanded={expanded}
+                        aria-controls={detailsId}
+                        aria-label={fill(t.experience.showDetails, {
+                          role: exp.role,
+                          company: exp.company,
+                        })}
+                        onClick={() =>
+                          setExpandedIndex(expanded ? null : index)
+                        }
+                        className={cn(
+                          "-mr-2 flex size-11 shrink-0 items-center justify-center font-mono text-xl text-muted-foreground transition-colors hover:text-foreground",
+                          expanded && "text-foreground"
+                        )}
+                      >
+                        <span aria-hidden="true">{expanded ? "−" : "+"}</span>
+                      </button>
                     </div>
-                    <ul className="space-y-1.5 ml-8">
-                      {exp.description.map((item, itemIndex) => (
-                        <li
-                          key={itemIndex}
-                          className="text-sm text-muted-foreground list-disc marker:text-primary/50 font-sans leading-relaxed"
-                        >
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
                   </div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-
-        {hasMore && (
-          <FadeIn delay={400} direction="up">
-            <div className="mt-10 flex justify-center">
-              <Button
-                variant="outline"
-                onClick={() => setShowAll(!showAll)}
-                className="font-sans"
-              >
-                {showAll ? (
-                  <>
-                    <ChevronUp className="mr-2 h-4 w-4" />
-                    {t.experience.showLess}
-                  </>
-                ) : (
-                  <>
-                    <ChevronDown className="mr-2 h-4 w-4" />
-                    {t.experience.showAll.replace("{{count}}", String(data.experiences.length))}
-                  </>
-                )}
-              </Button>
-            </div>
-          </FadeIn>
-        )}
+                  {expanded && (
+                    <div
+                      id={detailsId}
+                      className="animate-in pt-3 duration-200 fade-in slide-in-from-top-1 md:pl-[184px]"
+                    >
+                      <p className="pb-2 text-sm leading-relaxed text-muted-foreground md:hidden">
+                        {exp.summary}
+                      </p>
+                      <ul className="flex list-disc flex-col gap-1.5 pl-5 text-sm leading-relaxed text-muted-foreground marker:text-brand">
+                        {exp.description.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </FadeIn>
+              </li>
+            )
+          })}
+        </ol>
       </div>
     </section>
   )

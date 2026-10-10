@@ -1,19 +1,233 @@
 {
   "projects": [
     {
+      "slug": "wondr-merchant",
       "title": "wondr merchant by BNI",
-      "description": "Aplikasi satu pintu yang membantu merchant menerima pembayaran QRIS, dengan settlement di hari yang sama, notifikasi transaksi real-time, dan riwayat transaksi lengkap.",
+      "summary": "Aplikasi one-stop solution pembayaran QRIS untuk merchant.",
+      "description": "wondr merchant by BNI adalah aplikasi one-stop solution yang memudahkan merchant menerima pembayaran QRIS. wondr merchant by BNI dilengkapi dengan fitur jadwal settlement di hari yang sama, notifikasi transaksi real-time, serta riwayat transaksi yang lengkap.",
+      "meta": "Perbankan · BNI · 2024–Sekarang",
+      "categories": ["banking", "mobile"],
+      "stack": "Mobile · Android · iOS",
+      "featured": true,
+      "visual": "wondr-merchant",
+      "facts": [
+        {
+          "label": "Peran",
+          "value": "Mobile Developer"
+        },
+        {
+          "label": "Periode",
+          "value": "Nov 2024 — Sekarang"
+        },
+        {
+          "label": "Platform",
+          "value": "Android · iOS"
+        },
+        {
+          "label": "Klien",
+          "value": "BNI"
+        }
+      ],
       "tags": ["QRIS", "Payments", "Banking", "Merchant"],
       "links": [
         {
           "label": "Google Play",
           "url": "https://play.google.com/store/apps/details?id=id.bni.wfb&hl=en_US"
         }
-      ]
+      ],
+      "caseStudy": {
+        "label": "Perbankan",
+        "context": [
+          "wondr merchant adalah aplikasi dari BNI untuk membantu pelaku usaha mengelola pembayaran QRIS dengan lebih cepat, mudah, dan praktis.",
+          "Halaman ini hanya menjelaskan apa yang sudah dipublikasikan BNI tentang aplikasinya. Detail implementasi internal bersifat rahasia."
+        ],
+        "role": [
+          "Mengimplementasikan fitur dan peningkatan sesuai kebutuhan bisnis dan pengguna.",
+          "Mengoptimalkan performa, kemudahan penggunaan, dan keandalan aplikasi.",
+          "Bekerja sama dengan tim product, design, backend, dan QA sepanjang siklus rilis.",
+          "Berkontribusi pada kualitas kode, stabilitas aplikasi, dan pengalaman pengguna."
+        ],
+        "features": [
+          {
+            "title": "Daftar QRIS lebih cepat",
+            "description": "Merchant dapat mendaftarkan QRIS dengan proses yang praktis sehingga bisa segera digunakan untuk menerima pembayaran.",
+            "screen": "register"
+          },
+          {
+            "title": "Settlement lebih sering",
+            "description": "Dana hasil transaksi dapat diproses ke rekening merchant melalui settlement hingga 5 kali sehari.",
+            "screen": "settlement"
+          },
+          {
+            "title": "Notifikasi real time",
+            "description": "Merchant bisa langsung mengetahui ketika ada transaksi masuk tanpa perlu terus-menerus mengecek.",
+            "screen": "notifications"
+          },
+          {
+            "title": "Laporan transaksi lebih mudah",
+            "description": "Merchant dapat memantau transaksi dan settlement dengan lebih praktis melalui aplikasi.",
+            "screen": "reports"
+          }
+        ],
+        "flow": [
+          "Merchant daftar QRIS",
+          "Pelanggan bayar via QRIS",
+          "Notifikasi real time",
+          "Settlement ke rekening merchant"
+        ]
+      }
     },
     {
+      "slug": "devkit-agent",
+      "title": "DevKit Agent",
+      "summary": "Pipeline coding multi-agent untuk OpenCode — Analyst, Planner, Programmer, Reviewer.",
+      "description": "Pipeline coding berbasis multi-agent untuk OpenCode. Memudahkan instalasi agent dan skill dengan satu perintah, lalu membagi tugas coding yang kompleks ke beberapa agent dengan peran berbeda, seperti Analyst, Planner, Programmer, dan Reviewer. Setiap tahap dapat ditinjau dan disetujui sebelum dilanjutkan.",
+      "meta": "AI tooling · Open source",
+      "categories": ["ai", "oss"],
+      "stack": "TypeScript · Node.js · CLI",
+      "featured": true,
+      "visual": "devkit-agent",
+      "facts": [
+        {
+          "label": "Peran",
+          "value": "Pembuat & maintainer"
+        },
+        {
+          "label": "Jenis",
+          "value": "CLI open source"
+        },
+        {
+          "label": "Platform",
+          "value": "OpenCode"
+        },
+        {
+          "label": "Stack",
+          "value": "TypeScript · Node.js"
+        }
+      ],
+      "tags": ["TypeScript", "Node.js", "AI", "Multi-Agent", "OpenCode", "CLI"],
+      "githubUrl": "https://github.com/rifanstd/devkit-agent",
+      "links": [
+        {
+          "label": "NPM",
+          "url": "https://www.npmjs.com/package/devkit-agent"
+        }
+      ],
+      "caseStudy": {
+        "label": "AI tooling",
+        "context": [
+          "Satu coding agent cenderung langsung menulis kode. Tugas yang kompleks lebih rapi kalau kebutuhannya diperjelas dan rencananya disepakati dulu sebelum mulai coding.",
+          "DevKit Agent memasang tim agent spesialis beserta skill-nya ke OpenCode dengan satu perintah, lalu mengarahkan pekerjaan kompleks melewati mereka dengan checkpoint persetujuan di setiap tahap."
+        ],
+        "role": [
+          "Merancang pipeline: Orchestrator yang menilai kompleksitas lalu membagi pekerjaan ke Analyst, Planner, Programmer, dan Reviewer.",
+          "Membangun CLI installer dengan mode interaktif, global, tanpa prompt, dan uninstall.",
+          "Memasangkan setiap agent dengan skill seperti brainstorming, menulis rencana, code review, dan systematic debugging.",
+          "Mempublikasikan package ke npm dan merawatnya sebagai open source."
+        ],
+        "features": [
+          {
+            "title": "Instal dengan satu perintah",
+            "description": "npx devkit-agent memasang agent dan skill per proyek, atau global dengan -g.",
+            "screen": "install"
+          },
+          {
+            "title": "Agent spesialis",
+            "description": "Analyst, Planner, Programmer, dan Reviewer masing-masing memegang satu tahap pekerjaan.",
+            "screen": "agents"
+          },
+          {
+            "title": "Checkpoint persetujuan",
+            "description": "Kebutuhan dan rencana menunggu persetujuanmu sebelum implementasi dimulai.",
+            "screen": "checkpoints"
+          }
+        ],
+        "flow": ["Orchestrator", "Analyst", "Planner", "Programmer", "Reviewer"]
+      }
+    },
+    {
+      "slug": "omaga",
+      "title": "Omaga - Ojek Mahasiswa",
+      "summary": "Ojek online yang cepat dan aman untuk mahasiswa, antar-jemput dari dan ke kampus.",
+      "description": "Layanan ojek online yang cepat dan aman khusus mahasiswa, siap antar-jemput dari dan ke kampus, dengan tarif mahasiswa, riwayat pesanan, dan dukungan 24/7.",
+      "meta": "Mobilitas · Coolva · 2023–2024",
+      "categories": ["mobile"],
+      "stack": "Flutter · Real-time DB",
+      "featured": true,
+      "visual": "omaga",
+      "facts": [
+        {
+          "label": "Peran",
+          "value": "Mobile Application Developer"
+        },
+        {
+          "label": "Periode",
+          "value": "2023 — 2024"
+        },
+        {
+          "label": "Platform",
+          "value": "Android"
+        },
+        {
+          "label": "Stack",
+          "value": "Flutter · Real-time DB"
+        }
+      ],
+      "tags": ["Flutter", "Dart", "Real-time Database", "Location", "Payments"],
+      "links": [
+        {
+          "label": "Google Play",
+          "url": "https://play.google.com/store/apps/details?id=com.coolva.omaga"
+        }
+      ],
+      "caseStudy": {
+        "label": "Mobilitas",
+        "context": [
+          "Omaga adalah layanan ojek online untuk mahasiswa: antar-jemput dari dan ke kampus yang cepat dan aman, dengan tarif khusus mahasiswa.",
+          "Layanannya terdiri dari dua aplikasi. Aplikasi penumpang untuk memesan perjalanan, dan Omaga Driver untuk mahasiswa yang ingin menjalankan order antar jemput, dengan tampilan yang simpel dan sistem order yang cepat."
+        ],
+        "role": [
+          "Mengoptimalkan algoritma pengelolaan perjalanan.",
+          "Mengerjakan transaksi keuangan di dalam aplikasi.",
+          "Mengimplementasikan streaming database real-time dan fitur komunikasi real-time.",
+          "Bekerja sama dengan tim lintas fungsi di aplikasi penumpang maupun driver."
+        ],
+        "features": [
+          {
+            "title": "Pesan ojek dengan mudah",
+            "description": "Pesan antar-jemput dari dan ke kampus.",
+            "screen": "order"
+          },
+          {
+            "title": "Tarif mahasiswa",
+            "description": "Tarif terjangkau khusus untuk kalangan mahasiswa.",
+            "screen": "rates"
+          },
+          {
+            "title": "Riwayat pesanan",
+            "description": "Cek riwayat perjalanan kapan saja.",
+            "screen": "history"
+          },
+          {
+            "title": "Sistem order cepat untuk driver",
+            "description": "Omaga Driver hadir dengan tampilan simpel agar driver mahasiswa bisa menerima order dengan cepat.",
+            "screen": "driver"
+          }
+        ],
+        "flow": [
+          "Mahasiswa pesan ojek",
+          "Driver mahasiswa terima order",
+          "Antar-jemput",
+          "Tersimpan di riwayat pesanan"
+        ]
+      }
+    },
+    {
+      "slug": "bni-sms-banking",
       "title": "BNI SMS Banking",
-      "description": "Aplikasi menu BNI SMS Banking untuk melakukan transaksi perbankan melalui ponsel, termasuk cek saldo, riwayat transaksi, pembayaran tagihan, transfer, isi ulang, dan perubahan PIN bagi pengguna terdaftar.",
+      "description": "BNI SMS Banking Menu memungkinkan pengguna terdaftar bertransaksi perbankan dari ponsel cukup dengan memilih menu: cek saldo dan riwayat transaksi, pembayaran tagihan dan kartu kredit, isi ulang pulsa, serta transfer ke rekening BNI maupun bank lain.",
+      "categories": ["banking"],
+      "stack": "Android",
       "tags": ["SMS Banking", "Payments", "Banking", "Finance"],
       "links": [
         {
@@ -23,21 +237,19 @@
       ]
     },
     {
+      "slug": "eform-tablet-bni",
       "title": "Eform Tablet BNI",
-      "description": "Aplikasi perbankan pada tablet yang menggantikan pengisian formulir manual di unit atau cabang untuk transaksi nasabah seperti tarik tunai dan transfer. Aplikasi ini terintegrasi dengan wondr by BNI agar petugas dapat melakukan claim atau scan reservasi antrean, serta terhubung ke berbagai layanan dan API perbankan dengan kontrol keamanan. Dibangun menggunakan Flutter, state management BLoC, dan Clean Architecture.",
-      "tags": [
-        "Flutter",
-        "Dart",
-        "BLoC",
-        "Clean Architecture",
-        "API Integration",
-        "Banking",
-        "Security"
-      ]
+      "description": "Aplikasi tablet untuk cabang BNI yang menggantikan pengisian formulir manual untuk transaksi nasabah seperti tarik tunai dan transfer, serta terhubung dengan reservasi antrean di wondr by BNI.",
+      "categories": ["banking"],
+      "stack": "Tablet",
+      "tags": ["Banking", "Tablet", "Branch services"]
     },
     {
+      "slug": "opencode-dashboard",
       "title": "Opencode Dashboard",
       "description": "Dashboard untuk melihat dan memantau penggunaan OpenCode, seperti sesi, pesan, token, biaya, provider, model, agent, dan skill. Semua data diproses dan disimpan di perangkat Anda, jadi tidak membutuhkan backend atau mengirim data ke cloud.",
+      "categories": ["ai", "oss"],
+      "stack": "React · TS · Recharts",
       "tags": [
         "React",
         "TypeScript",
@@ -50,34 +262,20 @@
       "githubUrl": "https://github.com/rifanstd/opencode-dashboard"
     },
     {
-      "title": "DevKit Agent",
-      "description": "Pipeline coding berbasis multi-agent untuk OpenCode. Memudahkan instalasi agent dan skill dengan satu perintah, lalu membagi tugas coding yang kompleks ke beberapa agent dengan peran berbeda, seperti Analyst, Planner, Programmer, dan Reviewer. Setiap tahap dapat ditinjau dan disetujui sebelum dilanjutkan.",
-      "tags": ["TypeScript", "Node.js", "AI", "Multi-Agent", "OpenCode", "CLI"],
-      "githubUrl": "https://github.com/rifanstd/devkit-agent",
-      "links": [
-        { "label": "NPM", "url": "https://www.npmjs.com/package/devkit-agent" }
-      ]
-    },
-    {
+      "slug": "qr-windows-scanner",
       "title": "QR Windows Scanner",
       "description": "Paket pemindai QR code untuk aplikasi Flutter di Windows. Menggunakan kamera dan ZXing untuk membaca QR code dari snapshot kamera secara berkala, sebagai solusi untuk keterbatasan dukungan image streaming pada camera_windows.",
+      "categories": ["oss"],
+      "stack": "Flutter · ZXing",
       "tags": ["Flutter", "Dart", "Windows", "QR Code", "ZXing", "Camera"],
       "githubUrl": "https://github.com/rifanstd/qr_windows_scanner"
     },
     {
-      "title": "Omaga - Ojek Mahasiswa",
-      "description": "Aplikasi ojek online khusus mahasiswa untuk penjemputan dan pengantaran di area kampus, dengan tarif mahasiswa, riwayat perjalanan, pengelolaan perjalanan real-time, transaksi keuangan, dan komunikasi real-time.",
-      "tags": ["Flutter", "Dart", "Real-time Database", "Location", "Payments"],
-      "links": [
-        {
-          "label": "Google Play",
-          "url": "https://play.google.com/store/apps/details?id=com.coolva.omaga"
-        }
-      ]
-    },
-    {
+      "slug": "omaga-driver",
       "title": "Omaga Driver",
       "description": "Aplikasi sisi pengemudi untuk layanan ojek mahasiswa Omaga, dengan antarmuka sederhana, alur pesanan yang cepat, verifikasi, serta dukungan perjalanan motor dan mobil.",
+      "categories": ["mobile"],
+      "stack": "Flutter · Real-time DB",
       "tags": ["Flutter", "Dart", "Real-time Database", "Location"],
       "links": [
         {
@@ -87,8 +285,11 @@
       ]
     },
     {
+      "slug": "sipuma",
       "title": "SIPUMA - UIN SMH Banten",
       "description": "Aplikasi resmi Pemilihan Umum Mahasiswa UIN Sultan Maulana Hasanuddin Banten untuk pendaftaran, informasi kandidat, verifikasi identitas, pemungutan suara, notifikasi, dan hasil pemilihan yang transparan.",
+      "categories": ["mobile"],
+      "stack": "Flutter",
       "tags": [
         "Mobile",
         "Student Election",
@@ -104,8 +305,11 @@
       ]
     },
     {
+      "slug": "trackthisjob",
       "title": "TrackThisJob: Manage Progress",
       "description": "Aplikasi untuk mencatat, memantau, dan mengelola lamaran kerja, termasuk status, filter cepat, pembaruan status, insight progres, dan saran tindakan.",
+      "categories": ["mobile"],
+      "stack": "Flutter",
       "tags": ["Flutter", "Dart", "Productivity", "Job Tracking"],
       "links": [
         {
@@ -115,8 +319,11 @@
       ]
     },
     {
+      "slug": "unilahub",
       "title": "UnilaHub",
       "description": "Aplikasi e-commerce Universitas Lampung yang memungkinkan masyarakat umum dan industri luar melihat, membeli, dan memesan produk penelitian milik Universitas Lampung.",
+      "categories": ["mobile"],
+      "stack": "Flutter · Midtrans",
       "tags": [
         "Flutter",
         "Dart",
@@ -134,8 +341,11 @@
       ]
     },
     {
+      "slug": "unilahub-research",
       "title": "UnilaHub Research",
       "description": "Platform bagi peneliti Universitas Lampung untuk mendiseminasikan produk hasil penelitian, baik berupa barang digital atau fisik maupun jasa.",
+      "categories": ["mobile"],
+      "stack": "Flutter · Midtrans",
       "tags": [
         "Flutter",
         "Dart",

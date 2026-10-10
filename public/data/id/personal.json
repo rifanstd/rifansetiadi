@@ -2,8 +2,17 @@
   "name": "Rifan Setiadi",
   "tagline": "Mobile Developer & AI Enthusiast",
   "headline": "Membangun aplikasi mobile yang nyaman digunakan dan mengeksplorasi berbagai kemungkinan dengan AI",
+  "intro": [
+    { "text": "mobile developer untuk BNI", "note": "(via Mitra Integrasi)" },
+    { "text": "membangun AI agent untuk OpenCode" },
+    { "text": "4+ thn · flutter · kotlin · typescript" }
+  ],
+  "heroCommand": "npx devkit-agent",
+  "aboutLead": "Saya membangun aplikasi mobile yang cepat dan mudah digunakan — dari pembayaran QRIS sampai ojek kampus — dan di waktu luang membangun AI tooling untuk developer.",
   "about": "Saya seorang Software Engineer yang fokus pada pengembangan aplikasi mobile. Saya terbiasa membangun aplikasi yang cepat, stabil, dan mudah digunakan. Di luar mobile development, saya juga tertarik mengeksplorasi AI dan membangun berbagai tools untuk melihat bagaimana teknologi ini bisa membantu menyelesaikan masalah sehari-hari.",
   "location": "Jakarta, Indonesia",
+  "city": "Jakarta",
+  "timezone": "GMT+7",
   "email": "rifansetiadi.id@gmail.com",
   "cvUrl": "/pdf/Rifan_Setiadi_CV.pdf",
   "availabilityStatus": "Terbuka untuk kolaborasi",

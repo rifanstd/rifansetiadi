@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This repository contains a bilingual personal portfolio SPA for Rifan Setiadi. It is a React 19 + TypeScript application built with Vite. The UI is data-driven: portfolio content is stored in localized JSON files under `public/data/`, while reusable React sections render the loaded data. There is no backend, router, SSR, or server-side data layer.
+This repository contains a bilingual personal portfolio SPA for Rifan Setiadi. It is a React 19 + TypeScript application built with Vite. The UI is data-driven: portfolio content is stored in localized JSON files under `public/data/`, while reusable React sections render the loaded data. There is no backend, router library, SSR, or server-side data layer; project case studies use a small hash route handled in `App.tsx`.
 
 ## Architecture & Data Flow
 
@@ -15,14 +15,15 @@ This repository contains a bilingual personal portfolio SPA for Rifan Setiadi. I
   - `/data/projects.json` or `/data/id/projects.json`
   - `/data/skills.json` or `/data/id/skills.json`
 - Responses are checked for HTTP success and parsed into the `PortfolioData` shape from `src/types/portfolio.ts`. The interfaces provide compile-time contracts; JSON remains runtime input and is not schema-validated.
-- Successful data renders the fixed page flow: `Navbar`, `Hero`, `About`, `Experience`, `Stats`, `Projects`, `Skills`, `Contact`, and `Footer`.
+- Successful data renders the fixed page flow: `Navbar`, `Hero`, `Stats` (proof strip), `Projects` (selected work + filterable index), `Experience`, `About` (includes `Skills`), `Contact`, and `Footer`.
+- A `#/work/<slug>` hash renders `CaseStudy` for the project with that `slug` and a `caseStudy` object instead of the home sections; any other hash is treated as an in-page section anchor.
 - `I18nProvider` manages `en | id`, persists the selection in `localStorage` under `locale`, updates the document language, and supplies static UI translations from `src/i18n/translations/`.
 - `ThemeProvider` manages `dark | light | system`, persists under `theme`, reacts to OS/storage changes, and supports the `d` keyboard shortcut outside editable elements.
 - Components use typed props and local state for section-specific interaction. There is no global state library.
 
 ## Key Directories
 
-- `src/components/` — portfolio sections and shared presentation components (`Navbar`, `Hero`, `About`, `Experience`, `Stats`, `Projects`, `Skills`, `Contact`, `Footer`, `FadeIn`).
+- `src/components/` — portfolio sections and shared presentation components (`Navbar`, `Hero`, `About`, `Experience`, `Stats`, `Projects`, `Skills`, `Contact`, `Footer`, `CaseStudy`, `FadeIn`). `ProjectVisual` draws code-based concept illustrations (an object plus the published features, or a terminal for CLI tools) in `em` units so one font-size scales a composition; they deliberately do not imitate real app screens; a project's `image` field overrides it with a real screenshot.
 - `src/components/ui/` — shadcn/Radix UI primitives. These files are excluded from ESLint; preserve their generated style when possible.
 - `src/hooks/` — reusable browser hooks, notably `useInView` and `useCounter`.
 - `src/i18n/` — locale context and static English/Indonesian UI translations.

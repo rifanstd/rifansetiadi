@@ -1,55 +1,84 @@
 {
   "nav": {
-    "home": "Beranda",
-    "about": "Tentang Saya",
+    "work": "Karya",
     "experience": "Pengalaman",
-    "projects": "Proyek",
-    "skills": "Keahlian",
-    "contact": "Kontak"
+    "about": "Tentang",
+    "contact": "Kontak",
+    "letsTalk": "Ngobrol yuk",
+    "openMenu": "Buka menu",
+    "menu": "Menu",
+    "theme": "Tema",
+    "switchToLight": "Ganti ke mode terang",
+    "switchToDark": "Ganti ke mode gelap",
+    "switchLanguage": "Switch to English"
   },
   "hero": {
-    "viewWork": "Lihat Proyek",
-    "downloadCV": "Unduh CV"
+    "seeWork": "Lihat karya pilihan",
+    "downloadCV": "Unduh CV",
+    "portraitAlt": "Foto {{name}}"
   },
-  "about": {
-    "title": "Tentang Saya"
+  "work": {
+    "title": "Karya pilihan",
+    "count": "{{featured}} unggulan · {{total}} total",
+    "readCaseStudy": "Baca studi kasus",
+    "allProjects": "Semua proyek",
+    "filterLabel": "Filter proyek",
+    "filters": {
+      "all": "Semua",
+      "banking": "Perbankan",
+      "mobile": "Mobile",
+      "ai": "AI & Tools",
+      "oss": "Open source"
+    },
+    "columns": {
+      "number": "#",
+      "project": "Proyek",
+      "type": "Jenis",
+      "stack": "Stack",
+      "link": "Tautan"
+    },
+    "internal": "Internal",
+    "showDetails": "Lihat detail {{title}}",
+    "showAll": "Lihat semua {{count}} proyek",
+    "showLess": "Tampilkan lebih sedikit",
+    "empty": "Belum ada proyek di kategori ini."
   },
   "experience": {
     "title": "Pengalaman",
-    "showLess": "Sembunyikan",
-    "showAll": "Lihat Semua {{count}} Pengalaman"
+    "subtitle": "Aplikasi mobile kelas perbankan, produk startup, dan sistem kampus.",
+    "fullCV": "CV lengkap (PDF)",
+    "showDetails": "Lihat detail {{role}} di {{company}}"
   },
-  "projects": {
-    "title": "Proyek",
-    "viewProject": "Lihat Proyek",
-    "featured": "Proyek Unggulan",
-    "code": "Kode",
-    "readMore": "Selengkapnya",
-    "showLess": "Sembunyikan",
-    "showAll": "Lihat Semua {{count}} Proyek",
-    "comingSoon": "Segera Hadir",
-    "comingSoonDesc": "Sedang mengerjakan proyek baru."
-  },
-  "stats": {
-    "title": "Sedikit Angka"
-  },
-  "skills": {
-    "title": "Keahlian"
+  "about": {
+    "title": "Tentang"
   },
   "contact": {
-    "title": "Mari Terhubung",
-    "subtitle": "Saya terbuka untuk proyek freelance, kolaborasi, maupun peluang kerja. Kalau ada sesuatu yang ingin dibangun bersama, jangan ragu untuk menghubungi saya.",
-    "copyEmail": "Salin Email",
-    "copied": "Email berhasil disalin!",
-    "hireMe": "Hubungi Saya"
+    "heading": "Punya aplikasi mobile yang mau dibangun?",
+    "headingAccent": "Ngobrol yuk.",
+    "copyEmail": "Salin email",
+    "copied": "Tersalin!",
+    "replies": "Biasanya membalas dalam 1–2 hari",
+    "cv": "CV"
   },
   "footer": {
-    "rights": "Hak cipta dilindungi."
+    "builtWith": "dibuat dengan react + vite · en / id"
+  },
+  "caseStudy": {
+    "allWork": "Semua karya",
+    "context": "Konteks",
+    "overview": "Gambaran umum",
+    "myRole": "Peran saya",
+    "whatIDid": "Yang saya kerjakan",
+    "keyFeatures": "Fitur utama",
+    "flow": "Alur",
+    "howItWorks": "Cara kerjanya",
+    "outcome": "Hasil",
+    "links": "Tautan",
+    "next": "berikutnya",
+    "notFound": "Proyek ini belum ada.",
+    "backHome": "Kembali ke semua karya"
   },
   "loading": "Memuat...",
   "error": "Gagal memuat data portofolio",
-  "tryAgain": "Silakan coba lagi nanti",
-  "lang": {
-    "toggle": "ID"
-  }
+  "tryAgain": "Silakan coba lagi nanti"
 }
