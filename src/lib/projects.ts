@@ -1,7 +1,8 @@
+import { caseStudyPath } from "@/lib/router"
 import type { Project, ProjectLink } from "@/types/portfolio"
 
 export function caseStudyHref(project: Project) {
-  return `#/work/${project.slug}`
+  return caseStudyPath(project.slug)
 }
 
 // GitHub first, then the store/package links listed in the data.

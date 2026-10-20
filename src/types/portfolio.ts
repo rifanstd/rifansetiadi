@@ -4,17 +4,10 @@ export interface SocialLinks {
   twitter?: string
 }
 
-export interface IntroLine {
-  text: string
-  note?: string
-}
-
 export interface PersonalData {
   name: string
   tagline: string
   headline: string
-  intro: IntroLine[]
-  heroCommand: string
   aboutLead: string
   about: string
   location: string

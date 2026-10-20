@@ -1,4 +1,3 @@
-import { FadeIn } from "@/components/FadeIn"
 import { Skills } from "@/components/Skills"
 import { useI18n } from "@/i18n/context"
 import type { PersonalData, SkillsData } from "@/types/portfolio"
@@ -14,23 +13,20 @@ export function About({ data, skills }: AboutProps) {
   return (
     <section
       id="about"
-      className="page-container grid gap-8 py-12 lg:grid-cols-12 lg:py-24"
+      className="page-container grid gap-12 py-16 lg:grid-cols-12 lg:gap-8 lg:py-28"
     >
-      <FadeIn
-        direction="up"
-        className="flex flex-col gap-4 lg:col-span-6 lg:gap-5"
-      >
-        <h2 className="text-[30px] leading-tight font-bold sm:text-5xl">
+      <div className="flex flex-col gap-6 lg:col-span-6">
+        <h2 className="text-[44px] leading-none font-medium sm:text-[64px]">
           {t.about.title}
         </h2>
-        <p className="text-base leading-relaxed sm:text-lg sm:leading-[1.65]">
+        <p className="font-heading text-2xl leading-snug sm:text-[28px] sm:leading-snug">
           {data.aboutLead}
         </p>
-        <p className="text-[15px] leading-relaxed text-muted-foreground sm:text-base sm:leading-[1.65]">
+        <p className="max-w-xl text-base leading-relaxed text-muted-foreground sm:text-[17px]">
           {data.about}
         </p>
-      </FadeIn>
-      <div className="lg:col-span-6">
+      </div>
+      <div className="lg:col-span-5 lg:col-start-8 lg:pt-4">
         <Skills data={skills} />
       </div>
     </section>

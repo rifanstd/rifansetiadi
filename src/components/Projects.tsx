@@ -1,4 +1,5 @@
 import { Fragment, useState } from "react"
+import { ChevronDown } from "lucide-react"
 import { FadeIn } from "@/components/FadeIn"
 import { ProjectVisual, type VisualSize } from "@/components/ProjectVisual"
 import { useI18n } from "@/i18n/context"
@@ -57,82 +58,100 @@ export function ProjectMedia({
   return null
 }
 
-function FeaturedCard({
-  project,
-  number,
-  lead = false,
-}: {
-  project: Project
-  number: string
-  lead?: boolean
-}) {
-  const { t } = useI18n()
+function projectHref(project: Project) {
   const external = !project.caseStudy ? projectLinks(project)[0] : undefined
-  const href = external ? external.url : caseStudyHref(project)
+  return { external, href: external ? external.url : caseStudyHref(project) }
+}
+
+function CallToAction({ project }: { project: Project }) {
+  const { t } = useI18n()
+  const { external } = projectHref(project)
+  return (
+    <span className="text-[15px] font-semibold underline decoration-line decoration-2 underline-offset-[6px] transition-colors group-hover:decoration-foreground">
+      {external ? (
+        <>
+          {external.label} <span aria-hidden="true">↗</span>
+        </>
+      ) : (
+        t.work.readCaseStudy
+      )}
+    </span>
+  )
+}
+
+// The lead project gets the whole width: a large visual, then the story.
+function LeadProject({ project }: { project: Project }) {
+  const { external, href } = projectHref(project)
   const facts = project.facts ?? []
-  const highlightFacts =
-    facts.length > 1 ? [facts[0], facts[facts.length - 1]] : facts
 
   return (
     <a
       href={href}
       {...(external && { target: "_blank", rel: "noopener noreferrer" })}
-      className={cn(
-        "group flex flex-col gap-3 border border-border bg-card p-4 text-foreground transition-colors hover:border-line sm:p-6",
-        lead && "lg:grid lg:grid-cols-12 lg:gap-8 lg:p-8"
-      )}
+      className="group flex flex-col gap-7"
     >
-      <div
-        className={cn(
-          "h-[190px] bg-muted sm:h-[260px]",
-          lead && "sm:h-[320px] lg:col-span-7 lg:h-[420px]"
-        )}
-      >
-        <ProjectMedia project={project} size={lead ? "lead" : "card"} />
-      </div>
-
-      <div
-        className={cn(
-          "flex flex-col gap-2.5 sm:gap-3.5",
-          lead && "lg:col-span-5 lg:justify-center lg:gap-4"
-        )}
-      >
-        <span className="font-mono text-[11px] text-brand uppercase sm:text-xs">
-          {number}
-          {project.meta && ` · ${project.meta}`}
-        </span>
-        <h3
-          className={cn(
-            "text-xl leading-tight font-semibold sm:text-2xl",
-            lead && "lg:text-[34px] lg:leading-[1.15]"
+      <FadeIn className="h-[260px] overflow-hidden rounded-2xl bg-surface sm:h-[380px] lg:h-[500px]">
+        <ProjectMedia project={project} size="lead" />
+      </FadeIn>
+      <div className="grid gap-4 lg:grid-cols-12 lg:gap-8">
+        <div className="flex flex-col gap-2 lg:col-span-5">
+          {project.meta && (
+            <span className="text-sm text-muted-foreground">
+              {project.meta}
+            </span>
           )}
-        >
+          <h3 className="text-[34px] leading-[1.05] font-medium sm:text-[44px]">
+            {project.title}
+          </h3>
+        </div>
+        <div className="flex flex-col gap-4 lg:col-span-6 lg:col-start-7 lg:pt-7">
+          <p className="text-[17px] leading-relaxed text-muted-foreground">
+            {project.description}
+          </p>
+          {facts.length > 0 && (
+            <dl className="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-3">
+              {facts.slice(0, 3).map((fact) => (
+                <div key={fact.label}>
+                  <dt className="text-xs text-muted-foreground">
+                    {fact.label}
+                  </dt>
+                  <dd className="text-[15px] font-medium">{fact.value}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+          <CallToAction project={project} />
+        </div>
+      </div>
+    </a>
+  )
+}
+
+function FeaturedProject({ project }: { project: Project }) {
+  const { external, href } = projectHref(project)
+
+  return (
+    <a
+      href={href}
+      {...(external && { target: "_blank", rel: "noopener noreferrer" })}
+      className="group flex flex-col gap-5"
+    >
+      <FadeIn className="h-[230px] overflow-hidden rounded-2xl bg-surface sm:h-[320px]">
+        <ProjectMedia project={project} size="card" />
+      </FadeIn>
+      <div className="flex flex-col gap-2">
+        {project.meta && (
+          <span className="text-sm text-muted-foreground">{project.meta}</span>
+        )}
+        <h3 className="text-[26px] leading-tight font-medium sm:text-[30px]">
           {project.title}
         </h3>
-        <p className="hidden text-[15px] leading-relaxed text-muted-foreground sm:block lg:text-base">
+        <p className="max-w-md text-[15px] leading-relaxed text-muted-foreground sm:text-base">
           {project.summary ?? project.description}
         </p>
-        {lead && highlightFacts.length > 0 && (
-          <dl className="hidden flex-col gap-1.5 border-t border-line pt-4 text-sm sm:flex">
-            {highlightFacts.map((fact) => (
-              <div key={fact.label} className="flex gap-1.5">
-                <dt>{fact.label} —</dt>
-                <dd>{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
-        )}
-        <span className="text-sm font-semibold text-brand group-hover:underline sm:text-[15px]">
-          {external ? (
-            <>
-              {external.label} <span aria-hidden="true">↗</span>
-            </>
-          ) : (
-            <>
-              {t.work.readCaseStudy} <span aria-hidden="true">→</span>
-            </>
-          )}
-        </span>
+        <div className="pt-1">
+          <CallToAction project={project} />
+        </div>
       </div>
     </a>
   )
@@ -143,20 +162,21 @@ function ProjectDetails({ project }: { project: Project }) {
   const links = projectLinks(project)
 
   return (
-    <div className="flex animate-in flex-col gap-3 py-4 duration-200 fade-in slide-in-from-top-1">
+    <div className="flex animate-in flex-col gap-3 pt-1 pb-5 duration-200 fade-in slide-in-from-top-1">
       <p className="max-w-3xl text-[15px] leading-relaxed text-muted-foreground">
         {project.description}
       </p>
-      <ul className="flex flex-wrap gap-x-3 gap-y-1 font-mono text-xs text-muted-foreground">
-        {project.tags.map((tag) => (
-          <li key={tag}>#{tag}</li>
-        ))}
-      </ul>
+      <p className="font-mono text-xs text-muted-foreground">
+        {project.tags.join(" · ")}
+      </p>
       {(project.caseStudy || links.length > 0) && (
         <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold">
           {project.caseStudy && (
-            <a href={caseStudyHref(project)} className="text-brand">
-              {t.work.readCaseStudy} <span aria-hidden="true">→</span>
+            <a
+              href={caseStudyHref(project)}
+              className="text-brand hover:underline"
+            >
+              {t.work.readCaseStudy}
             </a>
           )}
           {links.map((link) => (
@@ -165,7 +185,7 @@ function ProjectDetails({ project }: { project: Project }) {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-brand"
+              className="text-brand hover:underline"
             >
               {link.label} <span aria-hidden="true">↗</span>
             </a>
@@ -178,12 +198,13 @@ function ProjectDetails({ project }: { project: Project }) {
 
 function ExpandIcon({ expanded }: { expanded: boolean }) {
   return (
-    <span
+    <ChevronDown
       aria-hidden="true"
-      className="inline-block w-4 text-center font-mono text-muted-foreground"
-    >
-      {expanded ? "−" : "+"}
-    </span>
+      className={cn(
+        "size-4 shrink-0 text-muted-foreground transition-transform",
+        expanded && "rotate-180 text-foreground"
+      )}
+    />
   )
 }
 
@@ -211,21 +232,17 @@ export function Projects({ data }: ProjectsProps) {
   const toggle = (slug: string) =>
     setExpandedSlug((current) => (current === slug ? null : slug))
 
-  const primaryLink = (project: Project, className?: string) => {
+  const primaryLink = (project: Project) => {
     const link = projectLinks(project)[0]
     if (!link) {
-      return (
-        <span className={cn("text-muted-foreground", className)}>
-          {t.work.internal}
-        </span>
-      )
+      return <span className="text-muted-foreground">{t.work.internal}</span>
     }
     return (
       <a
         href={link.url}
         target="_blank"
         rel="noopener noreferrer"
-        className={cn("text-brand hover:underline", className)}
+        className="text-foreground underline decoration-line underline-offset-4 hover:decoration-foreground"
       >
         {link.label} <span aria-hidden="true">↗</span>
       </a>
@@ -235,51 +252,39 @@ export function Projects({ data }: ProjectsProps) {
   return (
     <section
       id="work"
-      className="page-container flex flex-col gap-5 pt-12 pb-8 sm:gap-8 lg:pt-24 lg:pb-16"
+      className="page-container flex flex-col gap-10 pt-16 pb-12 sm:gap-14 lg:pt-28 lg:pb-20"
     >
-      <FadeIn
-        direction="up"
-        className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2"
-      >
-        <div className="flex flex-col gap-2">
-          <span className="font-mono text-xs text-brand sm:text-sm">
-            $ ls ./work --featured
-          </span>
-          <h2 className="text-[30px] leading-tight font-bold sm:text-5xl sm:tracking-[-0.01em]">
-            {t.work.title}
-          </h2>
-        </div>
+      <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-2">
+        <h2 className="text-[44px] leading-none font-medium sm:text-[64px]">
+          {t.work.title}
+        </h2>
         <span className="text-[15px] text-muted-foreground">
           {fill(t.work.count, {
             featured: featured.length,
             total: data.projects.length,
           })}
         </span>
-      </FadeIn>
+      </div>
 
-      {lead && (
-        <FadeIn direction="up">
-          <FeaturedCard project={lead.project} number={lead.number} lead />
-        </FadeIn>
-      )}
+      {lead && <LeadProject project={lead.project} />}
 
       {others.length > 0 && (
-        <div className="grid gap-5 sm:gap-8 md:grid-cols-2">
-          {others.map(({ project, number }, index) => (
-            <FadeIn key={project.slug} delay={index * 100} direction="up">
-              <FeaturedCard project={project} number={number} />
-            </FadeIn>
+        <div className="grid gap-12 md:grid-cols-2 md:gap-10">
+          {others.map(({ project }) => (
+            <FeaturedProject key={project.slug} project={project} />
           ))}
         </div>
       )}
 
-      <div className="mt-4 flex flex-col gap-4 sm:mt-8">
+      <div className="mt-6 flex flex-col gap-5 sm:mt-10">
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <h3 className="text-[22px] font-semibold">{t.work.allProjects}</h3>
+          <h3 className="text-[28px] leading-tight font-medium">
+            {t.work.allProjects}
+          </h3>
           <div
             role="group"
             aria-label={t.work.filterLabel}
-            className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0 sm:pb-0"
+            className="-mx-4 flex gap-1 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0 sm:pb-0"
           >
             {FILTERS.map((option) => (
               <button
@@ -291,10 +296,10 @@ export function Projects({ data }: ProjectsProps) {
                   setExpandedSlug(null)
                 }}
                 className={cn(
-                  "h-11 shrink-0 border px-4 text-[13px] transition-colors sm:text-sm",
+                  "h-10 shrink-0 rounded-lg px-3.5 text-sm transition-colors",
                   filter === option
-                    ? "border-primary bg-primary font-semibold text-primary-foreground"
-                    : "border-line text-foreground hover:bg-muted"
+                    ? "bg-foreground font-semibold text-background"
+                    : "text-muted-foreground hover:bg-surface hover:text-foreground"
                 )}
               >
                 {t.work.filters[option]}
@@ -304,30 +309,28 @@ export function Projects({ data }: ProjectsProps) {
         </div>
 
         {filtered.length === 0 && (
-          <p className="border-t border-foreground py-6 text-muted-foreground">
-            {t.work.empty}
-          </p>
+          <p className="py-6 text-muted-foreground">{t.work.empty}</p>
         )}
 
         {filtered.length > 0 && (
           <>
-            <div className="hidden overflow-x-auto border-t border-foreground md:block">
+            <div className="hidden overflow-x-auto md:block">
               <table className="w-full min-w-[760px] border-collapse text-left">
                 <thead>
-                  <tr className="border-b border-line font-mono text-[11px] text-muted-foreground uppercase">
-                    <th scope="col" className="w-[60px] py-3 font-normal">
+                  <tr className="text-xs text-muted-foreground">
+                    <th scope="col" className="w-[56px] pb-2 font-normal">
                       {t.work.columns.number}
                     </th>
-                    <th scope="col" className="py-3 pr-4 font-normal">
+                    <th scope="col" className="pr-4 pb-2 font-normal">
                       {t.work.columns.project}
                     </th>
-                    <th scope="col" className="py-3 pr-4 font-normal">
+                    <th scope="col" className="pr-4 pb-2 font-normal">
                       {t.work.columns.type}
                     </th>
-                    <th scope="col" className="py-3 pr-4 font-normal">
+                    <th scope="col" className="pr-4 pb-2 font-normal">
                       {t.work.columns.stack}
                     </th>
-                    <th scope="col" className="w-[150px] py-3 font-normal">
+                    <th scope="col" className="w-[150px] pb-2 font-normal">
                       {t.work.columns.link}
                     </th>
                   </tr>
@@ -344,10 +347,10 @@ export function Projects({ data }: ProjectsProps) {
                             !expanded && "border-b border-border"
                           )}
                         >
-                          <td className="py-2 font-mono text-xs text-muted-foreground">
+                          <td className="py-1.5 font-mono text-xs text-muted-foreground">
                             {number}
                           </td>
-                          <td className="py-2 pr-4">
+                          <td className="py-1.5 pr-4">
                             <button
                               type="button"
                               aria-expanded={expanded}
@@ -356,26 +359,26 @@ export function Projects({ data }: ProjectsProps) {
                                 title: project.title,
                               })}
                               onClick={() => toggle(project.slug)}
-                              className="flex min-h-11 items-center gap-2 text-left font-semibold hover:text-brand"
+                              className="flex min-h-11 items-center gap-2 text-left font-medium hover:text-brand"
                             >
-                              <ExpandIcon expanded={expanded} />
                               {project.title}
+                              <ExpandIcon expanded={expanded} />
                             </button>
                           </td>
-                          <td className="py-2 pr-4 text-muted-foreground">
+                          <td className="py-1.5 pr-4 text-muted-foreground">
                             {typeLabel(project)}
                           </td>
-                          <td className="py-2 pr-4 text-sm text-muted-foreground">
+                          <td className="py-1.5 pr-4 font-mono text-xs text-muted-foreground">
                             {project.stack}
                           </td>
-                          <td className="py-2 text-sm">
+                          <td className="py-1.5 text-sm">
                             {primaryLink(project)}
                           </td>
                         </tr>
                         {expanded && (
                           <tr id={detailsId} className="border-b border-border">
                             <td />
-                            <td colSpan={4} className="pr-4 pl-6">
+                            <td colSpan={4} className="pr-4">
                               <ProjectDetails project={project} />
                             </td>
                           </tr>
@@ -387,7 +390,7 @@ export function Projects({ data }: ProjectsProps) {
               </table>
             </div>
 
-            <ul className="border-t border-foreground md:hidden">
+            <ul className="flex flex-col md:hidden">
               {mobileVisible.map(({ project }) => {
                 const expanded = expandedSlug === project.slug
                 const detailsId = `project-mobile-${project.slug}`
@@ -401,7 +404,7 @@ export function Projects({ data }: ProjectsProps) {
                       className="flex min-h-[60px] w-full items-center justify-between gap-3 py-3 text-left"
                     >
                       <span className="flex flex-col gap-0.5">
-                        <span className="text-[15px] font-semibold">
+                        <span className="text-[15px] font-medium">
                           {project.title}
                         </span>
                         <span className="text-xs text-muted-foreground">
@@ -411,7 +414,7 @@ export function Projects({ data }: ProjectsProps) {
                       <ExpandIcon expanded={expanded} />
                     </button>
                     {expanded && (
-                      <div id={detailsId} className="pb-1">
+                      <div id={detailsId}>
                         <ProjectDetails project={project} />
                       </div>
                     )}
@@ -425,7 +428,7 @@ export function Projects({ data }: ProjectsProps) {
                 type="button"
                 onClick={() => setShowAll((current) => !current)}
                 aria-expanded={showAll}
-                className="h-12 border border-line text-sm font-semibold transition-colors hover:bg-muted md:hidden"
+                className="h-12 rounded-lg bg-surface text-sm font-semibold transition-colors hover:bg-muted md:hidden"
               >
                 {showAll
                   ? t.work.showLess

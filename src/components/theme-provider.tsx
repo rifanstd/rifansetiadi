@@ -151,7 +151,8 @@ export function ThemeProvider({
 
   React.useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.repeat) {
+      // The 3D world claims movement keys (WASD) by preventing their default.
+      if (event.repeat || event.defaultPrevented) {
         return
       }
 

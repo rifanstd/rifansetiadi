@@ -17,6 +17,9 @@
     "downloadCV": "Download CV",
     "portraitAlt": "Portrait of {{name}}"
   },
+  "stats": {
+    "workedWith": "Worked with"
+  },
   "work": {
     "title": "Selected work",
     "count": "{{featured}} featured · {{total}} total",
@@ -61,7 +64,7 @@
     "cv": "CV"
   },
   "footer": {
-    "builtWith": "built with react + vite · en / id"
+    "builtWith": "Built with React and Vite, in English and Bahasa Indonesia."
   },
   "caseStudy": {
     "allWork": "All work",
@@ -74,9 +77,126 @@
     "howItWorks": "How it works",
     "outcome": "Outcome",
     "links": "Links",
-    "next": "next",
+    "next": "Next case study",
     "notFound": "This project doesn't exist (yet).",
     "backHome": "Back to all work"
+  },
+  "kampung": {
+    "title": "Kampung",
+    "back": "Back to site",
+    "loading": "Walking into the kampung…",
+    "noWebgl": "Your browser can’t run the 3D experience.",
+    "explore": "Explore the 3D kampung",
+    "exploreShort": "3D",
+    "signs": {
+      "office": "OFFICE",
+      "projects": "PROJECTS",
+      "shop": "SHOP",
+      "repair": "PHONE REPAIR",
+      "warung": "WARUNG"
+    },
+    "route": "TELUK – PASAR",
+    "controls": {
+      "walk": "Walk",
+      "run": "Run",
+      "jump": "Jump · climb ledges",
+      "interact": "Talk · ride · get off",
+      "drive": "Drive · steer",
+      "drift": "Drift",
+      "reset": "Back to the ojek base",
+      "kick": "Kick",
+      "wave": "Wave",
+      "map": "Map",
+      "look": "Drag to look around, scroll to zoom",
+      "mouse": "Mouse"
+    },
+    "prompts": {
+      "talk": "Talk to {name}",
+      "board": "Get on the angkot",
+      "alight": "Say “Kiri!” to get off",
+      "ride": "Ride the motorbike",
+      "getOff": "Get off",
+      "riding": "On the angkot"
+    },
+    "people": {
+      "rekan": "the colleague",
+      "pemilikToko": "the shop owner",
+      "ibuWarung": "Bu Warung"
+    },
+    "chatter": {
+      "greet": [
+        "Evening!",
+        "Hi there!",
+        "Mampir, Mas?",
+        "Hello!"
+      ],
+      "bakso": "Bakso! Hot bakso!",
+      "ojek": "Need a ride?",
+      "kenek": "Teluk! Pasar! Teluk!",
+      "excuse": "Excuse me…",
+      "kiri": "Kiri, Bang!",
+      "goal": "Goal!"
+    },
+    "dialogue": {
+      "experienceIntro": "Looking for Rifan? Rifan is a {role} at {company}, since {period}.",
+      "whatDoes": "What’s the work there?",
+      "before": "Where before that?",
+      "beforeLine": "Before that: {role} at {company}, {period}.",
+      "earlier": "And before that?",
+      "firstJob": "That’s where it all started.",
+      "projectsAsk": "Any of the work I can see?",
+      "projectsPointer": "Plenty. The shop with the orange sign, PROJECTS, has them all on display.",
+      "thanks": "Thanks!",
+      "goSee": "I’ll go and look",
+      "shopIntro": "Welcome! Everything in this case was built by Rifan: {count} apps. Pick one.",
+      "shopMore": "Show me another one",
+      "caseStudy": "Read the case study",
+      "openLink": "Open {label}",
+      "warungIntro": "Want to reach Rifan? Rifan drops by here most evenings. Leave a message with me.",
+      "email": "Email",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "cv": "Download the CV",
+      "emailLine": "Write to {email}. Replies usually come within a day.",
+      "summary": "Read summary",
+      "close": "Close",
+      "continue": "Continue"
+    },
+    "summary": {
+      "experience": "Work experience",
+      "projects": "Projects",
+      "contact": "Contact"
+    },
+    "map": {
+      "title": "Kampung map",
+      "open": "Map",
+      "hint": "Pick a place to follow an arrow there.",
+      "close": "Close",
+      "you": "You",
+      "places": {
+        "experience": "Office · Experience",
+        "projects": "Project shop",
+        "contact": "Warung · Contact",
+        "halte": "Angkot stop",
+        "ojek": "Ojek base",
+        "field": "Football field",
+        "pier": "Jetty"
+      },
+      "areas": {
+        "sea": "Sunda Strait",
+        "beach": "Beach",
+        "sawah": "Rice fields",
+        "kebun": "Plantation",
+        "hills": "Hills"
+      }
+    },
+    "pad": {
+      "forward": "Forward",
+      "back": "Reverse",
+      "left": "Steer left",
+      "right": "Steer right",
+      "jump": "Jump"
+    }
   },
   "loading": "Loading...",
   "error": "Failed to load portfolio data",

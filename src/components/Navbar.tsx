@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type MouseEvent } from "react"
-import { Menu, Moon, Sun } from "lucide-react"
+import { Bike, Menu, Moon, Sun } from "lucide-react"
 import {
   Sheet,
   SheetContent,
@@ -9,6 +9,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { useTheme } from "@/components/theme-provider"
 import { useI18n } from "@/i18n/context"
+import { KAMPUNG_PATH } from "@/lib/router"
 import { scrollToSection } from "@/lib/scroll"
 import { cn } from "@/lib/utils"
 
@@ -18,9 +19,8 @@ type SectionId = (typeof SECTION_IDS)[number]
 
 export function Wordmark() {
   return (
-    <span className="font-mono text-[15px]">
-      <span className="text-brand">~/</span>
-      <span className="font-medium">rifan</span>
+    <span className="font-heading text-[21px] leading-none font-medium tracking-[-0.01em]">
+      Rifan Setiadi
     </span>
   )
 }
@@ -30,13 +30,10 @@ export function LocaleToggle({ className }: { className?: string }) {
 
   return (
     <Button
-      variant="outline"
+      variant="ghost"
       onClick={toggleLocale}
       title={t.nav.switchLanguage}
-      className={cn(
-        "h-11 border-line bg-transparent px-3 font-mono text-xs dark:border-line dark:bg-transparent",
-        className
-      )}
+      className={cn("h-11 px-3 text-sm", className)}
     >
       <span className={cn(locale !== "en" && "text-muted-foreground")}>EN</span>
       <span className="text-muted-foreground" aria-hidden="true">
@@ -56,15 +53,12 @@ export function ThemeToggle({ className }: { className?: string }) {
 
   return (
     <Button
-      variant="outline"
+      variant="ghost"
       size="icon"
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label={label}
       title={label}
-      className={cn(
-        "size-11 border-line bg-transparent dark:border-line dark:bg-transparent",
-        className
-      )}
+      className={cn("size-11", className)}
     >
       {isDark ? <Sun /> : <Moon />}
     </Button>
@@ -123,7 +117,7 @@ export function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-md">
       <div className="page-container flex h-16 items-center justify-between gap-6 lg:h-[72px]">
         <a
           href="#top"
@@ -153,6 +147,12 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
+          <Button asChild variant="ghost" className="h-11 px-3 text-sm">
+            <a href={KAMPUNG_PATH} title={t.kampung.explore}>
+              <Bike />
+              {t.kampung.exploreShort}
+            </a>
+          </Button>
           <LocaleToggle />
           <ThemeToggle />
           <Button
@@ -176,7 +176,7 @@ export function Navbar() {
                 variant="outline"
                 size="icon"
                 aria-label={t.nav.openMenu}
-                className="size-11 border-foreground bg-transparent dark:border-foreground dark:bg-transparent"
+                className="size-11 border-line bg-transparent dark:border-line dark:bg-transparent"
               >
                 <Menu className="size-[18px]" />
               </Button>
@@ -186,7 +186,7 @@ export function Navbar() {
               className="gap-0 p-0"
               onCloseAutoFocus={handleMenuCloseAutoFocus}
             >
-              <SheetTitle className="flex h-16 items-center border-b border-border px-4 font-mono text-sm font-normal text-muted-foreground">
+              <SheetTitle className="flex h-16 items-center px-4 text-sm font-normal text-muted-foreground">
                 {t.nav.menu}
               </SheetTitle>
               <nav className="flex flex-col px-4 py-2">
@@ -205,6 +205,13 @@ export function Navbar() {
                     {link.label}
                   </a>
                 ))}
+                <a
+                  href={KAMPUNG_PATH}
+                  className="flex min-h-12 items-center gap-2 border-b border-border text-base text-muted-foreground"
+                >
+                  <Bike className="size-[18px]" />
+                  {t.kampung.explore}
+                </a>
               </nav>
               <div className="flex items-center justify-between px-4 py-4">
                 <span className="text-sm text-muted-foreground">

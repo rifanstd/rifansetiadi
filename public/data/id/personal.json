@@ -1,15 +1,9 @@
 {
   "name": "Rifan Setiadi",
   "tagline": "Mobile Developer & AI Enthusiast",
-  "headline": "Membangun aplikasi mobile yang nyaman digunakan dan mengeksplorasi berbagai kemungkinan dengan AI",
-  "intro": [
-    { "text": "mobile developer untuk BNI", "note": "(via Mitra Integrasi)" },
-    { "text": "membangun AI agent untuk OpenCode" },
-    { "text": "4+ thn · flutter · kotlin · typescript" }
-  ],
-  "heroCommand": "npx devkit-agent",
-  "aboutLead": "Saya membangun aplikasi mobile yang cepat dan mudah digunakan — dari pembayaran QRIS sampai ojek kampus — dan di waktu luang membangun AI tooling untuk developer.",
-  "about": "Saya seorang Software Engineer yang fokus pada pengembangan aplikasi mobile. Saya terbiasa membangun aplikasi yang cepat, stabil, dan mudah digunakan. Di luar mobile development, saya juga tertarik mengeksplorasi AI dan membangun berbagai tools untuk melihat bagaimana teknologi ini bisa membantu menyelesaikan masalah sehari-hari.",
+  "headline": "Saya membangun aplikasi mobile banking di BNI dan tool AI agent untuk developer.",
+  "aboutLead": "Sebagian besar karya saya ada di saku orang: pembayaran QRIS, SMS banking, aplikasi ojek kampus. Di malam hari saya membangun tool yang membuat AI agent bisa membantu developer merilis lebih cepat.",
+  "about": "Empat tahun terakhir saya merilis aplikasi Flutter dan Kotlin: pembayaran QRIS dan SMS banking untuk BNI, aplikasi ojek kampus di Coolva, dan sistem kampus untuk Unila. Di luar pekerjaan, saya membangun DevKit Agent, pipeline open source yang menjalankan agent analyst, planner, dan programmer di dalam OpenCode.",
   "location": "Jakarta, Indonesia",
   "city": "Jakarta",
   "timezone": "GMT+7",

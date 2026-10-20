@@ -17,6 +17,9 @@
     "downloadCV": "Unduh CV",
     "portraitAlt": "Foto {{name}}"
   },
+  "stats": {
+    "workedWith": "Pernah bekerja dengan"
+  },
   "work": {
     "title": "Karya pilihan",
     "count": "{{featured}} unggulan · {{total}} total",
@@ -61,7 +64,7 @@
     "cv": "CV"
   },
   "footer": {
-    "builtWith": "dibuat dengan react + vite · en / id"
+    "builtWith": "Dibuat dengan React dan Vite, dalam bahasa Inggris dan Indonesia."
   },
   "caseStudy": {
     "allWork": "Semua karya",
@@ -74,9 +77,126 @@
     "howItWorks": "Cara kerjanya",
     "outcome": "Hasil",
     "links": "Tautan",
-    "next": "berikutnya",
+    "next": "Studi kasus berikutnya",
     "notFound": "Proyek ini belum ada.",
     "backHome": "Kembali ke semua karya"
+  },
+  "kampung": {
+    "title": "Kampung",
+    "back": "Kembali ke situs",
+    "loading": "Masuk ke kampung…",
+    "noWebgl": "Browser kamu tidak bisa menjalankan pengalaman 3D.",
+    "explore": "Jelajahi kampung 3D",
+    "exploreShort": "3D",
+    "signs": {
+      "office": "KANTOR",
+      "projects": "PROYEK",
+      "shop": "TOKO",
+      "repair": "SERVIS HP",
+      "warung": "WARUNG"
+    },
+    "route": "TELUK – PASAR",
+    "controls": {
+      "walk": "Jalan",
+      "run": "Lari",
+      "jump": "Lompat · panjat tepian",
+      "interact": "Ngobrol · naik · turun",
+      "drive": "Jalan · belok",
+      "drift": "Drift",
+      "reset": "Kembali ke pangkalan ojek",
+      "kick": "Tendang",
+      "wave": "Melambai",
+      "map": "Peta",
+      "look": "Seret untuk memutar kamera, scroll untuk zoom",
+      "mouse": "Mouse"
+    },
+    "prompts": {
+      "talk": "Ngobrol dengan {name}",
+      "board": "Naik angkot",
+      "alight": "Bilang “Kiri!” untuk turun",
+      "ride": "Naik motor",
+      "getOff": "Turun",
+      "riding": "Di dalam angkot"
+    },
+    "people": {
+      "rekan": "rekan kerja",
+      "pemilikToko": "pemilik toko",
+      "ibuWarung": "Bu Warung"
+    },
+    "chatter": {
+      "greet": [
+        "Sore!",
+        "Mari, Mas!",
+        "Mampir, Mas?",
+        "Halo!"
+      ],
+      "bakso": "Bakso! Bakso panas!",
+      "ojek": "Ojek, Mas?",
+      "kenek": "Teluk! Pasar! Teluk!",
+      "excuse": "Permisi…",
+      "kiri": "Kiri, Bang!",
+      "goal": "Gol!"
+    },
+    "dialogue": {
+      "experienceIntro": "Nyari Rifan? Dia {role} di {company}, dari {period}.",
+      "whatDoes": "Kerjaannya apa di sana?",
+      "before": "Sebelumnya di mana?",
+      "beforeLine": "Sebelum itu: {role} di {company}, {period}.",
+      "earlier": "Sebelumnya lagi?",
+      "firstJob": "Dari situlah semuanya dimulai.",
+      "projectsAsk": "Ada karyanya yang bisa dilihat?",
+      "projectsPointer": "Banyak. Toko berpapan oranye, PROYEK, memajang semuanya.",
+      "thanks": "Makasih!",
+      "goSee": "Aku lihat ke sana",
+      "shopIntro": "Selamat datang! Semua di etalase ini buatan Rifan: {count} aplikasi. Pilih satu.",
+      "shopMore": "Lihat yang lain",
+      "caseStudy": "Baca studi kasus",
+      "openLink": "Buka {label}",
+      "warungIntro": "Mau menghubungi Rifan? Dia sering mampir ke sini sore-sore. Titip pesan saja ke saya.",
+      "email": "Email",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "cv": "Unduh CV",
+      "emailLine": "Tulis ke {email}. Biasanya dibalas dalam sehari.",
+      "summary": "Baca ringkas",
+      "close": "Tutup",
+      "continue": "Lanjut"
+    },
+    "summary": {
+      "experience": "Pengalaman kerja",
+      "projects": "Proyek",
+      "contact": "Kontak"
+    },
+    "map": {
+      "title": "Peta kampung",
+      "open": "Peta",
+      "hint": "Pilih tempat, nanti ada panah penunjuk ke sana.",
+      "close": "Tutup",
+      "you": "Kamu",
+      "places": {
+        "experience": "Kantor · Pengalaman",
+        "projects": "Toko proyek",
+        "contact": "Warung · Kontak",
+        "halte": "Halte angkot",
+        "ojek": "Pangkalan ojek",
+        "field": "Lapangan bola",
+        "pier": "Dermaga"
+      },
+      "areas": {
+        "sea": "Selat Sunda",
+        "beach": "Pantai",
+        "sawah": "Sawah",
+        "kebun": "Kebun",
+        "hills": "Perbukitan"
+      }
+    },
+    "pad": {
+      "forward": "Maju",
+      "back": "Mundur",
+      "left": "Belok kiri",
+      "right": "Belok kanan",
+      "jump": "Lompat"
+    }
   },
   "loading": "Memuat...",
   "error": "Gagal memuat data portofolio",

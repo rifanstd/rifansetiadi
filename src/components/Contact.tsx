@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { Check, Copy } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { FadeIn } from "@/components/FadeIn"
 import { useI18n } from "@/i18n/context"
 import type { PersonalData } from "@/types/portfolio"
 
@@ -31,57 +30,48 @@ export function Contact({ data }: ContactProps) {
   ].filter((link): link is { label: string; url: string } => Boolean(link.url))
 
   return (
-    <section id="contact" className="border-t border-border bg-muted">
-      <FadeIn
-        direction="up"
-        className="page-container flex flex-col gap-5 py-14 sm:gap-7 lg:py-24"
-      >
-        <span className="font-mono text-[13px] text-muted-foreground sm:text-base">
-          ~/rifan $ ./contact.sh{" "}
-          <span className="animate-caret text-brand" aria-hidden="true">
-            ▍
-          </span>
-        </span>
-        <h2 className="max-w-[920px] text-[38px] leading-[1.05] font-bold sm:text-6xl lg:text-[76px] lg:leading-[1.02] lg:tracking-[-0.02em]">
+    <section id="contact" className="bg-surface">
+      <div className="page-container flex flex-col gap-8 py-16 sm:gap-10 lg:py-28">
+        <h2 className="max-w-[980px] text-[48px] leading-[0.98] font-medium tracking-[-0.03em] sm:text-7xl lg:text-[96px]">
           {t.contact.heading}{" "}
-          <span className="text-brand">{t.contact.headingAccent}</span>
+          <span className="text-brand italic">{t.contact.headingAccent}</span>
         </h2>
 
-        <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+        <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
           <Button
             asChild
-            className="h-[52px] px-6 text-[15px] font-semibold hover:bg-primary/85 sm:h-14 sm:text-[17px]"
+            className="h-14 px-6 text-base font-semibold hover:bg-primary/85 sm:text-[17px]"
           >
             <a href={`mailto:${data.email}`}>{data.email}</a>
           </Button>
           <Button
-            variant="outline"
+            variant="ghost"
             onClick={copyEmail}
-            className="h-[52px] border-foreground bg-transparent px-5 text-[15px] sm:h-14 dark:border-foreground dark:bg-transparent"
+            className="h-14 self-start px-4 text-[15px] hover:bg-background"
           >
             {copied ? <Check /> : <Copy />}
             {copied ? t.contact.copied : t.contact.copyEmail}
           </Button>
-          <span className="text-sm text-muted-foreground sm:ml-3 sm:text-[15px]">
+          <span className="text-[15px] text-muted-foreground sm:ml-2">
             {t.contact.replies}
           </span>
         </div>
 
-        <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm sm:text-[15px]">
+        <ul className="flex flex-wrap gap-x-7 gap-y-2 text-[15px]">
           {socials.map((link) => (
             <li key={link.label}>
               <a
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center underline-offset-4 hover:text-brand hover:underline"
+                className="inline-flex min-h-11 items-center underline decoration-line underline-offset-[6px] hover:decoration-foreground"
               >
-                {link.label} <span aria-hidden="true">&nbsp;↗</span>
+                {link.label}
               </a>
             </li>
           ))}
         </ul>
-      </FadeIn>
+      </div>
     </section>
   )
 }

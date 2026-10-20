@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react"
+import { lazy, Suspense, useState, useEffect, useRef } from "react"
 import { Navbar } from "@/components/Navbar"
 import { Hero } from "@/components/Hero"
 import { About } from "@/components/About"
@@ -9,13 +9,28 @@ import { Contact } from "@/components/Contact"
 import { CaseStudy } from "@/components/CaseStudy"
 import { Footer } from "@/components/Footer"
 import { I18nProvider, useI18n } from "@/i18n/context"
+import {
+  interceptLinks,
+  parseRoute,
+  redirectLegacyHash,
+  usePathname,
+} from "@/lib/router"
 import type { PortfolioData } from "@/types/portfolio"
 
-const CASE_STUDY_ROUTE = /^#\/work\/([\w-]+)\/?$/
+// The kampung pulls in three.js, so it loads only when someone visits it.
+const KampungWorld = lazy(() => import("@/components/kampung/KampungWorld"))
 
-// Case studies live at #/work/<slug>; every other hash is an in-page section.
-function getCaseStudySlug() {
-  return window.location.hash.match(CASE_STUDY_ROUTE)?.[1] ?? null
+redirectLegacyHash()
+
+function LoadingScreen({ label }: { label: string }) {
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-background">
+      <div className="text-center">
+        <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+        <p className="text-muted-foreground">{label}</p>
+      </div>
+    </div>
+  )
 }
 
 function AppContent() {
@@ -23,7 +38,10 @@ function AppContent() {
   const [data, setData] = useState<PortfolioData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [caseStudySlug, setCaseStudySlug] = useState(getCaseStudySlug)
+  const pathname = usePathname()
+  const route = parseRoute(pathname)
+  const caseStudySlug = route.kind === "work" ? route.slug : null
+  const isKampung = route.kind === "kampung"
   const scrolledForRoute = useRef<string | null | undefined>(undefined)
 
   useEffect(() => {
@@ -72,36 +90,35 @@ function AppContent() {
   }, [locale])
 
   useEffect(() => {
-    const handleHashChange = () => setCaseStudySlug(getCaseStudySlug())
-    window.addEventListener("hashchange", handleHashChange)
-    return () => window.removeEventListener("hashchange", handleHashChange)
+    document.addEventListener("click", interceptLinks)
+    return () => document.removeEventListener("click", interceptLinks)
   }, [])
 
   // Switching between the home page and a case study replaces the whole page,
-  // so apply the scroll position the hash asks for once per route change
+  // so apply the scroll position the URL asks for once per route change
   // (a locale switch reloads data but keeps the route).
   useEffect(() => {
-    if (!data || scrolledForRoute.current === caseStudySlug) return
-    scrolledForRoute.current = caseStudySlug
-    if (caseStudySlug) {
-      window.scrollTo({ top: 0 })
-      return
-    }
+    if (!data || scrolledForRoute.current === pathname) return
+    scrolledForRoute.current = pathname
+    if (isKampung) return
     const sectionId = window.location.hash.slice(1)
-    if (sectionId) {
-      document.getElementById(sectionId)?.scrollIntoView()
-    }
-  }, [caseStudySlug, data])
+    const section = sectionId && document.getElementById(sectionId)
+    if (section) section.scrollIntoView()
+    else window.scrollTo({ top: 0 })
+  }, [pathname, isKampung, data])
+
+  // The kampung stays mounted while a locale switch reloads data, so
+  // visitors keep their place instead of dropping back to the loading screen.
+  if (isKampung && data) {
+    return (
+      <Suspense fallback={<LoadingScreen label={t.kampung.loading} />}>
+        <KampungWorld data={data} />
+      </Suspense>
+    )
+  }
 
   if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-background">
-        <div className="text-center">
-          <div className="mx-auto mb-4 h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-          <p className="text-muted-foreground">{t.loading}</p>
-        </div>
-      </div>
-    )
+    return <LoadingScreen label={t.loading} />
   }
 
   if (error || !data) {

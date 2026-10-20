@@ -13,31 +13,23 @@ interface CaseStudyProps {
   projects: Project[]
 }
 
-function SectionLabel({ index, label }: { index: number; label: string }) {
-  return (
-    <span className="font-mono text-xs text-brand uppercase">
-      {String(index).padStart(2, "0")} / {label}
-    </span>
-  )
+function SectionLabel({ label }: { label: string }) {
+  return <span className="text-sm text-muted-foreground">{label}</span>
 }
 
-function CaseStudyHeader({ slug }: { slug?: string }) {
+function CaseStudyHeader() {
   const { t } = useI18n()
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 bg-background/90 backdrop-blur-md">
       <div className="page-container flex h-16 items-center justify-between gap-4 lg:h-[72px]">
         <a
-          href="#work"
+          href="/#work"
           className="flex min-h-11 items-center gap-2 text-sm font-semibold hover:text-brand"
         >
           <span aria-hidden="true">←</span>
           {t.caseStudy.allWork}
         </a>
-        <span className="hidden font-mono text-[13px] text-muted-foreground md:block">
-          <span className="text-brand">~/</span>
-          rifan{slug && `/work/${slug}`}
-        </span>
         <div className="flex items-center gap-2">
           <LocaleToggle />
           <ThemeToggle />
@@ -45,7 +37,7 @@ function CaseStudyHeader({ slug }: { slug?: string }) {
             asChild
             className="hidden h-11 px-[18px] text-sm font-semibold hover:bg-primary/85 sm:inline-flex"
           >
-            <a href="#contact">{t.nav.letsTalk}</a>
+            <a href="/#contact">{t.nav.letsTalk}</a>
           </Button>
         </div>
       </div>
@@ -62,11 +54,8 @@ export function CaseStudy({ project, projects }: CaseStudyProps) {
       <>
         <CaseStudyHeader />
         <main className="page-container flex min-h-[60vh] flex-col items-start justify-center gap-4 py-24">
-          <span className="font-mono text-sm text-muted-foreground">
-            $ cat case-study.md
-          </span>
           <p className="text-2xl font-semibold">{t.caseStudy.notFound}</p>
-          <a href="#work" className="font-semibold text-brand hover:underline">
+          <a href="/#work" className="font-semibold text-brand hover:underline">
             <span aria-hidden="true">← </span>
             {t.caseStudy.backHome}
           </a>
@@ -83,38 +72,31 @@ export function CaseStudy({ project, projects }: CaseStudyProps) {
       ? withStudy[(withStudy.indexOf(project) + 1) % withStudy.length]
       : undefined
   const hasOutcomes = Boolean(study.outcomes && study.outcomes.length > 0)
-  const outcomeIndex = study.flow ? 5 : 4
 
   return (
     <>
-      <CaseStudyHeader slug={project.slug} />
+      <CaseStudyHeader />
       <main>
-        <FadeIn
-          direction="up"
-          className="page-container flex flex-col gap-5 pt-12 pb-10 lg:gap-6 lg:pt-[72px] lg:pb-12"
-        >
-          <span className="font-mono text-xs text-brand sm:text-[13px]">
-            $ cat case-study-{number}.md ·{" "}
-            <span className="uppercase">{study.label}</span>
+        <FadeIn className="page-container flex flex-col gap-5 pt-12 pb-10 lg:gap-6 lg:pt-[72px] lg:pb-12">
+          <span className="text-[15px] text-muted-foreground">
+            <span className="font-mono text-xs">{number}</span> · {study.label}
           </span>
-          <h1 className="max-w-[900px] text-[40px] leading-[1.05] font-bold tracking-[-0.02em] sm:text-6xl lg:text-[64px] lg:leading-[1.02]">
+          <h1 className="max-w-[900px] text-[48px] leading-[1] font-medium tracking-[-0.03em] sm:text-7xl lg:text-[88px]">
             {project.title}
           </h1>
           <p className="max-w-[760px] text-base leading-relaxed text-muted-foreground sm:text-xl sm:leading-[1.55]">
             {project.description}
           </p>
-          <dl className="grid grid-cols-2 gap-x-6 gap-y-4 border-t border-foreground pt-5 md:grid-cols-5">
+          <dl className="grid grid-cols-2 gap-x-6 gap-y-4 pt-4 md:grid-cols-5">
             {project.facts?.map((fact) => (
               <div key={fact.label} className="flex flex-col gap-1.5">
-                <dt className="font-mono text-[11px] text-muted-foreground uppercase">
-                  {fact.label}
-                </dt>
+                <dt className="text-xs text-muted-foreground">{fact.label}</dt>
                 <dd className="text-[15px] font-medium">{fact.value}</dd>
               </div>
             ))}
             {links.length > 0 && (
               <div className="flex flex-col gap-1.5">
-                <dt className="font-mono text-[11px] text-muted-foreground uppercase">
+                <dt className="text-xs text-muted-foreground">
                   {t.caseStudy.links}
                 </dt>
                 <dd className="flex flex-col gap-1 text-[15px] font-medium">
@@ -136,18 +118,15 @@ export function CaseStudy({ project, projects }: CaseStudyProps) {
         </FadeIn>
 
         <div className="page-container pb-12 lg:pb-[72px]">
-          <FadeIn
-            direction="up"
-            className="h-[300px] border border-border bg-muted sm:h-[460px] lg:h-[560px]"
-          >
+          <FadeIn className="h-[300px] overflow-hidden rounded-2xl bg-surface sm:h-[460px] lg:h-[560px]">
             <ProjectMedia project={project} size="hero" />
           </FadeIn>
         </div>
 
         <section className="page-container grid gap-4 pb-12 lg:grid-cols-12 lg:gap-8 lg:pb-[72px]">
           <div className="flex flex-col gap-2 lg:col-span-4">
-            <SectionLabel index={1} label={t.caseStudy.context} />
-            <h2 className="text-[28px] font-semibold sm:text-[32px]">
+            <SectionLabel label={t.caseStudy.context} />
+            <h2 className="text-[34px] leading-tight font-medium sm:text-[42px]">
               {t.caseStudy.overview}
             </h2>
           </div>
@@ -163,11 +142,11 @@ export function CaseStudy({ project, projects }: CaseStudyProps) {
           </div>
         </section>
 
-        <section className="border-y border-border bg-muted">
+        <section className="bg-surface">
           <div className="page-container grid gap-4 py-12 lg:grid-cols-12 lg:gap-8 lg:py-[72px]">
             <div className="flex flex-col gap-2 lg:col-span-4">
-              <SectionLabel index={2} label={t.caseStudy.myRole} />
-              <h2 className="text-[28px] font-semibold sm:text-[32px]">
+              <SectionLabel label={t.caseStudy.myRole} />
+              <h2 className="text-[34px] leading-tight font-medium sm:text-[42px]">
                 {t.caseStudy.whatIDid}
               </h2>
             </div>
@@ -175,9 +154,9 @@ export function CaseStudy({ project, projects }: CaseStudyProps) {
               {study.role.map((item, index) => (
                 <li
                   key={item}
-                  className="grid grid-cols-[40px_1fr] gap-4 border-t border-line py-4 text-base leading-relaxed sm:grid-cols-[48px_1fr] sm:py-[18px]"
+                  className="grid grid-cols-[40px_1fr] gap-4 py-3 text-base leading-relaxed sm:grid-cols-[48px_1fr]"
                 >
-                  <span className="pt-1 font-mono text-xs text-brand">
+                  <span className="pt-1 font-mono text-xs text-muted-foreground">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                   <span>{item}</span>
@@ -189,8 +168,8 @@ export function CaseStudy({ project, projects }: CaseStudyProps) {
 
         <section className="page-container flex flex-col gap-6 py-12 lg:gap-7 lg:py-[72px]">
           <div className="flex flex-col gap-2">
-            <SectionLabel index={3} label={t.caseStudy.keyFeatures} />
-            <h2 className="text-[28px] font-semibold sm:text-[32px]">
+            <SectionLabel label={t.caseStudy.keyFeatures} />
+            <h2 className="text-[34px] leading-tight font-medium sm:text-[42px]">
               {t.caseStudy.keyFeatures}
             </h2>
           </div>
@@ -200,14 +179,9 @@ export function CaseStudy({ project, projects }: CaseStudyProps) {
               study.features.length === 4 && "md:grid-cols-2 lg:grid-cols-4"
             )}
           >
-            {study.features.map((feature, index) => (
-              <FadeIn
-                key={feature.title}
-                delay={index * 100}
-                direction="up"
-                className="flex flex-col gap-3"
-              >
-                <div className="h-[260px] border border-border bg-muted sm:h-[280px]">
+            {study.features.map((feature) => (
+              <FadeIn key={feature.title} className="flex flex-col gap-3">
+                <div className="h-[260px] overflow-hidden rounded-2xl bg-surface sm:h-[280px]">
                   <ProjectMedia
                     project={project}
                     size="feature"
@@ -234,8 +208,8 @@ export function CaseStudy({ project, projects }: CaseStudyProps) {
                     : "flex flex-col gap-4 lg:col-span-12"
                 }
               >
-                <SectionLabel index={4} label={t.caseStudy.flow} />
-                <h2 className="text-[28px] font-semibold sm:text-[32px]">
+                <SectionLabel label={t.caseStudy.flow} />
+                <h2 className="text-[34px] leading-tight font-medium sm:text-[42px]">
                   {t.caseStudy.howItWorks}
                 </h2>
                 <FlowDiagram steps={study.flow} />
@@ -243,16 +217,10 @@ export function CaseStudy({ project, projects }: CaseStudyProps) {
             )}
             {hasOutcomes && (
               <div className="flex flex-col gap-4 lg:col-span-5 lg:pt-16">
-                <SectionLabel
-                  index={outcomeIndex}
-                  label={t.caseStudy.outcome}
-                />
+                <SectionLabel label={t.caseStudy.outcome} />
                 {study.outcomes?.map((outcome) => (
-                  <div
-                    key={outcome.label}
-                    className="flex flex-col gap-0.5 border-t-2 border-dot pt-2.5"
-                  >
-                    <span className="text-[32px] font-bold">
+                  <div key={outcome.label} className="flex flex-col gap-0.5">
+                    <span className="font-heading text-[44px] leading-none font-medium">
                       {outcome.value}
                       {outcome.suffix}
                     </span>
@@ -269,14 +237,14 @@ export function CaseStudy({ project, projects }: CaseStudyProps) {
         {next && next !== project && (
           <a
             href={caseStudyHref(next)}
-            className="group block border-t border-border bg-card text-foreground"
+            className="group block bg-surface text-foreground"
           >
             <div className="page-container flex flex-wrap items-center justify-between gap-4 py-12 lg:py-16">
               <div className="flex flex-col gap-2">
-                <span className="font-mono text-xs text-muted-foreground">
-                  $ {t.caseStudy.next}
+                <span className="text-sm text-muted-foreground">
+                  {t.caseStudy.next}
                 </span>
-                <span className="text-3xl font-bold sm:text-[44px]">
+                <span className="font-heading text-4xl font-medium sm:text-[52px]">
                   {next.title}{" "}
                   <span
                     className="inline-block text-brand transition-transform group-hover:translate-x-1"
@@ -299,19 +267,19 @@ export function CaseStudy({ project, projects }: CaseStudyProps) {
 
 function FlowDiagram({ steps }: { steps: string[] }) {
   return (
-    <ol className="flex flex-col items-stretch gap-0 border border-border bg-muted p-5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-y-3 sm:p-8">
+    <ol className="flex flex-col items-stretch gap-0 rounded-2xl bg-surface p-5 sm:flex-row sm:flex-wrap sm:items-center sm:gap-y-3 sm:p-8">
       {steps.map((step, index) => (
         <Fragment key={step}>
           {index > 0 && (
             <li
               aria-hidden="true"
-              className="flex justify-center py-1 font-mono text-brand sm:px-3 sm:py-0"
+              className="flex justify-center py-1 text-muted-foreground sm:px-3 sm:py-0"
             >
               <span className="sm:hidden">↓</span>
               <span className="hidden sm:inline">→</span>
             </li>
           )}
-          <li className="flex items-center gap-2 border border-line bg-background px-4 py-3 text-sm">
+          <li className="flex items-center gap-2 rounded-lg bg-background px-4 py-3 text-sm">
             <span className="font-mono text-[11px] text-muted-foreground">
               {String(index + 1).padStart(2, "0")}
             </span>

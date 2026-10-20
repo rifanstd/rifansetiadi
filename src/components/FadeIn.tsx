@@ -1,45 +1,43 @@
-import { useInView } from "@/hooks/useInView"
-import type { ReactNode } from "react"
+import { useLayoutEffect, useRef, type ReactNode } from "react"
+import { cn } from "@/lib/utils"
 
 interface FadeInProps {
   children: ReactNode
-  delay?: number
   className?: string
-  duration?: number
-  direction?: "up" | "down" | "left" | "right" | "none"
 }
 
-const directionClasses: Record<string, string> = {
-  up: "translate-y-8",
-  down: "-translate-y-8",
-  left: "translate-x-8",
-  right: "-translate-x-8",
-  none: "",
-}
+// A small rise for content that starts below the fold. Content is visible by
+// default: nothing is hidden without IntersectionObserver, with reduced
+// motion, or when the element is already on screen at first paint, so
+// sections never sit blank while scrolling or in screenshots. The waiting
+// state lives in a data attribute (see .fade-rise in index.css).
+export function FadeIn({ children, className }: FadeInProps) {
+  const ref = useRef<HTMLDivElement>(null)
 
-export function FadeIn({
-  children,
-  delay = 0,
-  className = "",
-  duration = 700,
-  direction = "up",
-}: FadeInProps) {
-  const [ref, isInView] = useInView<HTMLDivElement>({ threshold: 0.1 })
-  const dirClass = directionClasses[direction]
+  useLayoutEffect(() => {
+    const element = ref.current
+    if (!element || typeof IntersectionObserver === "undefined") return
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+    if (element.getBoundingClientRect().top < window.innerHeight) return
+
+    element.dataset.waiting = ""
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return
+        delete element.dataset.waiting
+        observer.disconnect()
+      },
+      { rootMargin: "0px 0px -10% 0px" }
+    )
+    observer.observe(element)
+    return () => {
+      observer.disconnect()
+      delete element.dataset.waiting
+    }
+  }, [])
 
   return (
-    <div
-      ref={ref}
-      className={`transition-all ${className} ${
-        isInView
-          ? "opacity-100 translate-y-0 translate-x-0"
-          : `opacity-0 ${dirClass}`
-      }`}
-      style={{
-        transitionDuration: `${duration}ms`,
-        transitionDelay: `${delay}ms`,
-      }}
-    >
+    <div ref={ref} className={cn("fade-rise", className)}>
       {children}
     </div>
   )
